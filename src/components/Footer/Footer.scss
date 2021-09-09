@@ -1,17 +1,38 @@
 footer {
   background: #242424;
-  .logIn,.signIn {
+
+  .button {
     color: white;
+    padding: 13px 34px;
+    text-decoration: auto;
   }
-  .logIn:hover,
-  .signIn:hover {
+
+  .button:hover {
     outline: 1px solid #EBEBEB;
     cursor: pointer;
   }
+
   .blockOne {
     display: flex;
     justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #585858;
+    height: 175px;
   }
+
+  .blockTwo {
+    height: 64px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    .text {
+      color: #585858;
+      font-size: 12px;
+      line-height: 16px;
+    }
+  }
+
   .buttonBlock {
     display: flex;
   }

@@ -2,12 +2,13 @@ import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Header from "./components/Header/Header";
 import Footer from "./components/Footer/Footer";
+import MainPage from "./components/MainPage/MainPage";
 
 function App() {
+    const user = true
   return (
     <div className="App">
-        <Header />
-        <Footer />
+        <MainPage user={user}/>
     </div>
   );
 }
