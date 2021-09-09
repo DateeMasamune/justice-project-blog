@@ -1,0 +1,18 @@
+footer {
+  background: #242424;
+  .logIn,.signIn {
+    color: white;
+  }
+  .logIn:hover,
+  .signIn:hover {
+    outline: 1px solid #EBEBEB;
+    cursor: pointer;
+  }
+  .blockOne {
+    display: flex;
+    justify-content: space-between;
+  }
+  .buttonBlock {
+    display: flex;
+  }
+}
