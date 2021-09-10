@@ -1,0 +1,113 @@
+.popularArticles.main {
+  margin-top: 90px;
+  margin-bottom: 96px;
+  .viewArticle {
+    display: flex;
+  }
+}
+
+.popularArticles {
+
+  h1 {
+    display: flex;
+    font-family: Playfair Display;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 48px;
+    line-height: 48px;
+    text-align: center;
+    color: #242424;
+    margin-bottom: 96px;
+  }
+
+  .articles {
+    display: flex;
+    margin-bottom: 40px;
+
+    img {
+      margin-right: 24px;
+    }
+
+    .infoArticle {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      align-items: flex-start;
+
+      .hashTag {
+        background: #F7F7F7;
+        border-radius: 118px;
+        font-family: Inter;
+        font-style: normal;
+        font-weight: normal;
+        font-size: 12px;
+        line-height: 24px;
+        color: #8C8C8C;
+        padding: 0 10px;
+      }
+
+      .nameArticle {
+        font-family: Playfair Display;
+        font-style: normal;
+        font-weight: bold;
+        font-size: 32px;
+        line-height: 32px;
+        color: #242424;
+      }
+
+      .discriptionArticle {
+        text-align: left;
+        font-family: IBM Plex Sans;
+        font-style: normal;
+        font-weight: normal;
+        font-size: 16px;
+        line-height: 24px;
+        color: #8C8C8C;
+      }
+
+      .userInfo {
+        display: flex;
+        width: 50%;
+        justify-content: space-between;
+        align-items: center;
+
+        .iconUser img {
+          border-radius: 100%;
+        }
+
+        .viewArticle {
+          font-family: IBM Plex Sans;
+          font-style: normal;
+          font-weight: normal;
+          font-size: 12px;
+          line-height: 12px;
+          color: #8C8C8C;
+        }
+      }
+    }
+  }
+}
+
+.paginationArticle {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 110px;
+  margin-top: 56px;
+
+  .paginationButton{
+    line-height: 2em;
+    padding: 0 20px;
+    outline: 1px solid;
+    font-family: IBM Plex Sans;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 16px;
+    color: #242424;
+    cursor: pointer;
+  }
+  .paginationButton:hover {
+    color: white;
+    background: black;
+    cursor: pointer;
+  }
+}

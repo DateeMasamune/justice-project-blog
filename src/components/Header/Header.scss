@@ -56,8 +56,10 @@ header {
   }
 }
 
+
 .content {
-  height: calc(100vh - 240px - 87px);
+  height: auto;
+  min-height: calc(100vh - 240px - 86.38px);
 }
 
 @media (min-width: 1200px) {

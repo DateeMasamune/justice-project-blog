@@ -5,7 +5,7 @@ import Footer from "./components/Footer/Footer";
 import MainPage from "./components/MainPage/MainPage";
 
 function App() {
-    const user = true
+    const user = false
   return (
     <div className="App">
         <MainPage user={user}/>
