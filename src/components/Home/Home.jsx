@@ -1,3 +1,13 @@
 import React from 'react';
 
-export const Home = () => <div className='content'>123</div>
+import {photo} from "../images";
+
+export const Home = () => {
+	return (
+		<div className='content'>
+			<div className='container'>
+
+			</div>
+		</div>
+	)
+}

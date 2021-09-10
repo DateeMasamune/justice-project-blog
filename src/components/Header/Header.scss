@@ -72,6 +72,9 @@ header {
   header {
     .topMenu {
       .me-auto {
+        display: flex;
+        flex-direction: column;
+        margin-top: 20px;
         .menuItem {
           margin-right: unset;
           margin-bottom: 10px;
@@ -80,17 +83,12 @@ header {
         .menuItem:hover {
           margin-bottom: 9px;
         }
-      }
-
-      .me-auto .nav-link:nth-child(1) {
-        margin-right: unset;
-        margin-bottom: 15px;
+        .nav-link:nth-child(1) {
+          margin-right: unset;
+          margin-bottom: 15px;
+        }
       }
     }
-  }
-
-  #basic-navbar-nav {
-    margin-top: 20px;
   }
 }
 
