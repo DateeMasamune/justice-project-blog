@@ -5,9 +5,21 @@ import './SignIn.scss';
 export const SignIn = () => {
 	return (
 		<div className='content login'>
-			<form>
+			<form className='signinForm'>
 				<div className='title'>
-					Log in to your account
+					Create your free account
+				</div>
+				<div className='inputLogin'>
+					<div className='name'>
+						First name
+					</div>
+					<input type='text'/>
+				</div>
+				<div className='inputLogin'>
+					<div className='name'>
+						Last name
+					</div>
+					<input type='text'/>
 				</div>
 				<div className='inputLogin'>
 					<div className='name'>
@@ -24,9 +36,6 @@ export const SignIn = () => {
 				<div className='createAccount'>
 					Create Account
 				</div>
-				<span>
-					Don’t have a Times account? <a href='#'>Create one</a>
-				</span>
 			</form>
 		</div>
 	)

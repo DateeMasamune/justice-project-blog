@@ -4,11 +4,11 @@
   align-items: center;
 }
 
-form {
+form.signinForm {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  min-height: 400px;
+  min-height: 550px;
   .title {
     font-family: Playfair Display;
     font-style: normal;
