@@ -22,7 +22,7 @@ const Header = (props) => {
 	const navElemAuth = [
 		{
 			name: 'All articles',
-			link: '/all_articles'
+			link: '/'
 		},
 		{
 			name: 'My articles',

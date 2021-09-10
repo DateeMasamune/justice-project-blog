@@ -1,0 +1,156 @@
+.content.myArticles{
+  display: flex;
+  margin-top: 80px;
+  .user {
+    height: 366px;
+    width: 366px;
+    background: #FBFBFB;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    margin-right: 40px;
+    .rame {
+      width: 328px;
+      height: 346px;
+      outline: 1px solid #F2F2F2;
+      position: absolute;
+    }
+    .textBlockUser {
+      display: flex;
+      flex-direction: column;
+      span:nth-child(1) {
+        font-family: Playfair Display;
+        font-style: normal;
+        font-weight: bold;
+        font-size: 24px;
+        line-height: 24px;
+        text-align: center;
+        color: #242424;
+        margin-top: 24px;
+        margin-bottom: 16px;
+      }
+      span:nth-child(2) {
+        font-family: IBM Plex Sans;
+        font-style: normal;
+        font-weight: normal;
+        font-size: 14px;
+        line-height: 20px;
+        text-align: center;
+        color: #8C8C8C;
+        width: 259px;
+      }
+    }
+  }
+  .articlesList {
+    width: 65%;
+  }
+}
+  h1 {
+    display: flex;
+    font-family: Playfair Display;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 48px;
+    line-height: 48px;
+    text-align: center;
+    color: #242424;
+    margin-bottom: 96px;
+  }
+
+  .articles.my {
+    display: flex;
+    margin-bottom: 40px;
+    flex-direction: column;
+
+    .infoArticle {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      align-items: flex-start;
+
+      .hashTag.my {
+        background: #F7F7F7;
+        border-radius: 118px;
+        font-family: Inter;
+        font-style: normal;
+        font-weight: normal;
+        font-size: 12px;
+        line-height: 24px;
+        color: #8C8C8C;
+        padding: 0 10px;
+        margin-top: 25px;
+      }
+
+      .nameArticle.my {
+        font-family: Playfair Display;
+        font-style: normal;
+        font-weight: bold;
+        font-size: 32px;
+        line-height: 32px;
+        color: #242424;
+        margin-top: 24px;
+      }
+
+      .discriptionArticle.my {
+        text-align: left;
+        font-family: IBM Plex Sans;
+        font-style: normal;
+        font-weight: normal;
+        font-size: 16px;
+        line-height: 24px;
+        color: #8C8C8C;
+        margin-top: 16px;
+      }
+
+      .userInfo.my {
+        display: flex;
+        width: 50%;
+        justify-content: space-between;
+        align-items: center;
+        margin-top: 24px;
+
+        .iconUser img {
+          border-radius: 100%;
+        }
+
+        .viewArticle.my {
+          font-family: IBM Plex Sans;
+          font-style: normal;
+          font-weight: normal;
+          font-size: 12px;
+          line-height: 12px;
+          color: #8C8C8C;
+          img {
+            margin-right: 8px;
+          }
+        }
+      }
+    }
+  }
+
+
+.paginationArticle {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 110px;
+  margin-top: 56px;
+
+  .paginationButton{
+    line-height: 2em;
+    padding: 0 20px;
+    outline: 1px solid;
+    font-family: IBM Plex Sans;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 16px;
+    color: #242424;
+    cursor: pointer;
+  }
+  .paginationButton:hover {
+    color: white;
+    background: black;
+    cursor: pointer;
+  }
+}

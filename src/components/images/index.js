@@ -14,6 +14,7 @@ import image13 from '../../assets/img/mainPage/image 15.png';
 import image14 from '../../assets/img/mainPage/Rectangle 79.png';
 import image15 from '../../assets/img/mainPage/Vector.png';
 import image16 from '../../assets/img/mainPage/Time.png';
+import image17 from '../../assets/img/mainPage/Ellipse 6.png';
 
 
 export const photo = [
@@ -110,6 +111,14 @@ export const popularBlock = [
 			'industrial world finally took over the handicrafts.',
 		hasTag: '#Typography',
 		nameArticle: 'For a Life of Freedom, Ditch These 6 Habits'
+	}
+]
+
+export const user = [
+	{
+		imageSrc: image17,
+		name: 'Janay Wright',
+		discription: 'Pellentesque odio nisi, euismod in, pharetra a, ultricies in, diam. Sed arcu.'
 	}
 ]
 
