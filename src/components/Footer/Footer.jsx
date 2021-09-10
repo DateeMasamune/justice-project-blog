@@ -3,8 +3,6 @@ import Logo from '../../assets/img/LogoFooter.png'
 import './Footer.scss';
 import {
     BrowserRouter as Router,
-    Switch,
-    Route,
     Link
 } from "react-router-dom";
 
@@ -34,11 +32,11 @@ const Footer = (props) => {
         <footer>
             <div className='container'>
                 <div className='blockOne'>
-                    <Router className='footerLogo'>
+                    <div className='footerLogo'>
                         <Link to='/'><img src={Logo} alt='Logo.png'/></Link>
-                    </Router>
+                    </div>
                     <div>
-                        <Router className='buttonBlock'>
+                        <div className='buttonBlock'>
                             {
                                 buttons.map(button => {
                                     if (user) {
@@ -56,7 +54,7 @@ const Footer = (props) => {
                                     }
                                 })
                             }
-                        </Router>
+                        </div>
                     </div>
                 </div>
                 <div className='blockTwo'>

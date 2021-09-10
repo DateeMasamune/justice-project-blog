@@ -1,8 +1,8 @@
 import React from 'react';
 
-import './Login.scss';
+import './SignIn.scss';
 
-export const Login = () => {
+export const SignIn = () => {
 	return (
 		<div className='content login'>
 			<form>
