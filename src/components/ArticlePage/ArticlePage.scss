@@ -1,10 +1,116 @@
 .content.page {
   display: flex;
+  margin-top: 80px;
+  .article {
+    .articles.page {
+      width: 676px;
+      .hashTag.page,
+      .nameArticle.page {
+        font-family: Playfair Display;
+        font-style: normal;
+        font-weight: bold;
+        font-size: 48px;
+        line-height: 60px;
+        color: #282828;
+        text-align: left;
+      }
+      .hashTag.page{
+        width: fit-content;
+        background: #F7F7F7;
+        border-radius: 118px;
+        font-family: Inter;
+        font-style: normal;
+        font-weight: normal;
+        font-size: 12px;
+        line-height: 24px;
+        color: #8C8C8C;
+        padding: 0 10px;
+      }
+      .pic {
+        width: 100%;
+        height: auto;
+      }
+      .infoArticle.page {
+        .discriptionArticle.page {
+          text-align: justify;
+          .textPage {
+            font-family: IBM Plex Sans;
+            font-style: normal;
+            font-weight: normal;
+            font-size: 16px;
+            line-height: 26px;
+            color: #8C8C8C;
+          }
+          h2 {
+            font-family: Playfair Display;
+            font-style: normal;
+            font-weight: bold;
+            font-size: 36px;
+            line-height: 26px;
+            color: #282828;
+          }
+        }
+        .flexUser {
+          display: flex;
+          margin-bottom: 136px;
+          margin-top: 50px;
+          .userInfo.page {
+            display: flex;
+            width: 50%;
+            justify-content: space-between;
+            margin-right: auto;
+            align-items: center;
+            .viewArticle.page img {
+              margin-right: 10px;
+            }
+            .viewArticle.page{
+              .num {
+                font-family: IBM Plex Sans;
+                font-style: normal;
+                font-weight: normal;
+                font-size: 12px;
+                line-height: 12px;
+                color: #8C8C8C;
+              }
+            }
+            .iconUser.page span{
+              font-family: IBM Plex Sans;
+              font-style: normal;
+              font-weight: 500;
+              font-size: 14px;
+              line-height: 14px;
+              color: #8C8C8C;
+            }
+          }
+          .userInfo.page {
+            .iconImg {
+              border-radius: 100%;
+              margin-right: 10px;
+            }
+          }
+          .button.unset {
+            margin: unset;
+          }
+          .button.unset:hover {
+            color: white;
+            background: black;
+            cursor: pointer;
+          }
+        }
+      }
+    }
+  }
   .button {
     width: 124px;
     line-height: 3em;
     outline: 1px solid #8C8C8C;
     height: 47px;
     color: #8C8C8C;
+    margin-right: 73px;
+  }
+  .button:hover {
+    color: white;
+    background: black;
+    cursor: pointer;
   }
 }
