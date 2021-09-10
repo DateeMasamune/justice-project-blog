@@ -13,7 +13,7 @@ export const MyArticles = () => {
 						<div className='user'>
 							<div className='rame'></div>
 							<div className='iconUser'>
-								<img src={item.imageSrc} alt={item.name}/>
+								<img src={item.imageSrc} alt={item.namePicture}/>
 							</div>
 							<div className='textBlockUser'>
 								<span>
@@ -30,7 +30,7 @@ export const MyArticles = () => {
 					{
 						photo.map(item => (
 							<div className='articles my'>
-								<img src={item.pictureSrc} alt={item.name}/>
+								<img src={item.pictureSrc} alt={item.namePicture}/>
 								<div className='infoArticle my'>
 									<div className='hashTag my'>
 										{item.hasTag}
@@ -43,13 +43,16 @@ export const MyArticles = () => {
 									</div>
 									<div className='userInfo my'>
 										<div className='iconUser my'>
-											<img src={item.iconSrc} alt={item.name}/>
+											<img src={item.iconSrc} alt={item.namePicture}/>
+											<span>
+												{item.nameUser}
+											</span>
 										</div>
 										<div className='dataArticle my'>
-											<img src={item.date} alt={item.name}/>
+											<img src={item.date} alt={item.namePicture}/>
 										</div>
 										<div className='viewArticle my'>
-											<img src={item.viewSrc} alt={item.name}/>
+											<img src={item.viewSrc} alt={item.namePicture}/>
 											<span className='num'>{item.viewNum}</span>
 										</div>
 									</div>

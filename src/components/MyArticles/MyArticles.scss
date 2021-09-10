@@ -103,7 +103,6 @@
         color: #8C8C8C;
         margin-top: 16px;
       }
-
       .userInfo.my {
         display: flex;
         width: 50%;
@@ -113,6 +112,18 @@
 
         .iconUser img {
           border-radius: 100%;
+          margin-right: 10px;
+        }
+
+        .iconUser.my {
+          span {
+            font-family: IBM Plex Sans;
+            font-style: normal;
+            font-weight: 500;
+            font-size: 14px;
+            line-height: 14px;
+            color: #8C8C8C;
+          }
         }
 
         .viewArticle.my {
@@ -122,6 +133,8 @@
           font-size: 12px;
           line-height: 12px;
           color: #8C8C8C;
+          display: flex;
+          align-items: center;
           img {
             margin-right: 8px;
           }

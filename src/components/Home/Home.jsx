@@ -13,7 +13,7 @@ export const Home = () => {
 					{
 						popularBlock.map(item => (
 							<div className='articles'>
-								<img src={item.pictureSrc} alt={item.name}/>
+								<img src={item.pictureSrc} alt={item.namePicture}/>
 								<div className='infoArticle'>
 									<div className='hashTag'>
 										{item.hasTag}
@@ -24,15 +24,18 @@ export const Home = () => {
 									<div className='discriptionArticle'>
 										{item.description}
 									</div>
-									<div className='userInfo'>
+									<div className='userInfo main'>
 										<div className='iconUser'>
-											<img src={item.iconSrc} alt={item.name}/>
+											<img src={item.iconSrc} alt={item.namePicture}/>
+											<span>
+												{item.nameUser}
+											</span>
 										</div>
 										<div className='dataArticle'>
-											<img src={item.date} alt={item.name}/>
+											<img src={item.date} alt={item.namePicture}/>
 										</div>
 										<div className='viewArticle'>
-											<img src={item.viewSrc} alt={item.name}/>
+											<img src={item.viewSrc} alt={item.namePicture}/>
 											<span className='num'>{item.viewNum}</span>
 										</div>
 									</div>
@@ -46,7 +49,7 @@ export const Home = () => {
 					{
 						photo.map(item => (
 							<div className='articles'>
-								<img src={item.pictureSrc} alt={item.name}/>
+								<img src={item.pictureSrc} alt={item.namePicture}/>
 								<div className='infoArticle'>
 									<div className='hashTag'>
 										{item.hasTag}
@@ -59,13 +62,16 @@ export const Home = () => {
 									</div>
 									<div className='userInfo'>
 										<div className='iconUser'>
-											<img src={item.iconSrc} alt={item.name}/>
+											<img src={item.iconSrc} alt={item.namePicture}/>
+											<span>
+												{item.nameUser}
+											</span>
 										</div>
 										<div className='dataArticle'>
-											<img src={item.date} alt={item.name}/>
+											<img src={item.date} alt={item.namePicture}/>
 										</div>
 										<div className='viewArticle'>
-											<img src={item.viewSrc} alt={item.name}/>
+											<img src={item.viewSrc} alt={item.namePicture}/>
 											<span className='num'>{item.viewNum}</span>
 										</div>
 									</div>

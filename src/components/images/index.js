@@ -22,79 +22,85 @@ export const photo = [
 		pictureSrc: image13,
 		iconSrc: image11,
 		viewSrc: image15,
-		name: '1',
+		namePicture: '1',
 		date: image16,
 		viewNum: 0,
 		description: 'An Essay on Typography by Eric Gill takes the reader back to the year 1930.' +
 			'The year when a conflict between two worlds came to its term. The machines of the' +
 			'industrial world finally took over the handicrafts.',
 		hasTag: '#Typography',
-		nameArticle: 'Humane Typography in the Digital Age'
+		nameArticle: 'Humane Typography in the Digital Age',
+		nameUser: 'Janay Wright'
 	},
 	{
 		pictureSrc: image10,
 		iconSrc: image5,
 		viewSrc: image15,
-		name: '2',
+		namePicture: '2',
 		date: image16,
 		viewNum: 0,
 		description: 'An Essay on Typography by Eric Gill takes the reader back to the year 1930.' +
 			'The year when a conflict between two worlds came to its term. The machines of the' +
 			'industrial world finally took over the handicrafts.',
 		hasTag: '#Typography',
-		nameArticle: 'Johannes Gutenberg: The Birth of Movable'
+		nameArticle: 'Johannes Gutenberg: The Birth of Movable',
+		nameUser: 'Anthony J.Yeung'
 	},
 	{
 		pictureSrc: image9,
 		iconSrc: image4,
 		viewSrc: image15,
-		name: '3',
+		namePicture: '3',
 		date: image16,
 		viewNum: 0,
 		description: 'An Essay on Typography by Eric Gill takes the reader back to the year 1930.' +
 			'The year when a conflict between two worlds came to its term. The machines of the' +
 			'industrial world finally took over the handicrafts.',
 		hasTag: '#Typography',
-		nameArticle: 'The Origins of Social Stationery Lettering'
+		nameArticle: 'The Origins of Social Stationery Lettering',
+		nameUser: 'Ella Alderson'
 	},
 	{
 		pictureSrc: image8,
 		iconSrc: image2,
 		viewSrc: image15,
-		name: '4',
+		namePicture: '4',
 		date: image16,
 		viewNum: 0,
 		description: 'An Essay on Typography by Eric Gill takes the reader back to the year 1930.' +
 			'The year when a conflict between two worlds came to its term. The machines of the' +
 			'industrial world finally took over the handicrafts.',
 		hasTag: '#Typography',
-		nameArticle: 'Perfecting the Art of Perfection'
+		nameArticle: 'Perfecting the Art of Perfection',
+		nameUser: 'Soner Yıldırım'
 	},
 	{
 		pictureSrc: image7,
 		iconSrc: image1,
 		viewSrc: image15,
-		name: '5',
+		namePicture: '5',
 		date: image16,
 		viewNum: 0,
 		description: 'An Essay on Typography by Eric Gill takes the reader back to the year 1930.' +
 			'The year when a conflict between two worlds came to its term. The machines of the' +
 			'industrial world finally took over the handicrafts.',
 		hasTag: '#Typography',
-		nameArticle: 'A Brief History of Typography'
+		nameArticle: 'A Brief History of Typography',
+		nameUser: 'Ellane W'
 	},
 	{
 		pictureSrc: image6,
 		iconSrc: image3,
 		viewSrc: image15,
-		name: '6',
+		namePicture: '6',
 		date: image16,
 		viewNum: 0,
 		description: 'An Essay on Typography by Eric Gill takes the reader back to the year 1930.' +
 			'The year when a conflict between two worlds came to its term. The machines of the' +
 			'industrial world finally took over the handicrafts.',
 		hasTag: '#Typography',
-		nameArticle: 'For a Life of Freedom, Ditch These 6 Habits'
+		nameArticle: 'For a Life of Freedom, Ditch These 6 Habits',
+		nameUser: 'Winston Marshall'
 	},
 ]
 
@@ -103,14 +109,15 @@ export const popularBlock = [
 		pictureSrc: image14,
 		iconSrc: image12,
 		viewSrc: image15,
-		name: '7',
+		namePicture: '7',
 		date: image16,
 		viewNum: 0,
 		description: 'An Essay on Typography by Eric Gill takes the reader back to the year 1930.' +
 			'The year when a conflict between two worlds came to its term. The machines of the' +
 			'industrial world finally took over the handicrafts.',
 		hasTag: '#Typography',
-		nameArticle: 'For a Life of Freedom, Ditch These 6 Habits'
+		nameArticle: 'For a Life of Freedom, Ditch These 6 Habits',
+		nameUser:'Janay Wright'
 	}
 ]
 

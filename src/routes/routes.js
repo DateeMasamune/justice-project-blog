@@ -2,6 +2,7 @@ import {Home} from "../components/Home/Home";
 import {Login} from "../components/Login/Login";
 import {SignIn} from "../components/SignIn/SignIn";
 import {MyArticles} from "../components/MyArticles/MyArticles";
+import {ArticlePage} from "../components/ArticlePage/ArticlePage";
 
 export const routes = [
 	{
@@ -22,6 +23,11 @@ export const routes = [
 	{
 		component: MyArticles,
 		path: '/my_articles',
+		exact: true,
+	},
+	{
+		component: ArticlePage,
+		path: '/article_page',
 		exact: true,
 	},
 ]
