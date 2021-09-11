@@ -1,4 +1,10 @@
 .content.profile{
+  .title.profile {
+    h1 {
+      margin-bottom: 64px;
+      margin-top: 80px;
+    }
+  }
   .block.profile {
     display: flex;
     .formUser {
