@@ -6,6 +6,8 @@
       width: 676px;
       .hashTag.page,
       .nameArticle.page {
+        margin-top: 23px;
+        margin-bottom: 32px;
         font-family: Playfair Display;
         font-style: normal;
         font-weight: bold;
@@ -29,6 +31,11 @@
       .pic {
         width: 100%;
         height: auto;
+        margin-bottom: 32px;
+      }
+      .pic2 {
+        margin-top: 32px;
+        margin-bottom: 86px;
       }
       .infoArticle.page {
         .discriptionArticle.page {
@@ -48,6 +55,8 @@
             font-size: 36px;
             line-height: 26px;
             color: #282828;
+            margin-top: 64px;
+            margin-bottom: 32px;
           }
         }
         .flexUser {

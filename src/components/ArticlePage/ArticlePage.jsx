@@ -38,7 +38,7 @@ export const ArticlePage = () => {
 								<div className="textPage">
 									The first printed books were, at first, perceived as inferior to the handwritten ones. They were smaller and cheaper to produce. Movable type provided the printers with flexibility that allowed them to print books in languages other than Latin. Gill describes the transition to industrialism as something that people needed and wanted. Something similar happened after the first printed books emerged. People wanted books in a language they understood and they wanted books they could take with them. They were hungry for knowledge and printed books satisfied this hunger.
 								</div>
-								<img src={imageForPage} alt='' />
+								<img className='pic2' src={imageForPage} alt='' />
 								<div className="textPage">
 									The 42–Line Bible, printed by Gutenberg.
 									But, through this transition, the book lost a large part of its humanity. The machine took over most of the process but craftsmanship was still a part of it. The typefaces were cut manually by the first punch cutters. The paper was made by hand. The illustrations and ornaments were still being hand drawn. These were the remains of the craftsmanship that went almost extinct in the times of Eric Gill.
