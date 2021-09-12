@@ -3,6 +3,15 @@ import React from "react";
 import { user } from "../images";
 import './Profile.scss';
 
+const ButtonProfile = (prop) => {
+  console.log(prop)
+  return (
+    <div className="button">
+      {prop.text}
+    </div>
+  )
+}
+
 export const Profile = () => {
   return (
     <div className="container">
@@ -19,12 +28,8 @@ export const Profile = () => {
                   <img src={item.imageSrc} alt={item.namePicture}/>
                 </div>
                 <div className='textBlockUser'>
-                  <span>
-                  {item.name}
-                </span>
-                  <span>
-                  {item.discription}
-                </span>
+                  <ButtonProfile text="Change photo"/>
+                  <ButtonProfile text="Delete photo"/>
                 </div>
               </div>
             ))

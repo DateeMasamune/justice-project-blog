@@ -45,31 +45,28 @@
     .textBlockUser {
       display: flex;
       flex-direction: column;
-      span:nth-child(1) {
-        font-family: Playfair Display;
-        font-style: normal;
-        font-weight: bold;
-        font-size: 24px;
-        line-height: 24px;
-        text-align: center;
-        color: #242424;
-        margin-top: 24px;
-        margin-bottom: 16px;
+      z-index: 999;
+      margin-top: 32px;
+      .button {
+        text-decoration: underline;
+        padding: 0 32px;
+        line-height: 3em;
       }
-      span:nth-child(2) {
-        font-family: IBM Plex Sans;
-        font-style: normal;
-        font-weight: normal;
-        font-size: 14px;
-        line-height: 20px;
-        text-align: center;
-        color: #8C8C8C;
-        width: 259px;
+      .button:hover {
+        line-height: 3em;
+        outline: 1px solid;
+        padding: 0 32px;
+        cursor: pointer;
       }
+    }
+    .iconUser {
+      z-index: 999;
     }
   }
   .formUser {
+    width: 60%;
     .inputName {
+      justify-content: space-between;
       .block {
         span{
 
