@@ -1,0 +1,16 @@
+.paginationButton{
+  line-height: 2em;
+  padding: 0 20px;
+  outline: 1px solid;
+  font-family: 'IBM Plex Sans Arabic', sans-serif;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 16px;
+  color: #242424;
+  cursor: pointer;
+}
+.paginationButton:hover {
+  color: white;
+  background: black;
+  cursor: pointer;
+}

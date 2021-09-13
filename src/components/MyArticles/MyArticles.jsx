@@ -3,6 +3,9 @@ import React from 'react';
 import './MyArticles.scss';
 import {photo} from "../images";
 import {user} from "../images";
+import {UserAvatar} from "./UserAvatar/UserAvatar";
+import {UserArticle} from "./UserArticle/UserArticle";
+import {PaginationButton} from "../Home/PaginationButton/PaginationButton";
 
 export const MyArticles = () => {
 	return (
@@ -10,59 +13,18 @@ export const MyArticles = () => {
 			<div className='content myArticles'>
 				{
 					user.map(item => (
-						<div className='user'>
-							<div className='rame'></div>
-							<div className='iconUser'>
-								<img src={item.imageSrc} alt={item.namePicture}/>
-							</div>
-							<div className='textBlockUser'>
-								<span>
-								{item.name}
-							</span>
-								<span>
-								{item.discription}
-							</span>
-							</div>
-						</div>
+						<UserAvatar userData={item} />
 					))
 				}
 				<div className='articlesList'>
 					{
 						photo.map(item => (
-							<div className='articles my'>
-								<img src={item.pictureSrc} alt={item.namePicture}/>
-								<div className='infoArticle my'>
-									<div className='hashTag my'>
-										{item.hasTag}
-									</div>
-									<div className='nameArticle my'>
-										{item.nameArticle}
-									</div>
-									<div className='discriptionArticle my'>
-										{item.description}
-									</div>
-									<div className='userInfo my'>
-										<div className='iconUser my'>
-											<img src={item.iconSrc} alt={item.namePicture}/>
-											<span>
-												{item.nameUser}
-											</span>
-										</div>
-										<div className='dataArticle my'>
-											<img src={item.date} alt={item.namePicture}/>
-										</div>
-										<div className='viewArticle my'>
-											<img src={item.viewSrc} alt={item.namePicture}/>
-											<span className='num'>{item.viewNum}</span>
-										</div>
-									</div>
-								</div>
-							</div>
+							<UserArticle dataArticle={item}/>
 						))
 					}
 					<div className='paginationArticle'>
-						<div className='paginationButton'>Prev</div>
-						<div className='paginationButton'>Next</div>
+						<PaginationButton name={'Prev'} />
+						<PaginationButton name={'Next'} />
 					</div>
 				</div>
 			</div>

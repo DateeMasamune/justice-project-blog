@@ -3,14 +3,8 @@ import React from "react";
 import { user } from "../images";
 import {dontUser} from "../images";
 import './Profile.scss';
-
-const ButtonProfile = (prop) => {
-  return (
-    <div className="button">
-      {prop.text}
-    </div>
-  )
-}
+import {ButtonProfile, SaveChange} from "./ButtonProfile/ButtonProfile";
+import {userTest} from "../../constants";
 
 export const Profile = (prop) => {
   return (
@@ -25,7 +19,7 @@ export const Profile = (prop) => {
               <div className='user'>
                 <div className='rame'></div>
 								{
-									false ?
+									userTest ?
 										<div className='iconUser'>
 											<img src={item.imageSrc} alt={item.namePicture}/>
 										</div>
@@ -61,9 +55,7 @@ export const Profile = (prop) => {
                   <input type="text"/>
                 </div>
               </div>
-              <div className="button">
-                Save Changes
-              </div>
+             	<SaveChange text={'Save Changes'} />
             </form>
           </div>
         </div>

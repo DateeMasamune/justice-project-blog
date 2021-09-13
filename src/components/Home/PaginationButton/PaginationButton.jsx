@@ -1,9 +1,11 @@
 import React from "react";
 
-export const PaginationButton = (prop) => {
+import './PaginationButton.scss';
+
+export const PaginationButton = ({name}) => {
 	return (
 		<div className='paginationButton'>
-			{prop.name}
+			{name}
 		</div>
 	)
 }

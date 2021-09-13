@@ -3,7 +3,7 @@ import {Login} from "../components/Login/Login";
 import {SignIn} from "../components/SignIn/SignIn";
 import {MyArticles} from "../components/MyArticles/MyArticles";
 import {ArticlePage} from "../components/ArticlePage/ArticlePage";
-import { Profile } from "../components/Profile/Profile";
+import {Profile} from "../components/Profile/Profile";
 import {AddArticle} from "../components/AddArticle/AddArticle";
 
 export const routes = [
