@@ -1,5 +1,18 @@
 .content.page {
   display: flex;
+  .article {
+    .articles.page {
+      width: 676px;
+      .pic {
+        width: 100%;
+      }
+      .infoArticle.page {
+        .userInfo.page {
+
+        }
+      }
+    }
+  }
   .button {
     width: 124px;
     line-height: 3em;
