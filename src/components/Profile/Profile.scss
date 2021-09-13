@@ -1,0 +1,80 @@
+.content.profile{
+  .title.profile {
+    h1 {
+      margin-bottom: 64px;
+      margin-top: 80px;
+    }
+  }
+  .block.profile {
+    display: flex;
+    .formUser {
+      .inputName {
+        display: flex;
+        .block {
+          display: flex;
+          flex-direction: column;
+        }
+      }
+      .inputDescription {
+        .block{
+          display: flex;
+          flex-direction: column;
+        }
+      }
+      form {
+        min-height: 366px;
+      }
+    }
+  }
+  .user {
+    height: 366px;
+    width: 366px;
+    background: #FBFBFB;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    margin-right: 40px;
+    .rame {
+      width: 328px;
+      height: 346px;
+      outline: 1px solid #F2F2F2;
+      position: absolute;
+    }
+    .textBlockUser {
+      display: flex;
+      flex-direction: column;
+      z-index: 999;
+      margin-top: 32px;
+      .button {
+        text-decoration: underline;
+        padding: 0 32px;
+        line-height: 3em;
+      }
+      .button:hover {
+        line-height: 3em;
+        outline: 1px solid;
+        padding: 0 32px;
+        cursor: pointer;
+      }
+    }
+    .iconUser {
+      z-index: 999;
+    }
+  }
+  .formUser {
+    width: 60%;
+    .inputName {
+      justify-content: space-between;
+      .block {
+        span{
+
+        }
+        input{
+
+        }
+      }
+    }
+  }
+}

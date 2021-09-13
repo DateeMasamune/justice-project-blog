@@ -3,6 +3,7 @@ import {Login} from "../components/Login/Login";
 import {SignIn} from "../components/SignIn/SignIn";
 import {MyArticles} from "../components/MyArticles/MyArticles";
 import {ArticlePage} from "../components/ArticlePage/ArticlePage";
+import { Profile } from "../components/Profile/Profile";
 
 export const routes = [
 	{
@@ -28,6 +29,11 @@ export const routes = [
 	{
 		component: ArticlePage,
 		path: '/article_page',
+		exact: true,
+	},
+	{
+		component: Profile,
+		path: '/profile',
 		exact: true,
 	},
 ]
