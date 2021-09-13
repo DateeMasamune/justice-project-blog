@@ -1,7 +1,7 @@
 import React from "react";
 
-import { user } from "../images";
-import {dontUser} from "../images";
+import { user } from "../../services/mock";
+import {dontUser} from "../../services/mock";
 import './Profile.scss';
 import {ButtonProfile, SaveChange} from "./ButtonProfile/ButtonProfile";
 import {userTest} from "../../constants";

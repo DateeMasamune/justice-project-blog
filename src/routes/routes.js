@@ -29,7 +29,7 @@ export const routes = [
 	},
 	{
 		component: ArticlePage,
-		path: '/article_page',
+		path: '/article_page:id',
 		exact: true,
 	},
 	{

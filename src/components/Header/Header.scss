@@ -31,6 +31,12 @@ header {
         margin-right: unset;
       }
 
+      .selected {
+        color: #282c34;
+        border-bottom: 1px solid black;
+        cursor: pointer;
+      }
+
       .menuItem:hover {
         color: #282c34;
         border-bottom: 1px solid black;
@@ -45,6 +51,11 @@ header {
         display: unset;
       }
       .nav-link:hover {
+        color: white;
+        background: black;
+        cursor: pointer;
+      }
+      .selectedButton {
         color: white;
         background: black;
         cursor: pointer;

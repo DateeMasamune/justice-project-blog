@@ -1,8 +1,8 @@
 import React from 'react';
 
 import './MyArticles.scss';
-import {photo} from "../images";
-import {user} from "../images";
+import {articlesData} from "../../services/mock";
+import {user} from "../../services/mock";
 import {UserAvatar} from "./UserAvatar/UserAvatar";
 import {UserArticle} from "./UserArticle/UserArticle";
 import {PaginationButton} from "../Home/PaginationButton/PaginationButton";
@@ -18,7 +18,7 @@ export const MyArticles = () => {
 				}
 				<div className='articlesList'>
 					{
-						photo.map(item => (
+						articlesData.map(item => (
 							<UserArticle dataArticle={item}/>
 						))
 					}

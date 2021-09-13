@@ -1,7 +1,7 @@
 import React from "react";
 
 import './ArticlePage.scss';
-import {photo} from "../images";
+import {articlesData} from "../../services/mock";
 import imageForPage from '../../assets/img/Rectangle 39.svg';
 
 export const ArticlePage = () => {
@@ -14,12 +14,12 @@ export const ArticlePage = () => {
 				<div className='article'>
 					<div className='articles page'>
 						<div className='hashTag page'>
-							{photo[0].hasTag}
+							{articlesData[0].hasTag}
 						</div>
 						<div className='nameArticle page'>
-							{photo[0].nameArticle}
+							{articlesData[0].nameArticle}
 						</div>
-						<img className='pic' src={photo[0].pictureSrc} alt={photo[0].namePicture}/>
+						<img className='pic' src={articlesData[0].pictureSrc} alt={articlesData[0].namePicture}/>
 						<div className='infoArticle page'>
 							<div className='discriptionArticle page'>
 								<div className="textPage">
@@ -51,17 +51,17 @@ export const ArticlePage = () => {
 							<div className="flexUser">
 							<div className='userInfo page'>
 								<div className='iconUser page'>
-									<img className="iconImg" src={photo[0].iconSrc} alt={photo[0].namePicture}/>
+									<img className="iconImg" src={articlesData[0].iconSrc} alt={articlesData[0].namePicture}/>
 									<span>
-												{photo[0].nameUser}
+												{articlesData[0].nameUser}
 											</span>
 								</div>
 								<div className='dataArticle page'>
-									<img src={photo[0].date} alt={photo[0].namePicture}/>
+									<img src={articlesData[0].date} alt={articlesData[0].namePicture}/>
 								</div>
 								<div className='viewArticle page'>
-									<img src={photo[0].viewSrc} alt={photo[0].namePicture}/>
-									<span className='num'>{photo[0].viewNum}</span>
+									<img src={articlesData[0].viewSrc} alt={articlesData[0].namePicture}/>
+									<span className='num'>{articlesData[0].viewNum}</span>
 								</div>
 								<div className='button'>
 									Typography

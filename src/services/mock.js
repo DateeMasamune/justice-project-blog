@@ -1,24 +1,24 @@
-import image1 from '../../assets/img/mainPage/image 13-1.png';
-import image2 from '../../assets/img/mainPage/image 13-2.png';
-import image3 from '../../assets/img/mainPage/image 13.png';
-import image4 from '../../assets/img/mainPage/image 13-3.png';
-import image5 from '../../assets/img/mainPage/image 13-4.png';
-import image6 from '../../assets/img/mainPage/image 14.png';
-import image7 from '../../assets/img/mainPage/image 14-1.png';
-import image8 from '../../assets/img/mainPage/image 14-2.png';
-import image9 from '../../assets/img/mainPage/image 14-3.png';
-import image10 from '../../assets/img/mainPage/image 14-4.png';
-import image11 from '../../assets/img/mainPage/image 14-5.png';
-import image12 from '../../assets/img/mainPage/image 14-6.png';
-import image13 from '../../assets/img/mainPage/image 15.png';
-import image14 from '../../assets/img/mainPage/Rectangle 79.png';
-import image15 from '../../assets/img/mainPage/Vector.png';
-import image16 from '../../assets/img/mainPage/Time.png';
-import image17 from '../../assets/img/mainPage/Ellipse 6.png';
-import notImage from "../../assets/img/profile/Group 54.svg";
+import image1 from '../assets/img/mainPage/image 13-1.png';
+import image2 from '../assets/img/mainPage/image 13-2.png';
+import image3 from '../assets/img/mainPage/image 13.png';
+import image4 from '../assets/img/mainPage/image 13-3.png';
+import image5 from '../assets/img/mainPage/image 13-4.png';
+import image6 from '../assets/img/mainPage/image 14.png';
+import image7 from '../assets/img/mainPage/image 14-1.png';
+import image8 from '../assets/img/mainPage/image 14-2.png';
+import image9 from '../assets/img/mainPage/image 14-3.png';
+import image10 from '../assets/img/mainPage/image 14-4.png';
+import image11 from '../assets/img/mainPage/image 14-5.png';
+import image12 from '../assets/img/mainPage/image 14-6.png';
+import image13 from '../assets/img/mainPage/image 15.png';
+import image14 from '../assets/img/mainPage/Rectangle 79.png';
+import image15 from '../assets/img/mainPage/Vector.png';
+import image16 from '../assets/img/mainPage/Time.png';
+import image17 from '../assets/img/mainPage/Ellipse 6.png';
+import notImage from "../assets/img/profile/Group 54.svg";
 
 
-export const photo = [
+export const articlesData = [
 	{
 		pictureSrc: image13,
 		iconSrc: image11,
@@ -81,7 +81,7 @@ export const photo = [
 		viewSrc: image15,
 		namePicture: '5',
 		date: image16,
-		viewNum: 0,
+		viewNum: 5,
 		description: 'An Essay on Typography by Eric Gill takes the reader back to the year 1930.' +
 			'The year when a conflict between two worlds came to its term. The machines of the' +
 			'industrial world finally took over the handicrafts.',
