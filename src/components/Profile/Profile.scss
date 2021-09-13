@@ -23,6 +23,23 @@
       }
       form {
         min-height: 366px;
+        .button {
+          outline: 1px solid;
+          padding: 13px 32px;
+          font-size: 16px;
+          line-height: 1.5em;
+          display: unset;
+          width: 164px;
+          height: 48px;
+          font-family: 'IBM Plex Sans Arabic', sans-serif;
+          font-style: normal;
+          font-weight: bold;
+        }
+        .button:hover {
+          color: white;
+          background: black;
+          cursor: pointer;
+        }
       }
     }
   }
@@ -57,10 +74,20 @@
         outline: 1px solid;
         padding: 0 32px;
         cursor: pointer;
+        text-decoration: unset;
       }
     }
     .iconUser {
       z-index: 999;
+      .dontUser {
+        height: 126px;
+        width: 126px;
+        background: #E5E5E5;
+        border-radius: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
     }
   }
   .formUser {
@@ -69,10 +96,35 @@
       justify-content: space-between;
       .block {
         span{
-
+          text-align: left;
+          margin-bottom: 12px;
+          font-family: 'IBM Plex Sans Arabic', sans-serif;
+          font-style: normal;
+          font-weight: bold;
+          font-size: 14px;
+          line-height: 14px;
+          color: #242424;
         }
         input{
-
+         min-width: 286px;
+          height: 47px;
+        }
+      }
+    }
+    .inputDescription {
+      .block {
+        span {
+          text-align: left;
+          margin-bottom: 12px;
+          font-family: 'IBM Plex Sans Arabic', sans-serif;
+          font-style: normal;
+          font-weight: bold;
+          font-size: 14px;
+          line-height: 14px;
+          color: #242424;
+        }
+        input {
+          height: 155px;
         }
       }
     }

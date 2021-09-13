@@ -15,6 +15,7 @@ import image14 from '../../assets/img/mainPage/Rectangle 79.png';
 import image15 from '../../assets/img/mainPage/Vector.png';
 import image16 from '../../assets/img/mainPage/Time.png';
 import image17 from '../../assets/img/mainPage/Ellipse 6.png';
+import notImage from "../../assets/img/profile/Group 54.svg";
 
 
 export const photo = [
@@ -126,6 +127,12 @@ export const user = [
 		imageSrc: image17,
 		name: 'Janay Wright',
 		discription: 'Pellentesque odio nisi, euismod in, pharetra a, ultricies in, diam. Sed arcu.'
+	}
+]
+
+export const dontUser = [
+	{
+		imageSrc: notImage
 	}
 ]
 

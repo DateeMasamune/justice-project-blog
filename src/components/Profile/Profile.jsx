@@ -1,10 +1,10 @@
 import React from "react";
 
 import { user } from "../images";
+import {dontUser} from "../images";
 import './Profile.scss';
 
 const ButtonProfile = (prop) => {
-  console.log(prop)
   return (
     <div className="button">
       {prop.text}
@@ -12,7 +12,7 @@ const ButtonProfile = (prop) => {
   )
 }
 
-export const Profile = () => {
+export const Profile = (prop) => {
   return (
     <div className="container">
       <div className="content profile">
@@ -24,9 +24,18 @@ export const Profile = () => {
             user.map(item => (
               <div className='user'>
                 <div className='rame'></div>
-                <div className='iconUser'>
-                  <img src={item.imageSrc} alt={item.namePicture}/>
-                </div>
+								{
+									false ?
+										<div className='iconUser'>
+											<img src={item.imageSrc} alt={item.namePicture}/>
+										</div>
+											:
+										<div className='iconUser'>
+											<div className='dontUser'>
+												<img src={dontUser[0].imageSrc} alt=""/>
+											</div>
+										</div>
+								}
                 <div className='textBlockUser'>
                   <ButtonProfile text="Change photo"/>
                   <ButtonProfile text="Delete photo"/>
