@@ -4,6 +4,7 @@ import {SignIn} from "../components/SignIn/SignIn";
 import {MyArticles} from "../components/MyArticles/MyArticles";
 import {ArticlePage} from "../components/ArticlePage/ArticlePage";
 import { Profile } from "../components/Profile/Profile";
+import {AddArticle} from "../components/AddArticle/AddArticle";
 
 export const routes = [
 	{
@@ -34,6 +35,11 @@ export const routes = [
 	{
 		component: Profile,
 		path: '/profile',
+		exact: true,
+	},
+	{
+		component: AddArticle,
+		path: '/add_articles',
 		exact: true,
 	},
 ]
