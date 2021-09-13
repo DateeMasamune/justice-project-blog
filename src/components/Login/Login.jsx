@@ -1,6 +1,7 @@
 import React from 'react';
 
 import './Login.scss';
+import {CreateAccountButton} from "./CreateAccountButton/CreateAccountButton";
 
 export const Login = () => {
 	return (
@@ -21,9 +22,7 @@ export const Login = () => {
 					</div>
 					<input type='text'/>
 				</div>
-				<div className='createAccount'>
-					Create Account
-				</div>
+				<CreateAccountButton text={'Create Account'} />
 				<span>
 					Don’t have a Times account? <a href='#'>Create one</a>
 				</span>

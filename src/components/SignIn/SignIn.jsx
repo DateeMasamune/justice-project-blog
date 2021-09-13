@@ -1,6 +1,7 @@
 import React from 'react';
 
 import './SignIn.scss';
+import {CreateAccountButton} from "../Login/CreateAccountButton/CreateAccountButton";
 
 export const SignIn = () => {
 	return (
@@ -33,9 +34,7 @@ export const SignIn = () => {
 					</div>
 					<input type='text'/>
 				</div>
-				<div className='createAccount'>
-					Create Account
-				</div>
+					<CreateAccountButton text={'Create Account'} />
 			</form>
 		</div>
 	)

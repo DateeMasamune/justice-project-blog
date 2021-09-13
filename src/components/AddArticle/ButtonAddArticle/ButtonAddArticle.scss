@@ -1,0 +1,19 @@
+.content {
+  .addArticle {
+    .buttons {
+      .button {
+        color: #282c34;
+        outline: 1px solid;
+        padding: 13px 32px;
+        font-size: 16px;
+        line-height: 15px;
+        display: unset;
+      }
+      .button:hover {
+        color: white;
+        background: black;
+        cursor: pointer;
+      }
+    }
+  }
+}
