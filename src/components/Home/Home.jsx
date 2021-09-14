@@ -4,11 +4,11 @@ import './Home.scss';
 import {PopularArticle} from "./PopularArticle/PopularArticle";
 import {ArticleList} from "./ArticleList/ArticleList";
 import {PaginationButton} from "./PaginationButton/PaginationButton";
+import {articlesData} from "../../services/mock";
 
 export const Home = () => {
-	const [articles, setArticles] = useState(JSON.parse(localStorage.getItem('articles')) || []); /*проверка для предотвращения ошибки в случае если нет данных*/
+	const [articles, setArticles] = useState(JSON.parse(localStorage.getItem('articles')) || articlesData); /*проверка для предотвращения ошибки в случае если нет данных*/
 	const popularArticles = articles.sort((a, b) => b.viewNum - a.viewNum)[0] /*фильтрация по количеству просмотров*/
-
 	const title = 'Popular articles'
 	return (
 		<div className='content'>

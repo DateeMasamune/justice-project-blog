@@ -3,8 +3,11 @@ import React from "react";
 import './ArticlePage.scss';
 import {articlesData} from "../../services/mock";
 import imageForPage from '../../assets/img/Rectangle 39.svg';
+import {useParams} from "react-router-dom";
 
 export const ArticlePage = () => {
+	const {id} = useParams()
+	console.log('===>id', id);
 	return (
 		<div className='container'>
 			<div className='content page'>

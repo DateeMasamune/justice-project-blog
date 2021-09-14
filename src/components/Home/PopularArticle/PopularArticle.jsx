@@ -1,4 +1,5 @@
 import React from "react";
+import {NavLink} from "react-router-dom";
 
 export const PopularArticle = ({data}) => {
 	return (
@@ -8,9 +9,11 @@ export const PopularArticle = ({data}) => {
 				<div className='hashTag'>
 					{data.hasTag}
 				</div>
-				<div className='nameArticle'>
-					{data.nameArticle}
-				</div>
+				<NavLink className='linkArticle' to=''>
+					<div className='nameArticle'>
+						{data.nameArticle}
+					</div>
+				</NavLink>
 				<div className='discriptionArticle'>
 					{data.description}
 				</div>

@@ -46,6 +46,18 @@
         padding: 0 10px;
       }
 
+      .linkArticle{
+          text-decoration: unset;
+        .nameArticle {
+          font-family: 'Playfair Display', serif;
+          font-style: normal;
+          font-weight: bold;
+          font-size: 32px;
+          line-height: 32px;
+          color: #242424;
+        }
+      }
+
       .nameArticle {
         font-family: 'Playfair Display', serif;
         font-style: normal;

@@ -28,6 +28,16 @@ form.signinForm {
       line-height: 14px;
       color: #242424;
     }
+    .errorSign {
+      font-family: 'IBM Plex Sans Arabic', sans-serif;
+      font-style: normal;
+      font-weight: bold;
+      font-size: 11px;
+      line-height: 14px;
+      color: #CF4949;
+      text-align: left;
+      margin-bottom: unset;
+    }
   }
   .inputLogin input {
     width: 100%;

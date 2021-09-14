@@ -1,15 +1,12 @@
 import React, {useState} from 'react';
 
 import './SignIn.scss';
-import {CreateAccountButton} from "../Login/CreateAccountButton/CreateAccountButton";
-
 
 export const SignIn = () => {
 	const [registerForm, setRegisterForm] = useState({
 		firstName: {
 			value: '',
 			valid: false,
-			validMessage: '',
 			displayName: 'First name',
 			name: 'firstName',
 			type: 'text',
@@ -17,7 +14,6 @@ export const SignIn = () => {
 		lastName: {
 			value: '',
 			valid: false,
-			validMessage: '',
 			name: 'lastName',
 			displayName: 'Last name',
 			type: 'text',
@@ -25,7 +21,6 @@ export const SignIn = () => {
 		email: {
 			value: '',
 			valid: false,
-			validMessage: '',
 			displayName: 'Email Address',
 			name: 'email',
 			type: 'email',
@@ -34,44 +29,81 @@ export const SignIn = () => {
 			value: '',
 			name: 'password',
 			valid: false,
-			validMessage: '',
 			displayName: 'Password',
 			type: 'password',
 		},
 	})
 
-	console.log('===>registerForm', registerForm);
-	const onChange = (e) => { /*принимаем событие и имя поля для дальнейшей идентификации*/
-		const {value, name} = e.target; /*в этой переменной хранится значения поля инпут*/
-		console.log('===>name', name);
-		// setRegisterForm(registerForm.map((element) => { /*делаем запись используя состояние компонента*/
-		// 	if (element.name === name) { /*идентификация элемента в котором в данный момент происходит измненеие*/
-		// 		return {
-		// 			...element, /*возвращаем объект раскрываем объект по которому бежим с мап*/
-		// 			validMessage: '',
-		// 			value: value, /*обновляем значение поля*/
-		// 		}
-		// 	}
-		// 	return element /*возвращаем объект с обновлненными значениями */
-		// }))
+
+
+	const isValid = (value, name) => {
+		switch (name) {
+			case 'firstName':
+				return value.length > 3
+			case 'lastName':
+				return value.length > 3
+			case 'email':
+				const re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+				return re.test(String(value).toLowerCase());
+			case 'password':
+				return value.length > 6
+			default:
+				return false
+		}
+	}
+
+	const [showErrors, setShowErrors] = useState(false)
+
+	const onChange = (e) => {
+		showErrors && setShowErrors(false)
+		const {value, name} = e.target;
 			setRegisterForm((prevState) => ({
 				...prevState,
 				[name]: {
 					...prevState[name],
 					validMessage: '',
 					value: value,
+					valid: isValid(value, name),
 				}
-			// if (element.name === name) {
-			// 	return {
-			// 		...element,
-			// 		validMessage: '',
-			// 		value: value,
-			// 	}
-			// }
 		}))
 	}
-	console.log('===>registerForm', registerForm);
-	console.log('===>Object.keys(registerForm)', Object.keys(registerForm));
+
+
+	const handleSubmit = (e) => {
+		e.preventDefault()
+		setShowErrors(true)
+		let isValidAll = true;
+		for (let elem in registerForm) {
+			if (!elem.valid) {
+				isValidAll = false
+			}
+		}
+		if (registerForm.email.valid &&
+				registerForm.firstName.valid &&
+				registerForm.lastName.valid &&
+				registerForm.password.valid) {
+			if (localStorage.getItem('users') === null) {
+				const users = [registerForm]
+				localStorage.setItem('users', JSON.stringify(users))
+			} else {
+				const getUsers = JSON.parse(localStorage.getItem('users'))
+				let flag;
+				getUsers.map(item => {
+					if (registerForm.email.value === item.email.value) {
+						flag = false
+						return false
+					}
+				})
+				if (flag === false) {
+					return false
+				} else {
+					getUsers.push(registerForm)
+					localStorage.setItem('users', JSON.stringify(getUsers))
+				}
+			}
+		}
+	}
+
 	return (
 		<div className='content login'>
 			<form className='signinForm'>
@@ -87,20 +119,22 @@ export const SignIn = () => {
 							<input
 								style={(registerForm[field].validMessage) ? {borderColor: 'red'} : {}}
 								name={registerForm[field].name}
-								type={field.type}
+								type={registerForm[field].type}
 								value={registerForm[field].value}
 								onChange={onChange}
 							/>
-							{/*{!field.valid && field.value && (*/}
-							{/*	<p style={{color: 'red'}}>{field.validMessage}</p>)} /!*если ошибка добавляем сообщение*!/*/}
+							{showErrors && !registerForm[field].valid && (
+								<p className='errorSign' >Enter correct data</p>)} {/*если ошибка добавляем сообщение*/
+							}
 						</div>
 					)
 				})}
-				<CreateAccountButton
-					text={'Create Account'}
-					registerForm={registerForm}
-					setRegisterForm={setRegisterForm}
-				/>
+				<div
+					className='createAccount'
+					onClick={handleSubmit}
+				>
+					Create Account
+				</div>
 			</form>
 		</div>
 	)

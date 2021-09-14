@@ -1,32 +1,48 @@
-import React from "react";
+import React, {useState} from "react";
+import {NavLink} from "react-router-dom";
 
-export const ArticleList = ({data}) => {
+export const ArticleList = (props) => {
+	const {data} = props;
+
+	const [article, setArticle] = useState(data)
+	// console.log('===>article', article);
+	const addCounter = () => {
+		//a
+	}
+
 	return (
 		<div className='articles'>
-			<img src={data.pictureSrc} alt={data.namePicture}/>
+			<img src={article.pictureSrc} alt={article.namePicture}/>
 			<div className='infoArticle'>
 				<div className='hashTag'>
-					{data.hasTag}
+					{article.hasTag}
 				</div>
-				<div className='nameArticle'>
-					{data.nameArticle}
-				</div>
+				<NavLink
+					className='linkArticle'
+					to={`/article_page${article.id}`}
+					exact={true}
+					onClick={addCounter}
+				>
+					<div className='nameArticle'>
+						{article.nameArticle}
+					</div>
+				</NavLink>
 				<div className='discriptionArticle'>
-					{data.description}
+					{article.description}
 				</div>
 				<div className='userInfo'>
 					<div className='iconUser'>
-						<img src={data.iconSrc} alt={data.namePicture}/>
+						<img src={article.iconSrc} alt={article.namePicture}/>
 						<span>
-												{data.nameUser}
-											</span>
+							{article.nameUser}
+						</span>
 					</div>
 					<div className='dataArticle'>
-						<img src={data.date} alt={data.namePicture}/>
+						<img src={article.date} alt={article.namePicture}/>
 					</div>
 					<div className='viewArticle'>
-						<img src={data.viewSrc} alt={data.namePicture}/>
-						<span className='num'>{data.viewNum}</span>
+						<img src={article.viewSrc} alt={article.namePicture}/>
+						<span className='num'>{article.viewNum}</span>
 					</div>
 				</div>
 			</div>
