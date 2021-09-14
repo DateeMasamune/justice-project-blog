@@ -64,6 +64,7 @@ export const SignIn = () => {
 					validMessage: '',
 					value: value,
 					valid: isValid(value, name),
+					id: Date.now()
 				}
 		}))
 	}
@@ -117,14 +118,14 @@ export const SignIn = () => {
 								{registerForm[field].displayName}
 							</div>
 							<input
-								style={(registerForm[field].validMessage) ? {borderColor: 'red'} : {}}
+								style={(!registerForm[field].valid && registerForm[field].value) ? {borderColor: 'red'} : {}}
 								name={registerForm[field].name}
 								type={registerForm[field].type}
 								value={registerForm[field].value}
 								onChange={onChange}
 							/>
 							{showErrors && !registerForm[field].valid && (
-								<p className='errorSign' >Enter correct data</p>)} {/*если ошибка добавляем сообщение*/
+								<p className='errorSign' >Enter correct data</p>)} {
 							}
 						</div>
 					)

@@ -5,33 +5,49 @@ import {useHistory} from "react-router-dom";
 
 export const Login = () => {
 	const history = useHistory();
-
 	const [loginForm, setLoginForm] = useState({
 		email: {
 			value: '',
 			name: 'email',
 			text: 'Email Address',
-			type: 'email'
+			type: 'email',
+			valid: false
 		},
 		password: {
 			value: '',
 			name: 'password',
 			text: 'Password',
-			type: 'password'
+			type: 'password',
+			valid: false
 		}
 	})
+
 	const getUsersLocalStor = () => {
-		console.log(JSON.parse(localStorage.getItem('users')))
 		const localUsers = JSON.parse(localStorage.getItem('users'))
 		if (localUsers === null) {
 			return false
 		} else {
 			localUsers.forEach(curVal => {
 				if (loginForm.email.value === curVal.email.value) {
+					setLoginForm((prevState) => ({
+						...prevState,
+							email: {
+								...prevState.email,
+								valid: true
+							}
+					}))
 					if (loginForm.password.value === curVal.password.value) {
 						localStorage.setItem('login', JSON.stringify(true))
 						history.push('/');
 						window.location.reload()
+						setLoginForm((prevState) => ({
+							...prevState,
+							password: {
+								...prevState.password,
+								valid: true
+							}
+						}))
+						localStorage.setItem('id', JSON.stringify(curVal.firstName.id))
 					} else {
 						console.log("пароли не совпали")
 					}
@@ -43,15 +59,15 @@ export const Login = () => {
 	}
 	const getValueInput = (e) => {
 		const {value, name} = e.target
+		getUsersLocalStor()
 		setLoginForm(prevState => ({
 			...prevState,
 			[name]: {
 				...prevState[name],
-				value
+				value,
 			}
 		}))
 	}
-	console.log(loginForm)
 	return (
 		<div className='content login'>
 			<form>
@@ -66,10 +82,16 @@ export const Login = () => {
 									{loginForm[field].text}
 								</div>
 								<input
+									style={(!loginForm[field].valid && loginForm[field].value !== '') ? {borderColor: 'red'} : {}}
 									name={loginForm[field].name}
 									type={loginForm[field].type}
 									onChange={getValueInput}
 								/>
+								{
+									(!loginForm[field].valid && loginForm[field].value !== '')  && (
+										<p className='errorLogin'>invalid data</p>
+									)
+								}
 							</div>
 						)
 					})

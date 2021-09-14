@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState} from "react";
 
 import { user } from "../../services/mock";
 import {dontUser} from "../../services/mock";
@@ -6,7 +6,13 @@ import './Profile.scss';
 import {ButtonProfile, SaveChange} from "./ButtonProfile/ButtonProfile";
 import {userTest} from "../../constants";
 
-export const Profile = (prop) => {
+export const Profile = () => {
+	const userLog = JSON.parse(localStorage.getItem('users')) || []
+	const id = JSON.parse(localStorage.getItem('id')) || ''
+	const iUser = userLog.filter(item => item.firstName.id === id)
+	const [profileInfo, setProfileInfo] = useState(...iUser)
+	console.log('===>iUser', iUser);
+	console.log('===>profileInfo', profileInfo);
   return (
     <div className="container">
       <div className="content profile">
@@ -19,7 +25,7 @@ export const Profile = (prop) => {
               <div className='user'>
                 <div className='rame'></div>
 								{
-									userTest ?
+									userLog ?
 										<div className='iconUser'>
 											<img src={item.imageSrc} alt={item.namePicture}/>
 										</div>
