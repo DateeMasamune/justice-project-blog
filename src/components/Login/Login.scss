@@ -28,10 +28,28 @@ form {
       line-height: 14px;
       color: #242424;
     }
+    .errorLogin {
+      font-family: 'IBM Plex Sans Arabic', sans-serif;
+      font-style: normal;
+      font-weight: bold;
+      font-size: 11px;
+      line-height: 14px;
+      color: #CF4949;
+      text-align: left;
+    }
   }
   .inputLogin input {
     width: 369px;
     height: 47px;
+  }
+  .successUser {
+    font-family: 'IBM Plex Sans Arabic', sans-serif;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 11px;
+    line-height: 14px;
+    color: #46b555;
+    margin: unset;
   }
   .createAccount{
     background: black;

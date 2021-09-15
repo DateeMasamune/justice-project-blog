@@ -130,3 +130,86 @@
     }
   }
 }
+
+@media all and (max-width: 1190px) {
+
+  .content.profile{
+    .title.profile {
+      h1 {
+
+      }
+    }
+    .block.profile {
+
+      .formUser {
+        .inputName {
+
+          .block {
+
+          }
+        }
+        .inputDescription {
+          .block{
+
+          }
+        }
+        form {
+
+          .button {
+
+          }
+          .button:hover {
+
+          }
+        }
+      }
+    }
+    .user {
+
+      .rame {
+
+      }
+      .textBlockUser {
+
+        .button {
+
+        }
+        .button:hover {
+
+        }
+      }
+      .iconUser {
+
+        .dontUser {
+
+        }
+      }
+    }
+    .formUser {
+
+      .inputName {
+
+        .block {
+          span{
+
+          }
+          input{
+           min-width: 240px;
+            height: 47px;
+          }
+        }
+      }
+      .inputDescription {
+        .block {
+          span {
+
+          }
+          input {
+
+          }
+        }
+      }
+    }
+  }
+  
+}

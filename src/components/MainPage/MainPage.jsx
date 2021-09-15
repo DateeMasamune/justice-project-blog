@@ -9,18 +9,23 @@ import {routes} from "../../routes/routes";
 import {articlesData} from "../../services/mock";
 
 const MainPage = (prop) => {
+	const {user} = prop
 	const [articles, setArticles] = useState(JSON.parse(localStorage.getItem('articles')) || [])
 	const [userData, SetUser] = useState(JSON.parse(localStorage.getItem('user')) || [])
+	const [login, setLogin] = useState(false)
 	useEffect(() => {
 		if (articles.length === 0) {
 			localStorage.setItem('articles', JSON.stringify(articlesData));
 			setArticles(articlesData)
 		}
+		if (JSON.parse(localStorage.getItem('login')) === null) {
+			localStorage.setItem('login', JSON.stringify(false))
+		}
+		if (JSON.parse(localStorage.getItem('login')) === true) {
+			return false
+		}
 	}, [])
 
-	// const userTest = false; из локал стороджа
-
-	const user = prop.user
 	return (
 		<BrowserRouter>
 			<Header user={user}/>

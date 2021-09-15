@@ -1,14 +1,15 @@
 import React, {useState} from 'react';
 
-import './Home.scss';
 import {PopularArticle} from "./PopularArticle/PopularArticle";
 import {ArticleList} from "./ArticleList/ArticleList";
 import {PaginationButton} from "./PaginationButton/PaginationButton";
 
-export const Home = () => {
-	const [articles, setArticles] = useState(JSON.parse(localStorage.getItem('articles')) || []); /*проверка для предотвращения ошибки в случае если нет данных*/
-	const popularArticles = articles.sort((a, b) => b.viewNum - a.viewNum)[0] /*фильтрация по количеству просмотров*/
+import {articlesData} from "../../services/mock";
+import './Home.scss';
 
+export const Home = () => {
+	const [articles, setArticles] = useState(JSON.parse(localStorage.getItem('articles')) || articlesData);
+	const popularArticles = articles.sort((a, b) => b.viewNum - a.viewNum)[0]
 	const title = 'Popular articles'
 	return (
 		<div className='content'>

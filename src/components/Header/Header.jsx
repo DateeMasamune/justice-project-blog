@@ -1,6 +1,6 @@
 import React from "react";
 import {Container, Navbar} from "react-bootstrap";
-import {NavLink} from "react-router-dom";
+import {NavLink, useHistory} from "react-router-dom";
 
 // imp components
 
@@ -8,7 +8,8 @@ import './Header.scss';
 import Logo from '../../assets/img/Logo.png'
 
 const Header = (props) => {
-	const user = props.user
+	const {user} = props
+	const history = useHistory()
 	const navElemWithoutAuth = [
 		{
 			name: 'Log in',
@@ -39,9 +40,16 @@ const Header = (props) => {
 		{
 			name: 'Logout',
 			type: 'button',
-			link: '/logout'
+			link: '/login'
 		},
 	]
+
+	const logOut = () => {
+		localStorage.setItem('login', false)
+		localStorage.setItem('id', '')
+		history.push('/login');
+		window.location.reload()
+	}
 
 
 	return (
@@ -78,6 +86,7 @@ const Header = (props) => {
 														exact={true}
 														className='nav-link'
 														to={element.link}
+														onClick={logOut}
 													>
 														{element.name}
 													</NavLink>

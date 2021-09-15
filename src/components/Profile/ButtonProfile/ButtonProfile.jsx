@@ -8,9 +8,12 @@ export const ButtonProfile = ({text}) => {
 	)
 }
 
-export const SaveChange = ({text}) => {
+export const SaveChange = ({text, changeData}) => {
 	return (
-		<div className="button">
+		<div
+			className="button"
+			onClick={changeData}
+		>
 			{text}
 		</div>
 	)

@@ -1,5 +1,7 @@
 import React from "react";
 
+import {NavLink} from "react-router-dom";
+
 export const PopularArticle = ({data}) => {
 	return (
 		<div className='articles'>
@@ -8,9 +10,11 @@ export const PopularArticle = ({data}) => {
 				<div className='hashTag'>
 					{data.hasTag}
 				</div>
-				<div className='nameArticle'>
-					{data.nameArticle}
-				</div>
+				<NavLink className='linkArticle' to={`/article_page${data.id}`}>
+					<div className='nameArticle'>
+						{data.nameArticle}
+					</div>
+				</NavLink>
 				<div className='discriptionArticle'>
 					{data.description}
 				</div>

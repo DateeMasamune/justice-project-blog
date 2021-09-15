@@ -17,7 +17,6 @@ import image16 from '../assets/img/mainPage/Time.png';
 import image17 from '../assets/img/mainPage/Ellipse 6.png';
 import notImage from "../assets/img/profile/Group 54.svg";
 
-
 export const articlesData = [
 	{
 		pictureSrc: image13,
@@ -31,7 +30,8 @@ export const articlesData = [
 			'industrial world finally took over the handicrafts.',
 		hasTag: '#Typography',
 		nameArticle: 'Humane Typography in the Digital Age',
-		nameUser: 'Janay Wright'
+		nameUser: 'Janay Wright',
+		id: 1
 	},
 	{
 		pictureSrc: image10,
@@ -45,7 +45,8 @@ export const articlesData = [
 			'industrial world finally took over the handicrafts.',
 		hasTag: '#Typography',
 		nameArticle: 'Johannes Gutenberg: The Birth of Movable',
-		nameUser: 'Anthony J.Yeung'
+		nameUser: 'Anthony J.Yeung',
+		id: 2
 	},
 	{
 		pictureSrc: image9,
@@ -59,7 +60,8 @@ export const articlesData = [
 			'industrial world finally took over the handicrafts.',
 		hasTag: '#Typography',
 		nameArticle: 'The Origins of Social Stationery Lettering',
-		nameUser: 'Ella Alderson'
+		nameUser: 'Ella Alderson',
+		id: 3
 	},
 	{
 		pictureSrc: image8,
@@ -73,7 +75,8 @@ export const articlesData = [
 			'industrial world finally took over the handicrafts.',
 		hasTag: '#Typography',
 		nameArticle: 'Perfecting the Art of Perfection',
-		nameUser: 'Soner Yıldırım'
+		nameUser: 'Soner Yıldırım',
+		id: 4
 	},
 	{
 		pictureSrc: image7,
@@ -87,7 +90,8 @@ export const articlesData = [
 			'industrial world finally took over the handicrafts.',
 		hasTag: '#Typography',
 		nameArticle: 'A Brief History of Typography',
-		nameUser: 'Ellane W'
+		nameUser: 'Ellane W',
+		id: 5
 	},
 	{
 		pictureSrc: image6,
@@ -101,7 +105,8 @@ export const articlesData = [
 			'industrial world finally took over the handicrafts.',
 		hasTag: '#Typography',
 		nameArticle: 'For a Life of Freedom, Ditch These 6 Habits',
-		nameUser: 'Winston Marshall'
+		nameUser: 'Winston Marshall',
+		id: 6
 	},
 ]
 

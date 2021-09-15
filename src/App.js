@@ -7,9 +7,10 @@ import MainPage from "./components/MainPage/MainPage";
 import {userTest} from "./constants";
 
 function App() {
+	const user = JSON.parse(localStorage.getItem('login'))
   return (
     <div className="App">
-        <MainPage user={userTest}/>
+        <MainPage user={user}/>
     </div>
   );
 }

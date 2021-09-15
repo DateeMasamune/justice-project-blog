@@ -22,7 +22,7 @@
         border-radius: 118px;
         font-family: 'Inter', sans-serif;
         font-style: normal;
-        font-weight: normal;
+        font-weight: bold;
         font-size: 12px;
         line-height: 24px;
         color: #8C8C8C;
@@ -43,7 +43,7 @@
           .textPage {
             font-family: 'IBM Plex Sans Arabic', sans-serif;
             font-style: normal;
-            font-weight: normal;
+            font-weight: bold;
             font-size: 16px;
             line-height: 26px;
             color: #8C8C8C;
@@ -76,7 +76,7 @@
               .num {
                 font-family: 'IBM Plex Sans Arabic', sans-serif;
                 font-style: normal;
-                font-weight: normal;
+                font-weight: bold;
                 font-size: 12px;
                 line-height: 12px;
                 color: #8C8C8C;
@@ -85,7 +85,7 @@
             .iconUser.page span{
               font-family: 'IBM Plex Sans Arabic', sans-serif;
               font-style: normal;
-              font-weight: 500;
+              font-weight: bold;
               font-size: 14px;
               line-height: 14px;
               color: #8C8C8C;
@@ -116,6 +116,7 @@
     height: 47px;
     color: #8C8C8C;
     margin-right: 73px;
+    text-decoration: unset;
   }
   .button:hover {
     color: white;
