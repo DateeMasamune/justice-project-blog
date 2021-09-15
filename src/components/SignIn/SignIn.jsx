@@ -40,10 +40,9 @@ export const SignIn = () => {
 		},
 	})
 
-	console.log('===>registerForm', registerForm);
+	// console.log('===>registerForm', registerForm);
 	const onChange = (e) => { /*принимаем событие и имя поля для дальнейшей идентификации*/
 		const {value, name} = e.target; /*в этой переменной хранится значения поля инпут*/
-		console.log('===>name', name);
 		// setRegisterForm(registerForm.map((element) => { /*делаем запись используя состояние компонента*/
 		// 	if (element.name === name) { /*идентификация элемента в котором в данный момент происходит измненеие*/
 		// 		return {
@@ -70,15 +69,18 @@ export const SignIn = () => {
 			// }
 		}))
 	}
-	console.log('===>registerForm', registerForm);
-	console.log('===>Object.keys(registerForm)', Object.keys(registerForm));
+	// console.log('===>registerForm', registerForm);
+	// console.log('===>Object.keys(registerForm)', Object.keys(registerForm));
+	console.log(registerForm)
 	return (
 		<div className='content login'>
 			<form className='signinForm'>
 				<div className='title'>
 					Create your free account
 				</div>
+
 				{Object.keys(registerForm).map((field) => {
+					
 					return (
 						<div className='inputLogin'>
 							<div className='name'>
