@@ -12,7 +12,7 @@ export const UserAvatar = ({userData, localUserData}) => {
 					{localUserData.firstName.value ? localUserData.firstName.value : ''}
 				</span>
 				<span>
-					{localUserData.description.value ? localUserData.description.value : ''}
+					{localUserData.hasOwnProperty("description")? localUserData.description.value : ''}
 				</span>
 			</div>
 		</div>

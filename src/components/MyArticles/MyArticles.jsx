@@ -1,11 +1,12 @@
 import React, {useState} from 'react';
 
-import './MyArticles.scss';
-import {articlesData} from "../../services/mock";
-import {user} from "../../services/mock";
 import {UserAvatar} from "./UserAvatar/UserAvatar";
 import {UserArticle} from "./UserArticle/UserArticle";
 import {PaginationButton} from "../Home/PaginationButton/PaginationButton";
+
+import './MyArticles.scss';
+import {articlesData} from "../../services/mock";
+import {user} from "../../services/mock";
 
 export const MyArticles = () => {
 	const userLog = JSON.parse(localStorage.getItem('users')) || [{

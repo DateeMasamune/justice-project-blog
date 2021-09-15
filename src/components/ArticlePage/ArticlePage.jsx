@@ -1,8 +1,8 @@
 import React from "react";
 
-import './ArticlePage.scss';
-import imageForPage from '../../assets/img/Rectangle 39.svg';
 import {NavLink, useParams} from "react-router-dom";
+
+import './ArticlePage.scss';
 
 export const ArticlePage = () => {
 	const {id} = useParams()
