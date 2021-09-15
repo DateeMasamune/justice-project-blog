@@ -10,7 +10,6 @@ import Logo from '../../assets/img/Logo.png'
 const Header = (props) => {
 	const {user} = props
 	const history = useHistory()
-	console.log(user)
 	const navElemWithoutAuth = [
 		{
 			name: 'Log in',
@@ -47,6 +46,7 @@ const Header = (props) => {
 
 	const logOut = () => {
 		localStorage.setItem('login', false)
+		localStorage.setItem('id', '')
 		history.push('/login');
 		window.location.reload()
 	}

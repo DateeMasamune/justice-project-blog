@@ -3,6 +3,7 @@ import React, {useState} from 'react';
 import './SignIn.scss';
 
 export const SignIn = () => {
+	const [successMsg, setSuccessMsg] = useState('')
 	const [registerForm, setRegisterForm] = useState({
 		firstName: {
 			value: '',
@@ -34,8 +35,6 @@ export const SignIn = () => {
 		},
 	})
 
-
-
 	const isValid = (value, name) => {
 		switch (name) {
 			case 'firstName':
@@ -64,11 +63,11 @@ export const SignIn = () => {
 					validMessage: '',
 					value: value,
 					valid: isValid(value, name),
-					id: Date.now()
+					id: Date.now(),
+					description: '',
 				}
 		}))
 	}
-
 
 	const handleSubmit = (e) => {
 		e.preventDefault()
@@ -86,6 +85,7 @@ export const SignIn = () => {
 			if (localStorage.getItem('users') === null) {
 				const users = [registerForm]
 				localStorage.setItem('users', JSON.stringify(users))
+				setSuccessMsg('Create User')
 			} else {
 				const getUsers = JSON.parse(localStorage.getItem('users'))
 				let flag;
@@ -100,6 +100,8 @@ export const SignIn = () => {
 				} else {
 					getUsers.push(registerForm)
 					localStorage.setItem('users', JSON.stringify(getUsers))
+					setSuccessMsg('Create User')
+					console.log(1111111111)
 				}
 			}
 		}
@@ -121,7 +123,7 @@ export const SignIn = () => {
 								style={(!registerForm[field].valid && registerForm[field].value) ? {borderColor: 'red'} : {}}
 								name={registerForm[field].name}
 								type={registerForm[field].type}
-								value={registerForm[field].value}
+								value={successMsg ? '' : registerForm[field].value}
 								onChange={onChange}
 							/>
 							{showErrors && !registerForm[field].valid && (
@@ -130,6 +132,11 @@ export const SignIn = () => {
 						</div>
 					)
 				})}
+				{
+					successMsg && (
+						<p className='successUser'>{successMsg}</p>
+					)
+				}
 				<div
 					className='createAccount'
 					onClick={handleSubmit}

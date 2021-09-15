@@ -1,14 +1,9 @@
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import {NavLink} from "react-router-dom";
 
 export const ArticleList = (props) => {
 	const {data} = props;
-
 	const [article, setArticle] = useState(data)
-	// console.log('===>article', article);
-	const addCounter = () => {
-		//a
-	}
 
 	return (
 		<div className='articles'>
@@ -21,7 +16,6 @@ export const ArticleList = (props) => {
 					className='linkArticle'
 					to={`/article_page${article.id}`}
 					exact={true}
-					onClick={addCounter}
 				>
 					<div className='nameArticle'>
 						{article.nameArticle}

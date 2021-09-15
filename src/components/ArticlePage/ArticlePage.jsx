@@ -1,28 +1,44 @@
 import React from "react";
 
 import './ArticlePage.scss';
-import {articlesData} from "../../services/mock";
+import {currentArticle} from "../../services/mock";
 import imageForPage from '../../assets/img/Rectangle 39.svg';
-import {useParams} from "react-router-dom";
+import {NavLink, useParams} from "react-router-dom";
 
 export const ArticlePage = () => {
 	const {id} = useParams()
+	const articles = JSON.parse(localStorage.getItem('articles')) || [{
+		date: "",
+		description: "",
+		hasTag: "",
+		iconSrc: "",
+		id: "",
+		nameArticle: "",
+		namePicture: "",
+		nameUser: "",
+		pictureSrc: "",
+		viewNum: "",
+		viewSrc: "",
+	}]
+	console.log('===>articles', articles);
+	const currentArticle = articles.filter(item => item.id === +id)
+	console.log('===>currentArticle', currentArticle[0]);
 	console.log('===>id', id);
 	return (
 		<div className='container'>
 			<div className='content page'>
-				<div className='button'>
+				<NavLink to='/' className='button'>
 					All articles
-				</div>
+				</NavLink>
 				<div className='article'>
 					<div className='articles page'>
 						<div className='hashTag page'>
-							{articlesData[0].hasTag}
+							{currentArticle[0].hasTag}
 						</div>
 						<div className='nameArticle page'>
-							{articlesData[0].nameArticle}
+							{currentArticle[0].nameArticle}
 						</div>
-						<img className='pic' src={articlesData[0].pictureSrc} alt={articlesData[0].namePicture}/>
+						<img className='pic' src={currentArticle[0].pictureSrc} alt={currentArticle[0].namePicture}/>
 						<div className='infoArticle page'>
 							<div className='discriptionArticle page'>
 								<div className="textPage">
@@ -54,20 +70,17 @@ export const ArticlePage = () => {
 							<div className="flexUser">
 							<div className='userInfo page'>
 								<div className='iconUser page'>
-									<img className="iconImg" src={articlesData[0].iconSrc} alt={articlesData[0].namePicture}/>
+									<img className="iconImg" src={currentArticle[0].iconSrc} alt={currentArticle[0].namePicture}/>
 									<span>
-												{articlesData[0].nameUser}
+												{currentArticle[0].nameUser}
 											</span>
 								</div>
 								<div className='dataArticle page'>
-									<img src={articlesData[0].date} alt={articlesData[0].namePicture}/>
+									<img src={currentArticle[0].date} alt={currentArticle[0].namePicture}/>
 								</div>
 								<div className='viewArticle page'>
-									<img src={articlesData[0].viewSrc} alt={articlesData[0].namePicture}/>
-									<span className='num'>{articlesData[0].viewNum}</span>
-								</div>
-								<div className='button'>
-									Typography
+									<img src={currentArticle[0].viewSrc} alt={currentArticle[0].namePicture}/>
+									<span className='num'>{currentArticle[0].viewNum}</span>
 								</div>
 							</div>
 							<div className="button unset">
