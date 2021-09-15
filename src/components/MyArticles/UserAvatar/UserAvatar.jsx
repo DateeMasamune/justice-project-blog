@@ -1,6 +1,6 @@
 import React from "react";
 
-export const UserAvatar = ({userData}) => {
+export const UserAvatar = ({userData, localUserData}) => {
 	return (
 		<div className='user'>
 			<div className='rame'></div>
@@ -9,10 +9,10 @@ export const UserAvatar = ({userData}) => {
 			</div>
 			<div className='textBlockUser'>
 				<span>
-					{userData.name}
+					{localUserData.firstName.value ? localUserData.firstName.value : ''}
 				</span>
 				<span>
-					{userData.discription}
+					{localUserData.description.value ? localUserData.description.value : ''}
 				</span>
 			</div>
 		</div>

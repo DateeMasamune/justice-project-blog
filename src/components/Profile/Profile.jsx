@@ -4,7 +4,6 @@ import {user} from "../../services/mock";
 import {dontUser} from "../../services/mock";
 import './Profile.scss';
 import {ButtonProfile, SaveChange} from "./ButtonProfile/ButtonProfile";
-import {userTest} from "../../constants";
 
 export const Profile = () => {
 	const userLog = JSON.parse(localStorage.getItem('users')) || [{
@@ -55,10 +54,10 @@ export const Profile = () => {
 			[name]: {
 				...prevState[name],
 				value,
-				description: value,
 			},
 		}))
 	}
+	const emptyObj = profileInfo.description === undefined
 	const changeData = () => {
 		const changeUser = userLog.map(obj => {
 			if (obj.firstName.id === id) {
@@ -125,8 +124,8 @@ export const Profile = () => {
 								<div className="block">
 									<span>Description</span>
 									<input
-										name={profileInfo.password.name}
-										value={profileInfo.password.description}
+										name='description'
+										value={emptyObj ? '' : profileInfo.description.value}
 										type="text"
 										onChange={handleChange}
 									/>

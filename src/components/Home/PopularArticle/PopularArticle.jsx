@@ -9,7 +9,7 @@ export const PopularArticle = ({data}) => {
 				<div className='hashTag'>
 					{data.hasTag}
 				</div>
-				<NavLink className='linkArticle' to=''>
+				<NavLink className='linkArticle' to={`/article_page${data.id}`}>
 					<div className='nameArticle'>
 						{data.nameArticle}
 					</div>
