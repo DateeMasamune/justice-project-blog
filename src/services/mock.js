@@ -31,7 +31,8 @@ export const articlesData = [
 		hasTag: '#Typography',
 		nameArticle: 'Humane Typography in the Digital Age',
 		nameUser: 'Janay Wright',
-		id: 1
+		id: 1,
+		userCreate: '1631699228734',
 	},
 	{
 		pictureSrc: image10,
@@ -46,7 +47,8 @@ export const articlesData = [
 		hasTag: '#Typography',
 		nameArticle: 'Johannes Gutenberg: The Birth of Movable',
 		nameUser: 'Anthony J.Yeung',
-		id: 2
+		id: 2,
+		userCreate: '1631699228734',
 	},
 	{
 		pictureSrc: image9,
@@ -61,7 +63,8 @@ export const articlesData = [
 		hasTag: '#Typography',
 		nameArticle: 'The Origins of Social Stationery Lettering',
 		nameUser: 'Ella Alderson',
-		id: 3
+		id: 3,
+		userCreate: '3434',
 	},
 	{
 		pictureSrc: image8,
@@ -76,7 +79,8 @@ export const articlesData = [
 		hasTag: '#Typography',
 		nameArticle: 'Perfecting the Art of Perfection',
 		nameUser: 'Soner Yıldırım',
-		id: 4
+		id: 4,
+		userCreate: '3434sw',
 	},
 	{
 		pictureSrc: image7,
@@ -91,7 +95,8 @@ export const articlesData = [
 		hasTag: '#Typography',
 		nameArticle: 'A Brief History of Typography',
 		nameUser: 'Ellane W',
-		id: 5
+		id: 5,
+		userCreate: '343sdw4',
 	},
 	{
 		pictureSrc: image6,
@@ -106,7 +111,8 @@ export const articlesData = [
 		hasTag: '#Typography',
 		nameArticle: 'For a Life of Freedom, Ditch These 6 Habits',
 		nameUser: 'Winston Marshall',
-		id: 6
+		id: 6,
+		userCreate: '34wdsad34',
 	},
 ]
 

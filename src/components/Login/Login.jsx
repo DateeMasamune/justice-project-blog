@@ -5,6 +5,7 @@ import {useHistory} from "react-router-dom";
 
 export const Login = () => {
 	const history = useHistory();
+	const [error, setError] = useState(false)
 	const [loginForm, setLoginForm] = useState({
 		email: {
 			value: '',
@@ -22,7 +23,7 @@ export const Login = () => {
 		}
 	})
 
-	const getUsersLocalStor = () => {
+	const getUsersLocalStore = () => {
 		const localUsers = JSON.parse(localStorage.getItem('users'))
 		if (localUsers === null) {
 			return false
@@ -48,11 +49,14 @@ export const Login = () => {
 							}
 						}))
 						localStorage.setItem('id', JSON.stringify(curVal.firstName.id))
+						setError(false)
 					} else {
 						console.log("пароли не совпали")
+						setError(true)
 					}
 				} else {
 					console.log('email не найден')
+					setError(true)
 				}
 			})
 		}
@@ -82,23 +86,18 @@ export const Login = () => {
 									{loginForm[field].text}
 								</div>
 								<input
-									style={(!loginForm[field].valid && loginForm[field].value !== '') ? {borderColor: 'red'} : {}}
 									name={loginForm[field].name}
 									type={loginForm[field].type}
 									onChange={getValueInput}
 								/>
-								{
-									(!loginForm[field].valid && loginForm[field].value !== '')  && (
-										<p className='errorLogin'>invalid data</p>
-									)
-								}
 							</div>
 						)
 					})
 				}
+				{error && <p style={{color: 'red'}}>Не верный email или пароль</p>}
 				<div
 					className='createAccount'
-					onClick={getUsersLocalStor}
+					onClick={getUsersLocalStore}
 				>
 					Create Account
 				</div>
