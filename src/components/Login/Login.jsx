@@ -59,7 +59,6 @@ export const Login = () => {
 	}
 	const getValueInput = (e) => {
 		const {value, name} = e.target
-		getUsersLocalStor()
 		setLoginForm(prevState => ({
 			...prevState,
 			[name]: {
@@ -68,6 +67,7 @@ export const Login = () => {
 			}
 		}))
 	}
+
 	return (
 		<div className='content login'>
 			<form>
