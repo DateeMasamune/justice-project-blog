@@ -2,7 +2,6 @@ import React from "react";
 import {NavLink} from "react-router-dom";
 
 export const UserArticle = ({dataArticle}) => {
-	console.log('===>dataArticle', dataArticle);
 	return (
 		<div className='articles my'>
 			<img src={dataArticle.pictureSrc} alt={dataArticle.namePicture}/>
