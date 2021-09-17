@@ -1,7 +1,8 @@
 import React from "react";
+import {Link} from "react-router-dom";
+
 import Logo from '../../assets/img/LogoFooter.png'
 import './Footer.scss';
-import {Link} from "react-router-dom";
 
 const Footer = (props) => {
     const user = props.user

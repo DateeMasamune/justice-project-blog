@@ -33,6 +33,9 @@
       flex-direction: column;
       justify-content: space-between;
       align-items: flex-start;
+      border-bottom: 1px solid #EBEBEB;
+      width: 100%;
+
 
       .hashTag {
         background: #F7F7F7;
@@ -82,6 +85,7 @@
         width: 60%;
         justify-content: space-between;
         align-items: center;
+        margin-bottom: 17px;
 
         .iconUser {
           display: flex;
@@ -108,9 +112,27 @@
           line-height: 12px;
           color: #8C8C8C;
         }
+        .dataArticle{
+          font-family: "IBM Plex Sans Arabic", sans-serif;
+          font-style: normal;
+          font-weight: bold;
+          font-size: 12px;
+          line-height: 12px;
+          color: #8C8C8C;
+          display: flex;
+          align-items: center;
+        }
       }
       .userInfo.main {
         width: 100%;
+      }
+    }
+    .flexFix{
+      display: flex;
+      align-items: center;
+      .plugImg{
+        height: auto;
+        width: 366px;
       }
     }
   }
@@ -137,5 +159,86 @@
     color: white;
     background: black;
     cursor: pointer;
+  }
+}
+
+@media all and (max-width: 768px) {
+  .content {
+    .container{
+      .popularArticles{
+        .articles{
+          flex-direction: column;
+          img{
+            margin-bottom: 20px;
+          }
+          .infoArticle{
+            .linkArticle{
+              .nameArticle{
+                margin-bottom: 20px;
+              }
+            }
+            .discriptionArticle{
+              img{
+              }
+            }
+            .userInfo{
+              .viewArticle{
+                img{
+                  margin-bottom: unset;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+@media all and (max-width: 375px) {
+  .content {
+    .container{
+      .noData{
+        font-family: "Playfair Display", serif;
+        font-style: normal;
+        font-weight: bold;
+        font-size: 24px;
+        line-height: 24px;
+        text-align: center;
+        color: #242424;
+        margin-top: 24px;
+        margin-bottom: 16px;
+      }
+      .popularArticles{
+        .articles{
+          img{
+          }
+          .infoArticle{
+            .linkArticle{
+              .nameArticle{
+              }
+            }
+            .discriptionArticle{
+              overflow-wrap: anywhere;
+              img{
+                width: 100%;
+              }
+            }
+            .userInfo{
+              width: 90%;
+              .viewArticle{
+                img{
+                }
+              }
+            }
+          }
+          .flexFix{
+            .plugImg{
+              width: 100%;
+            }
+          }
+        }
+      }
+    }
   }
 }

@@ -50,6 +50,9 @@ export const MyArticles = () => {
 	const id = JSON.parse(localStorage.getItem('id')) || ''
 	const iUser = userLog.filter(item => item.firstName.id === id)
 	const [profileInfo, setProfileInfo] = useState(...iUser)
+	const [articles, setArticles] = useState(JSON.parse(localStorage.getItem('articles')) || articlesData);
+	const myArticles = articles.filter((item) =>  +item.userCreate === id)
+	console.log('===>myArticles', myArticles);
 	return (
 		<div className='container'>
 			<div className='content myArticles'>
@@ -63,14 +66,22 @@ export const MyArticles = () => {
 				}
 				<div className='articlesList'>
 					{
-						articlesData.map(item => (
+						myArticles.map(item => (
 							<UserArticle dataArticle={item}/>
 						))
 					}
-					<div className='paginationArticle'>
-						<PaginationButton name={'Prev'} />
-						<PaginationButton name={'Next'} />
-					</div>
+					{
+						myArticles.length <= 0 ?
+							<div className='noData'>
+								Записей еще нет...
+							</div>
+							:
+							<div className='paginationArticle'>
+								<PaginationButton name={'Prev'} />
+								<PaginationButton name={'Next'} />
+							</div>
+					}
+
 				</div>
 			</div>
 		</div>

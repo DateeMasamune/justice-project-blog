@@ -1,6 +1,8 @@
-import React, {useEffect, useState} from "react";
+import React, {useState} from "react";
 
 import {NavLink} from "react-router-dom";
+
+import plug from '../../../assets/img/plug/photodraw.ru-87434.jpg';
 
 export const ArticleList = (props) => {
 	const {data} = props;
@@ -8,7 +10,15 @@ export const ArticleList = (props) => {
 	
 	return (
 		<div className='articles'>
-			<img src={article.pictureSrc} alt={article.namePicture}/>
+			{
+				article.pictureSrc ?
+					<img src={article.pictureSrc} alt={article.namePicture}/>
+					:
+					<div className='flexFix'>
+						<img className='plugImg' src={plug} alt={plug}/>
+					</div>
+			}
+
 			<div className='infoArticle'>
 				<div className='hashTag'>
 					{article.hasTag}
@@ -22,8 +32,11 @@ export const ArticleList = (props) => {
 						{article.nameArticle}
 					</div>
 				</NavLink>
-				<div className='discriptionArticle'>
-					{article.description}
+				<div
+					className='discriptionArticle'
+					dangerouslySetInnerHTML={{__html: `${article.description}`}}
+				>
+					{/*{article.description}*/}
 				</div>
 				<div className='userInfo'>
 					<div className='iconUser'>
@@ -33,7 +46,8 @@ export const ArticleList = (props) => {
 						</span>
 					</div>
 					<div className='dataArticle'>
-						<img src={article.date} alt={article.namePicture}/>
+						{/*<img src={article.date} alt={article.namePicture}/>*/}
+						{article.date}
 					</div>
 					<div className='viewArticle'>
 						<img src={article.viewSrc} alt={article.namePicture}/>

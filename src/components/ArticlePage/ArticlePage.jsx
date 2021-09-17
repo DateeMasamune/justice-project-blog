@@ -38,8 +38,11 @@ export const ArticlePage = () => {
 						<img className='pic' src={currentArticle[0].pictureSrc} alt={currentArticle[0].namePicture}/>
 						<div className='infoArticle page'>
 							<div className='discriptionArticle page'>
-								<div className="textPage">
-									{currentArticle[0].description}
+								<div
+									className="textPage"
+									dangerouslySetInnerHTML={{__html: `${currentArticle[0].description}`}}
+								>
+									{/*{currentArticle[0].description}*/}
 								</div>
 
 							</div>
@@ -52,7 +55,8 @@ export const ArticlePage = () => {
 									</span>
 								</div>
 								<div className='dataArticle page'>
-									<img src={currentArticle[0].date} alt={currentArticle[0].namePicture}/>
+									{/*<img src={currentArticle[0].date} alt={currentArticle[0].namePicture}/>*/}
+									{currentArticle[0].date}
 								</div>
 								<div className='viewArticle page'>
 									<img src={currentArticle[0].viewSrc} alt={currentArticle[0].namePicture}/>

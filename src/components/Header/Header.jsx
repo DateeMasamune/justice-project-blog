@@ -2,8 +2,6 @@ import React from "react";
 import {Container, Navbar} from "react-bootstrap";
 import {NavLink, useHistory} from "react-router-dom";
 
-// imp components
-
 import './Header.scss';
 import Logo from '../../assets/img/Logo.png'
 

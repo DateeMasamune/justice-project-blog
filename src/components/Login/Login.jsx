@@ -5,7 +5,8 @@ import {useHistory} from "react-router-dom";
 
 export const Login = () => {
 	const history = useHistory();
-	const localUsers = JSON.parse(localStorage.getItem('users'))
+
+	const [error, setError] = useState(false)
 	const [loginForm, setLoginForm] = useState({
 		email: {
 			value: '',
@@ -23,8 +24,8 @@ export const Login = () => {
 		}
 	})
 
-	const getUsersLocalStor = () => {
-
+	const getUsersLocalStore = () => {
+		const localUsers = JSON.parse(localStorage.getItem('users'))
 		if (localUsers === null) {
 			return false
 		} else {
@@ -35,11 +36,14 @@ export const Login = () => {
 						history.push('/');
 						window.location.reload()
 						localStorage.setItem('id', JSON.stringify(curVal.firstName.id))
+						setError(false)
 					} else {
 						console.log("пароли не совпали")
+						setError(true)
 					}
 				} else {
 					console.log('email не найден')
+					setError(true)
 				}
 			})
 		}
@@ -47,45 +51,6 @@ export const Login = () => {
 
 	const getValueInput = (e) => {
 		const {value, name} = e.target
-		localUsers.find((element,index,array) => {
-			if (name === 'email') {
-				if (value === element.email.value) {
-					setLoginForm((prevState) => ({
-								...prevState,
-								email: {
-									...prevState.email,
-									valid: true
-								}
-							}))
-				} else {
-					setLoginForm((prevState) => ({
-						...prevState,
-						email: {
-							...prevState.email,
-							valid: false
-						}
-					}))
-				}
-			} else {
-				if (value === element.password.value) {
-					setLoginForm((prevState) => ({
-						...prevState,
-						password: {
-							...prevState.password,
-							valid: true
-						}
-					}))
-				} else {
-					setLoginForm((prevState) => ({
-						...prevState,
-						password: {
-							...prevState.password,
-							valid: false
-						}
-					}))
-				}
-			}
-		})
 		setLoginForm(prevState => ({
 			...prevState,
 			[name]: {
@@ -94,7 +59,7 @@ export const Login = () => {
 			}
 		}))
 	}
-	
+
 	return (
 		<div className='content login'>
 			<form>
@@ -109,23 +74,18 @@ export const Login = () => {
 									{loginForm[field].text}
 								</div>
 								<input
-									style={(!loginForm[field].valid && loginForm[field].value !== '') ? {borderColor: 'red'} : {}}
 									name={loginForm[field].name}
 									type={loginForm[field].type}
 									onChange={getValueInput}
 								/>
-								{
-									(!loginForm[field].valid && loginForm[field].value !== '')  && (
-										<p className='errorLogin'>invalid data</p>
-									)
-								}
 							</div>
 						)
 					})
 				}
+				{error && <p style={{color: 'red'}}>Не верный email или пароль</p>}
 				<div
 					className='createAccount'
-					onClick={getUsersLocalStor}
+					onClick={getUsersLocalStore}
 				>
 					Create Account
 				</div>

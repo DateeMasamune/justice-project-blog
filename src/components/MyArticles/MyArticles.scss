@@ -45,6 +45,17 @@
   }
   .articlesList {
     width: 65%;
+    .noData{
+      font-family: "Playfair Display", serif;
+      font-style: normal;
+      font-weight: bold;
+      font-size: 24px;
+      line-height: 24px;
+      text-align: center;
+      color: #242424;
+      margin-top: 24px;
+      margin-bottom: 16px;
+    }
   }
 }
   h1 {
@@ -63,6 +74,7 @@
     display: flex;
     margin-bottom: 40px;
     flex-direction: column;
+    border-bottom: 1px solid #EBEBEC;
 
     .infoArticle {
       display: flex;
@@ -91,6 +103,8 @@
         line-height: 32px;
         color: #242424;
         margin-top: 24px;
+        text-decoration: unset;
+
       }
 
       .discriptionArticle.my {
@@ -109,6 +123,7 @@
         justify-content: space-between;
         align-items: center;
         margin-top: 24px;
+        margin-bottom: 17px;
 
         .iconUser img {
           border-radius: 100%;
@@ -139,6 +154,16 @@
             margin-right: 8px;
           }
         }
+        .dataArticle.my{
+          font-family: "IBM Plex Sans Arabic", sans-serif;
+          font-style: normal;
+          font-weight: bold;
+          font-size: 12px;
+          line-height: 12px;
+          color: #8C8C8C;
+          display: flex;
+          align-items: center;
+        }
       }
     }
   }
@@ -165,5 +190,29 @@
     color: white;
     background: black;
     cursor: pointer;
+  }
+}
+
+@media all and (max-width: 768px) {
+  .container{
+    .content.myArticles{
+      flex-direction: column;
+      align-items: center;
+    }
+  }
+}
+
+@media all and (max-width: 375px) {
+  .container{
+    .content.myArticles{
+      .user{
+        margin-right: unset;
+      }
+      .articlesList{
+        .paginationArticle{
+          margin-bottom: 40px;
+        }
+      }
+    }
   }
 }
