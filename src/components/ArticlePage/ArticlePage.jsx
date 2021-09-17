@@ -37,8 +37,11 @@ export const ArticlePage = () => {
 						<img className='pic' src={currentArticle[0].pictureSrc} alt={currentArticle[0].namePicture}/>
 						<div className='infoArticle page'>
 							<div className='discriptionArticle page'>
-								<div className="textPage">
-									{currentArticle[0].description}
+								<div
+									className="textPage"
+									dangerouslySetInnerHTML={{__html: `${currentArticle[0].description}`}}
+								>
+									{/*{currentArticle[0].description}*/}
 								</div>
 
 							</div>

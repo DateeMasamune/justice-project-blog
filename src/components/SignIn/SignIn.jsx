@@ -101,7 +101,6 @@ export const SignIn = () => {
 					getUsers.push(registerForm)
 					localStorage.setItem('users', JSON.stringify(getUsers))
 					setSuccessMsg('Create User')
-					console.log(1111111111)
 				}
 			}
 		}

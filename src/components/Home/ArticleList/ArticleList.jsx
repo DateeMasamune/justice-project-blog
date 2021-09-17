@@ -1,6 +1,8 @@
-import React, {useEffect, useState} from "react";
+import React, {useState} from "react";
 
 import {NavLink} from "react-router-dom";
+
+import plug from '../../../assets/img/plug/photodraw.ru-87434.png';
 
 export const ArticleList = (props) => {
 	const {data} = props;
@@ -8,7 +10,13 @@ export const ArticleList = (props) => {
 
 	return (
 		<div className='articles'>
-			<img src={article.pictureSrc} alt={article.namePicture}/>
+			{
+				article.pictureSrc ?
+					<img src={article.pictureSrc} alt={article.namePicture}/>
+					:
+					<img src={plug} alt={plug}/>
+			}
+
 			<div className='infoArticle'>
 				<div className='hashTag'>
 					{article.hasTag}
@@ -22,8 +30,11 @@ export const ArticleList = (props) => {
 						{article.nameArticle}
 					</div>
 				</NavLink>
-				<div className='discriptionArticle'>
-					{article.description}
+				<div
+					className='discriptionArticle'
+					dangerouslySetInnerHTML={{__html: `${article.description}`}}
+				>
+					{/*{article.description}*/}
 				</div>
 				<div className='userInfo'>
 					<div className='iconUser'>

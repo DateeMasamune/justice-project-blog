@@ -64,6 +64,7 @@
     margin-bottom: 40px;
     flex-direction: column;
 
+
     .infoArticle {
       display: flex;
       flex-direction: column;
@@ -138,6 +139,16 @@
           img {
             margin-right: 8px;
           }
+        }
+        .dataArticle.my{
+          font-family: "IBM Plex Sans Arabic", sans-serif;
+          font-style: normal;
+          font-weight: bold;
+          font-size: 12px;
+          line-height: 12px;
+          color: #8C8C8C;
+          display: flex;
+          align-items: center;
         }
       }
     }
