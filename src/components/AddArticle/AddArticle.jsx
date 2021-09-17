@@ -183,9 +183,9 @@ export const AddArticle = () => {
 						>
 							Publish an article
 						</div>
-						<div className='button'>
-							Publish an article
-						</div>
+						{/*<div className='button'>*/}
+						{/*	Publish an article*/}
+						{/*</div>*/}
 					</div>
 					{!valid.allValid ? <p className='errorMsg'>Заполните все поля</p> : ''}
 				</div>

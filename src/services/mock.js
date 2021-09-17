@@ -23,7 +23,7 @@ export const articlesData = [
 		iconSrc: image11,
 		viewSrc: image15,
 		namePicture: '1',
-		date: image16,
+		date: new Date().toLocaleDateString(),
 		viewNum: 0,
 		description: 'An Essay on Typography by Eric Gill takes the reader back to the year 1930.' +
 			'The year when a conflict between two worlds came to its term. The machines of the' +
@@ -39,7 +39,7 @@ export const articlesData = [
 		iconSrc: image5,
 		viewSrc: image15,
 		namePicture: '2',
-		date: image16,
+		date: new Date().toLocaleDateString(),
 		viewNum: 0,
 		description: 'An Essay on Typography by Eric Gill takes the reader back to the year 1930.' +
 			'The year when a conflict between two worlds came to its term. The machines of the' +
@@ -55,7 +55,7 @@ export const articlesData = [
 		iconSrc: image4,
 		viewSrc: image15,
 		namePicture: '3',
-		date: image16,
+		date: new Date().toLocaleDateString(),
 		viewNum: 0,
 		description: 'An Essay on Typography by Eric Gill takes the reader back to the year 1930.' +
 			'The year when a conflict between two worlds came to its term. The machines of the' +
@@ -71,7 +71,7 @@ export const articlesData = [
 		iconSrc: image2,
 		viewSrc: image15,
 		namePicture: '4',
-		date: image16,
+		date: new Date().toLocaleDateString(),
 		viewNum: 0,
 		description: 'An Essay on Typography by Eric Gill takes the reader back to the year 1930.' +
 			'The year when a conflict between two worlds came to its term. The machines of the' +
@@ -87,7 +87,7 @@ export const articlesData = [
 		iconSrc: image1,
 		viewSrc: image15,
 		namePicture: '5',
-		date: image16,
+		date: new Date().toLocaleDateString(),
 		viewNum: 5,
 		description: 'An Essay on Typography by Eric Gill takes the reader back to the year 1930.' +
 			'The year when a conflict between two worlds came to its term. The machines of the' +
@@ -103,7 +103,7 @@ export const articlesData = [
 		iconSrc: image3,
 		viewSrc: image15,
 		namePicture: '6',
-		date: image16,
+		date: new Date().toLocaleDateString(),
 		viewNum: 0,
 		description: 'An Essay on Typography by Eric Gill takes the reader back to the year 1930.' +
 			'The year when a conflict between two worlds came to its term. The machines of the' +

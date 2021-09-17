@@ -72,7 +72,9 @@ export const MyArticles = () => {
 					}
 					{
 						myArticles.length <= 0 ?
-							''
+							<div className='noData'>
+								Записей еще нет...
+							</div>
 							:
 							<div className='paginationArticle'>
 								<PaginationButton name={'Prev'} />

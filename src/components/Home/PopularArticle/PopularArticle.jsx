@@ -26,7 +26,8 @@ export const PopularArticle = ({data}) => {
 						</span>
 					</div>
 					<div className='dataArticle'>
-						<img src={data.date} alt={data.namePicture}/>
+						{/*<img src={data.date} alt={data.namePicture}/>*/}
+						{data.date}
 					</div>
 					<div className='viewArticle'>
 						<img src={data.viewSrc} alt={data.namePicture}/>

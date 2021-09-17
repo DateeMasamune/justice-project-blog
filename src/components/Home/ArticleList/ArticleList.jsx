@@ -2,7 +2,7 @@ import React, {useState} from "react";
 
 import {NavLink} from "react-router-dom";
 
-import plug from '../../../assets/img/plug/photodraw.ru-87434.png';
+import plug from '../../../assets/img/plug/photodraw.ru-87434.jpg';
 
 export const ArticleList = (props) => {
 	const {data} = props;
@@ -14,7 +14,9 @@ export const ArticleList = (props) => {
 				article.pictureSrc ?
 					<img src={article.pictureSrc} alt={article.namePicture}/>
 					:
-					<img src={plug} alt={plug}/>
+					<div className='flexFix'>
+						<img className='plugImg' src={plug} alt={plug}/>
+					</div>
 			}
 
 			<div className='infoArticle'>
@@ -44,7 +46,8 @@ export const ArticleList = (props) => {
 						</span>
 					</div>
 					<div className='dataArticle'>
-						<img src={article.date} alt={article.namePicture}/>
+						{/*<img src={article.date} alt={article.namePicture}/>*/}
+						{article.date}
 					</div>
 					<div className='viewArticle'>
 						<img src={article.viewSrc} alt={article.namePicture}/>

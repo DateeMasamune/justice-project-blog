@@ -90,6 +90,16 @@
               line-height: 14px;
               color: #8C8C8C;
             }
+            .dataArticle.page{
+              font-family: "IBM Plex Sans Arabic", sans-serif;
+              font-style: normal;
+              font-weight: bold;
+              font-size: 12px;
+              line-height: 12px;
+              color: #8C8C8C;
+              display: flex;
+              align-items: center;
+            }
           }
           .userInfo.page {
             .iconImg {
@@ -123,4 +133,18 @@
     background: black;
     cursor: pointer;
   }
+}
+
+@media all and (max-width: 768px) {
+  .container{
+    .content.page{
+      flex-direction: column;
+      .article{
+        .articles.page{
+          width: auto;
+        }
+      }
+    }
+  }
+
 }

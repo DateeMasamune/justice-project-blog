@@ -54,7 +54,8 @@ export const ArticlePage = () => {
 									</span>
 								</div>
 								<div className='dataArticle page'>
-									<img src={currentArticle[0].date} alt={currentArticle[0].namePicture}/>
+									{/*<img src={currentArticle[0].date} alt={currentArticle[0].namePicture}/>*/}
+									{currentArticle[0].date}
 								</div>
 								<div className='viewArticle page'>
 									<img src={currentArticle[0].viewSrc} alt={currentArticle[0].namePicture}/>
