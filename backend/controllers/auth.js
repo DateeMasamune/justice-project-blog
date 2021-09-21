@@ -31,7 +31,6 @@ module.exports.login = async (req, res) => {
 
 module.exports.register = async (req, res) => {
 	const candidate = await User.findOne({email: req.body.email})
-
 	if (candidate) {
 		res.status(409).json({
 			message: 'Такой емейл уже занят Попробуйте другой'
@@ -41,7 +40,9 @@ module.exports.register = async (req, res) => {
 		const password = req.body.password
 		const user = new User({
 			email: req.body.email,
-			password: bcrypt.hashSync(password, salt)
+			password: bcrypt.hashSync(password, salt),
+			firstName: req.body.firstName,
+			lastName: req.body.lastName,
 		})
 		try {
 			await user.save()

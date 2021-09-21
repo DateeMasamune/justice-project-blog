@@ -17,6 +17,9 @@ module.exports.getById = async (req,res) => {
 		res.status(200).json(categories)
 	} catch (e) {
 		errorHandler(res,e)
+
+		// const q =
+		// fetch.post({desc: desc.value,
 	}
 }
 
