@@ -7,7 +7,7 @@ import plug from '../../../assets/img/plug/photodraw.ru-87434.jpg';
 export const ArticleList = (props) => {
 	const {data} = props;
 	const [article, setArticle] = useState(data)
-	
+
 	return (
 		<div className='articles'>
 			{

@@ -9,12 +9,10 @@ import './Home.scss';
 
 export const Home = () => {
 	const [articles, setArticles] = useState(JSON.parse(localStorage.getItem('articles')) || articlesData);
-	const [start, setStart] = useState(0)
-	const [end,setEnd] = useState(3)
-	const test = articles.slice(start,end)
-	console.log('===>articles', articles);
 	const popularArticles = articles.sort((a, b) => b.viewNum - a.viewNum)[0]
 	const title = 'Popular articles'
+	const [nextArticle, setNextArticle] = useState(articles)
+	console.log('home',nextArticle)
 	return (
 		<div className='content'>
 			<div className='container'>
@@ -35,7 +33,11 @@ export const Home = () => {
 							</div>
 							<div className='paginationArticle'>
 								<PaginationButton name={'Prev'}/>
-								<PaginationButton name={'Next'}/>
+								<PaginationButton
+								 name={'Next'}
+								 articles={articles}
+								 setNextArticle={setNextArticle}
+								 />
 							</div>
 						</div>
 						:
