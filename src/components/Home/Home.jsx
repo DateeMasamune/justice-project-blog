@@ -9,6 +9,10 @@ import './Home.scss';
 
 export const Home = () => {
 	const [articles, setArticles] = useState(JSON.parse(localStorage.getItem('articles')) || articlesData);
+
+	const [start, setStart] = useState(0)
+	const [end,setEnd] = useState(3)
+	const test = articles.slice(start,end)
 	const popularArticles = articles.sort((a, b) => b.viewNum - a.viewNum)[0]
 	const title = 'Popular articles'
 	const [nextArticle, setNextArticle] = useState(articles)
