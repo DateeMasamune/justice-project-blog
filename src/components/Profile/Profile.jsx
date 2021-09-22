@@ -1,9 +1,11 @@
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
+import axios from "axios";
 
 import {user} from "../../services/mock";
 import {dontUser} from "../../services/mock";
-import './Profile.scss';
 import {ButtonProfile, SaveChange} from "./ButtonProfile/ButtonProfile";
+import './Profile.scss';
+import noPhoto from "../../assets/img/nophoto.png"
 
 export const Profile = () => {
 	const userLog = JSON.parse(localStorage.getItem('users')) || [{
@@ -47,6 +49,7 @@ export const Profile = () => {
 	const id = JSON.parse(localStorage.getItem('id')) || ''
 	const iUser = userLog.filter(item => item.firstName.id === id)
 	const [profileInfo, setProfileInfo] = useState(...iUser)
+	const [getUser, setGetUser] = useState([])
 	const handleChange = (e) => {
 		const {name, value} = e.target
 		setProfileInfo((prevState) => ({
@@ -67,7 +70,33 @@ export const Profile = () => {
 			}
 		});
 		localStorage.setItem('users', JSON.stringify(changeUser))
+
+		/*запрос на изменение данных*/
+
+		/*запрос на изменение данных*/
 	}
+
+	/*получить пользователя*/
+	useEffect(()=>{
+		axios.post(
+			'http://localhost:5000/api/articles/get_user',
+			{},
+			{
+				headers: {
+					"Authorization": JSON.parse(localStorage.getItem('token'))
+				}
+			}
+		)
+			.then((res)=>{
+				console.log('===>res', res);
+				setGetUser(res.data)
+			})
+			.catch((error)=>{
+				console.log('===>error', error);
+			})
+	},[])
+	/*получить пользователя*/
+	console.log('===>getUser', getUser);
 	return (
 		<div className="container">
 			<div className="content profile">
@@ -76,27 +105,25 @@ export const Profile = () => {
 				</div>
 				<div className="block profile">
 					{
-						user.map(item => (
 							<div className='user'>
 								<div className='rame'></div>
 								{
-									userLog ?
+									// userLog ?
 										<div className='iconUser'>
-											<img src={item.imageSrc} alt={item.namePicture}/>
+											<img src={getUser.imageSrc ? getUser.imageSrc : noPhoto} alt={getUser.namePicture ? getUser.namePicture : 'picture' }/>
 										</div>
-										:
-										<div className='iconUser'>
-											<div className='dontUser'>
-												<img src={dontUser[0].imageSrc} alt=""/>
-											</div>
-										</div>
+										// :
+										// <div className='iconUser'>
+										// 	<div className='dontUser'>
+										// 		<img src={dontUser[0].imageSrc} alt=""/>
+										// 	</div>
+										// </div>
 								}
 								<div className='textBlockUser'>
 									<ButtonProfile text="Change photo"/>
 									<ButtonProfile text="Delete photo"/>
 								</div>
 							</div>
-						))
 					}
 					<div className="formUser">
 						<form>
@@ -106,7 +133,7 @@ export const Profile = () => {
 									<input
 										type="text"
 										name={profileInfo.firstName.name}
-										value={profileInfo.firstName.value}
+										value={getUser.firstName}
 										onChange={handleChange}
 									/>
 								</div>
@@ -115,7 +142,7 @@ export const Profile = () => {
 									<input
 										name={profileInfo.lastName.name}
 										type="text"
-										value={profileInfo.lastName.value}
+										value={getUser.lastName}
 										onChange={handleChange}
 									/>
 								</div>
@@ -125,7 +152,7 @@ export const Profile = () => {
 									<span>Description</span>
 									<input
 										name='description'
-										value={emptyObj ? '' : profileInfo.description.value}
+										value={emptyObj ? '' : getUser.description}
 										type="text"
 										onChange={handleChange}
 									/>

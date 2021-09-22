@@ -25,7 +25,7 @@ export const ArticleList = (props) => {
 				</div>
 				<NavLink
 					className='linkArticle'
-					to={`/article_page${article.id}`}
+					to={`/article_page${article._id}`}
 					exact={true}
 				>
 					<div

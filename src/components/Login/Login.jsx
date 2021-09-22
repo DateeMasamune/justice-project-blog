@@ -1,9 +1,11 @@
 import React, {useState} from 'react';
+import axios from "axios";
 
 import './Login.scss';
 import {useHistory} from "react-router-dom";
 
-export const Login = () => {
+
+export const Login = (prop) => {
 	const history = useHistory();
 
 	const [error, setError] = useState(false)
@@ -34,9 +36,30 @@ export const Login = () => {
 					if (loginForm.password.value === curVal.password.value) {
 						localStorage.setItem('login', JSON.stringify(true))
 						history.push('/');
-						window.location.reload()
+
+						// window.location.reload()
+						setLoginForm((prevState) => ({
+							...prevState,
+							password: {
+								...prevState.password,
+								valid: true
+							}
+						}))
 						localStorage.setItem('id', JSON.stringify(curVal.firstName.id))
 						setError(false)
+
+						/*запрос пользователя на сервер*/
+						axios.post('http://localhost:5000/api/auth/login', {
+							email: loginForm.email.value,
+							password: loginForm.password.value
+						}).then((res)=>{
+							console.log('===>res', res);
+							localStorage.setItem('token', JSON.stringify(res.data.token));
+						}).catch((error)=>{
+							console.log('===>error', error);
+						})
+						/*запрос пользователя на сервер*/
+
 					} else {
 						console.log("пароли не совпали")
 						setError(true)

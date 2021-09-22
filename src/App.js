@@ -8,9 +8,12 @@ import {userTest} from "./constants";
 
 function App() {
 	const user = JSON.parse(localStorage.getItem('login'))
+	const [token,setToken] = useState('')
   return (
     <div className="App">
-        <MainPage user={user}/>
+        <MainPage
+					user={user}
+				/>
     </div>
   );
 }

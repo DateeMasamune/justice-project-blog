@@ -1,4 +1,5 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
+import axios from "axios";
 
 import {UserAvatar} from "./UserAvatar/UserAvatar";
 import {UserArticle} from "./UserArticle/UserArticle";
@@ -47,31 +48,71 @@ export const MyArticles = () => {
 			value: "",
 		},
 	}]
-	const id = JSON.parse(localStorage.getItem('id')) || ''
-	const iUser = userLog.filter(item => item.firstName.id === id)
-	const [profileInfo, setProfileInfo] = useState(...iUser)
-	const [articles, setArticles] = useState(JSON.parse(localStorage.getItem('articles')) || articlesData);
-	const myArticles = articles.filter((item) =>  +item.userCreate === id)
-	console.log('===>myArticles', myArticles);
+	// const id = JSON.parse(localStorage.getItem('id')) || ''
+	// const iUser = userLog.filter(item => item.firstName.id === id)
+	// const [profileInfo, setProfileInfo] = useState(...iUser)
+	// const [articles, setArticles] = useState(JSON.parse(localStorage.getItem('articles')) || articlesData);
+	// const myArticles = articles.filter((item) =>  +item.userCreate === id)
+	const [getUser, setGetUser] = useState([])
+	const [myArticleMongo, setMyArticleMongo] = useState([])
+
+	/*получить пользователя*/
+	useEffect(()=>{
+		axios.post(
+			'http://localhost:5000/api/articles/get_user',
+			{},
+			{
+				headers: {
+					"Authorization": JSON.parse(localStorage.getItem('token'))
+				}
+			}
+		)
+			.then((res)=>{
+				console.log('===>res', res);
+				setGetUser([res.data])
+			})
+			.catch((error)=>{
+				console.log('===>error', error);
+			})
+		/*получить мои статьи*/
+		axios.get(
+			'http://localhost:5000/api/articles',
+			{
+				headers: {
+					"Authorization": JSON.parse(localStorage.getItem('token'))
+				}
+			}
+		)
+			.then((res)=>{
+				console.log('===>res', res);
+				setMyArticleMongo(res.data)
+			})
+			.catch((error)=>{
+				console.log('===>error', error);
+			})
+		/*получить мои статьи*/
+	},[])
+	/*получить пользователя*/
+
+
 	return (
 		<div className='container'>
 			<div className='content myArticles'>
 				{
-					user.map(item => (
+					getUser.map(item => (
 						<UserAvatar
 							userData={item}
-							localUserData={profileInfo}
 						/>
 					))
 				}
 				<div className='articlesList'>
 					{
-						myArticles.map(item => (
+						myArticleMongo.map(item => (
 							<UserArticle dataArticle={item}/>
 						))
 					}
 					{
-						myArticles.length <= 0 ?
+						myArticleMongo.length <= 0 ?
 							<div className='noData'>
 								Записей еще нет...
 							</div>
