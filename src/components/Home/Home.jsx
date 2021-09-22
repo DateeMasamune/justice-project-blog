@@ -1,4 +1,5 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
+import axios from "axios";
 
 import {PopularArticle} from "./PopularArticle/PopularArticle";
 import {ArticleList} from "./ArticleList/ArticleList";
@@ -7,6 +8,7 @@ import {PaginationButton} from "./PaginationButton/PaginationButton";
 import {articlesData} from "../../services/mock";
 import './Home.scss';
 
+
 export const Home = () => {
 	const [articles, setArticles] = useState(JSON.parse(localStorage.getItem('articles')) || articlesData);
 	const [start, setStart] = useState(0)
@@ -14,6 +16,27 @@ export const Home = () => {
 	const test = articles.slice(start,end)
 	const popularArticles = articles.sort((a, b) => b.viewNum - a.viewNum)[0]
 	const title = 'Popular articles'
+	const [mongoArticles,setMongoArticles] = useState([])
+
+	/*запрос на получение всех статей из БД*/
+	useEffect(()=>{
+		axios.post(
+			'http://localhost:5000/api/articles/get_all',
+			{},
+			{
+				headers: {
+					"Authorization": JSON.parse(localStorage.getItem('token'))
+				}})
+			.then((res)=>{
+				console.log('===>res', res);
+				setMongoArticles(res.data)
+			})
+			.catch((error)=>{
+				console.log('===>error', error);
+			})
+	},[])
+	/*запрос на получение всех статей из БД*/
+
 	return (
 		<div className='content'>
 			<div className='container'>
@@ -27,7 +50,7 @@ export const Home = () => {
 							<div className='popularArticles'>
 								<h1>{title}</h1>
 								{
-									articles.map(item => (
+									mongoArticles.map(item => (
 										<ArticleList data={item}/>
 									))
 								}

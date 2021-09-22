@@ -2,6 +2,7 @@ import React, {useState} from "react";
 import {EditorState, convertToRaw} from 'draft-js';
 import {Editor} from "react-draft-wysiwyg";
 import draftToHtml from 'draftjs-to-html';
+import axios from "axios";
 
 import image15 from '../../assets/img/mainPage/Vector.png';
 import image11 from '../../assets/img/mainPage/image 14-5.png';
@@ -9,6 +10,7 @@ import image11 from '../../assets/img/mainPage/image 14-5.png';
 import "./AddArticle.scss";
 import 'draft-js/dist/Draft.css';
 import './ButtonAddArticle/ButtonAddArticle';
+
 
 export const AddArticle = () => {
 	const id = JSON.parse(localStorage.getItem('id'))
@@ -81,6 +83,30 @@ export const AddArticle = () => {
 			}))
 			articles.push(dataArticle)
 			localStorage.setItem('articles', JSON.stringify(articles))
+			console.log('===>dataArticle', dataArticle);
+
+			/*добавление статьи в базу данных*/
+			axios.post('http://localhost:5000/api/articles', {
+					nameArticle: dataArticle.nameArticle,
+					pictureSrc: dataArticle.pictureSrc,
+					description: dataArticle.description,
+					viewNum: dataArticle.viewNum,
+					date: dataArticle.date,
+					viewSrc: dataArticle.viewSrc,
+					hasTag: dataArticle.hasTag,
+					iconSrc: dataArticle.iconSrc
+				},
+				{
+					headers: {
+						"Authorization": JSON.parse(localStorage.getItem('token'))
+					}
+				}).then((res) => {
+				console.log('===>res', res);
+			}).catch((error) => {
+				console.log('===>error', error);
+			})
+			/*добавление статьи в базу данных*/
+
 			setEditorState(EditorState.createEmpty())
 
 		} else {
@@ -190,7 +216,7 @@ export const AddArticle = () => {
 					{!valid.allValid ? <p className='errorMsg'>Заполните все поля</p> : ''}
 				</div>
 				<div className='viewHtml'
-				 	dangerouslySetInnerHTML={{__html: `${contentHTML}`}}
+						 dangerouslySetInnerHTML={{__html: `${contentHTML}`}}
 				/>
 			</div>
 		</div>

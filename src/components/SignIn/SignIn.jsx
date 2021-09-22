@@ -1,4 +1,5 @@
 import React, {useState} from 'react';
+import axios from "axios";
 
 import './SignIn.scss';
 
@@ -101,6 +102,21 @@ export const SignIn = () => {
 					getUsers.push(registerForm)
 					localStorage.setItem('users', JSON.stringify(getUsers))
 					setSuccessMsg('Create User')
+					console.log('===>registerForm', registerForm);
+
+					/*запись в базу данных*/
+					axios.post('http://localhost:5000/api/auth/register',{
+						email: registerForm.email.value,
+						password: registerForm.password.value,
+						firstName: registerForm.firstName.value,
+						lastName: registerForm.lastName.value
+					}).then((res)=>{
+						console.log('===>res', res);
+					}).catch((error)=>{
+						console.log('===>error', error);
+					})
+					/*запись в базу данных*/
+
 				}
 			}
 		}

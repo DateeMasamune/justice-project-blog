@@ -1,18 +1,19 @@
 import React from "react";
+import noPhoto from "../../../assets/img/nophoto.png"
 
-export const UserAvatar = ({userData, localUserData}) => {
+export const UserAvatar = ({userData}) => {
 	return (
 		<div className='user'>
 			<div className='rame'></div>
 			<div className='iconUser'>
-				<img src={userData.imageSrc} alt={userData.namePicture}/>
+				<img src={userData.imageSrc ? userData.imageSrc : noPhoto} alt={userData.namePicture ? userData.namePicture : 'picture'}/>
 			</div>
 			<div className='textBlockUser'>
 				<span>
-					{localUserData.firstName.value ? localUserData.firstName.value : ''}
+					{userData.firstName ? userData.firstName : ''}
 				</span>
 				<span>
-					{localUserData.hasOwnProperty("description")? localUserData.description.value : ''}
+					{userData.hasOwnProperty("description")? userData.description : ''}
 				</span>
 			</div>
 		</div>
