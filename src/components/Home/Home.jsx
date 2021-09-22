@@ -37,12 +37,12 @@ export const Home = () => {
 			})
 	},[])
 	/*запрос на получение всех статей из БД*/
-
+	
 	return (
 		<div className='content'>
 			<div className='container'>
 				{
-					articles.length > 0
+					mongoArticles.length > 0
 						?
 						<div>
 							<div className='popularArticles main'>
@@ -61,7 +61,6 @@ export const Home = () => {
 								<PaginationButton
 								 name={'Next'}
 								 articles={articles}
-								 setNextArticle={setNextArticle}
 								 />
 							</div>
 						</div>

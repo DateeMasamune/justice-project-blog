@@ -43,6 +43,7 @@ module.exports.register = async (req, res) => {
 			password: bcrypt.hashSync(password, salt),
 			firstName: req.body.firstName,
 			lastName: req.body.lastName,
+			description: ''
 		})
 		try {
 			await user.save()

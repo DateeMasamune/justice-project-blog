@@ -8,71 +8,86 @@ import './Profile.scss';
 import noPhoto from "../../assets/img/nophoto.png"
 
 export const Profile = () => {
-	const userLog = JSON.parse(localStorage.getItem('users')) || [{
-		email: {
-			displayName: "",
-			id: '',
-			name: "",
-			type: "",
-			valid: '',
-			validMessage: "",
-			value: "",
-		},
-		firstName: {
-			displayName: "",
-			id: '',
-			name: "",
-			type: "",
-			valid: '',
-			validMessage: "",
-			value: "",
-		},
-		lastName: {
-			displayName: "",
-			id: '',
-			name: "",
-			type: "",
-			valid: '',
-			validMessage: "",
-			value: "",
-		},
-		password: {
-			displayName: "",
-			id: '',
-			name: "",
-			type: "",
-			valid: '',
-			validMessage: "",
-			value: "",
-		},
-	}]
-	const id = JSON.parse(localStorage.getItem('id')) || ''
-	const iUser = userLog.filter(item => item.firstName.id === id)
-	const [profileInfo, setProfileInfo] = useState(...iUser)
+	// const userLog = JSON.parse(localStorage.getItem('users')) || [{
+	// 	email: {
+	// 		displayName: "",
+	// 		id: '',
+	// 		name: "",
+	// 		type: "",
+	// 		valid: '',
+	// 		validMessage: "",
+	// 		value: "",
+	// 	},
+	// 	firstName: {
+	// 		displayName: "",
+	// 		id: '',
+	// 		name: "",
+	// 		type: "",
+	// 		valid: '',
+	// 		validMessage: "",
+	// 		value: "",
+	// 	},
+	// 	lastName: {
+	// 		displayName: "",
+	// 		id: '',
+	// 		name: "",
+	// 		type: "",
+	// 		valid: '',
+	// 		validMessage: "",
+	// 		value: "",
+	// 	},
+	// 	password: {
+	// 		displayName: "",
+	// 		id: '',
+	// 		name: "",
+	// 		type: "",
+	// 		valid: '',
+	// 		validMessage: "",
+	// 		value: "",
+	// 	},
+	// }]
+	// const id = JSON.parse(localStorage.getItem('id')) || ''
+	// const iUser = userLog.filter(item => item.firstName.id === id)
+	// const [profileInfo, setProfileInfo] = useState(...iUser)
 	const [getUser, setGetUser] = useState([])
 	const handleChange = (e) => {
 		const {name, value} = e.target
-		setProfileInfo((prevState) => ({
+		setGetUser((prevState) => ({
 			...prevState,
-			[name]: {
-				...prevState[name],
-				value,
-			},
+			[name]: value
 		}))
 	}
-	const emptyObj = profileInfo.description === undefined
+	const emptyObj = getUser.description === undefined
 	const changeData = () => {
-		const changeUser = userLog.map(obj => {
-			if (obj.firstName.id === id) {
-				return profileInfo
-			} else {
-				return obj;
-			}
-		});
-		localStorage.setItem('users', JSON.stringify(changeUser))
-
+		// const changeUser = userLog.map(obj => {
+		// 	if (obj.firstName.id === id) {
+		// 		return profileInfo
+		// 	} else {
+		// 		return obj;
+		// 	}
+		// });
+		// localStorage.setItem('users', JSON.stringify(changeUser))
+		// console.log(changeUser)
 		/*запрос на изменение данных*/
-
+		console.log('PATHC',getUser)
+			axios.patch(
+				`http://localhost:5000/api/profile/update/${getUser._id}`,
+				{
+					firstName: getUser.firstName,
+					lastName: getUser.lastName,
+					description: getUser.description
+				},
+				{
+					headers: {
+						"Authorization": JSON.parse(localStorage.getItem('token'))
+					}
+				})
+				.then((res)=>{
+					console.log(res)
+				})
+				.catch((error)=>{
+					console.log(error)
+				})
 		/*запрос на изменение данных*/
 	}
 
@@ -96,7 +111,7 @@ export const Profile = () => {
 			})
 	},[])
 	/*получить пользователя*/
-	console.log('===>getUser', getUser);
+	console.log('getUser',getUser)
 	return (
 		<div className="container">
 			<div className="content profile">
@@ -132,7 +147,7 @@ export const Profile = () => {
 									<span>First name</span>
 									<input
 										type="text"
-										name={profileInfo.firstName.name}
+										name="firstName"
 										value={getUser.firstName}
 										onChange={handleChange}
 									/>
@@ -140,7 +155,7 @@ export const Profile = () => {
 								<div className="block">
 									<span>Last name</span>
 									<input
-										name={profileInfo.lastName.name}
+										name="lastName"
 										type="text"
 										value={getUser.lastName}
 										onChange={handleChange}

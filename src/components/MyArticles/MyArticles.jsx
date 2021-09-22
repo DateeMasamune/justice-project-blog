@@ -10,44 +10,44 @@ import {articlesData} from "../../services/mock";
 import {user} from "../../services/mock";
 
 export const MyArticles = () => {
-	const userLog = JSON.parse(localStorage.getItem('users')) || [{
-		email: {
-			displayName: "",
-			id: '',
-			name: "",
-			type: "",
-			valid: '',
-			validMessage: "",
-			value: "",
-		},
-		firstName: {
-			displayName: "",
-			id: '',
-			name: "",
-			type: "",
-			valid: '',
-			validMessage: "",
-			value: "",
-		},
-		lastName: {
-			displayName: "",
-			id: '',
-			name: "",
-			type: "",
-			valid: '',
-			validMessage: "",
-			value: "",
-		},
-		password: {
-			displayName: "",
-			id: '',
-			name: "",
-			type: "",
-			valid: '',
-			validMessage: "",
-			value: "",
-		},
-	}]
+	// const userLog = JSON.parse(localStorage.getItem('users')) || [{
+	// 	email: {
+	// 		displayName: "",
+	// 		id: '',
+	// 		name: "",
+	// 		type: "",
+	// 		valid: '',
+	// 		validMessage: "",
+	// 		value: "",
+	// 	},
+	// 	firstName: {
+	// 		displayName: "",
+	// 		id: '',
+	// 		name: "",
+	// 		type: "",
+	// 		valid: '',
+	// 		validMessage: "",
+	// 		value: "",
+	// 	},
+	// 	lastName: {
+	// 		displayName: "",
+	// 		id: '',
+	// 		name: "",
+	// 		type: "",
+	// 		valid: '',
+	// 		validMessage: "",
+	// 		value: "",
+	// 	},
+	// 	password: {
+	// 		displayName: "",
+	// 		id: '',
+	// 		name: "",
+	// 		type: "",
+	// 		valid: '',
+	// 		validMessage: "",
+	// 		value: "",
+	// 	},
+	// }]
 	// const id = JSON.parse(localStorage.getItem('id')) || ''
 	// const iUser = userLog.filter(item => item.firstName.id === id)
 	// const [profileInfo, setProfileInfo] = useState(...iUser)

@@ -1,8 +1,9 @@
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import {EditorState, convertToRaw} from 'draft-js';
 import {Editor} from "react-draft-wysiwyg";
 import draftToHtml from 'draftjs-to-html';
 import axios from "axios";
+import FormData from 'form-data'
 
 import image15 from '../../assets/img/mainPage/Vector.png';
 import image11 from '../../assets/img/mainPage/image 14-5.png';
@@ -13,9 +14,34 @@ import './ButtonAddArticle/ButtonAddArticle';
 
 
 export const AddArticle = () => {
-	const id = JSON.parse(localStorage.getItem('id'))
-	const users = JSON.parse(localStorage.getItem('users'))
-	const nameUser = users.filter(item => id === item.firstName.id)
+	// const id = JSON.parse(localStorage.getItem('id'))
+	// const users = JSON.parse(localStorage.getItem('users'))
+	// const nameUser = users.filter(item => id === item.firstName.id)
+	const bodyFormData = new FormData();
+	const [file, setFile] = useState(null)
+	const [user, setUser] = useState([])
+	const uploadFile = (e) => {
+		console.log(e.target.files[0])
+		setFile(e.target.files[0])
+	}
+	useEffect(()=>{
+		axios.post(
+			'http://localhost:5000/api/articles/get_user',
+			{},
+			{
+				headers: {
+					"Authorization": JSON.parse(localStorage.getItem('token'))
+				}
+			}
+		)
+			.then((res)=>{
+				// console.log('===>res', res);
+				setUser(res.data)
+			})
+			.catch((error)=>{
+				console.log('===>error', error);
+			})
+	},[])
 	const [editorState, setEditorState] = useState(
 		EditorState.createEmpty()
 	);
@@ -27,9 +53,9 @@ export const AddArticle = () => {
 		id: Date.now(),
 		nameArticle: "",
 		namePicture: "",
-		nameUser: nameUser[0].firstName.value,
+		nameUser: user.firstName,
 		pictureSrc: "",
-		userCreate: id,
+		userCreate: user._id,
 		viewNum: 0,
 		viewSrc: image15
 	})
@@ -42,26 +68,26 @@ export const AddArticle = () => {
 		allValid: false,
 	})
 
-	const uploadImageCallBack = (file) => {
-		return new Promise(
-			(resolve, reject) => {
-				const xhr = new XMLHttpRequest();
-				xhr.open('POST', 'https://api.imgur.com/3/image');
-				xhr.setRequestHeader('Authorization', 'Client-ID XXXXX');
-				const data = new FormData();
-				data.append('image', file);
-				xhr.send(data);
-				xhr.addEventListener('load', () => {
-					const response = JSON.parse(xhr.responseText);
-					resolve(response);
-				});
-				xhr.addEventListener('error', () => {
-					const error = JSON.parse(xhr.responseText);
-					reject(error);
-				});
-			}
-		);
-	}
+	// const uploadImageCallBack = (file) => {
+	// 	return new Promise(
+	// 		(resolve, reject) => {
+	// 			const xhr = new XMLHttpRequest();
+	// 			xhr.open('POST', 'https://api.imgur.com/3/image');
+	// 			xhr.setRequestHeader('Authorization', 'Client-ID XXXXX');
+	// 			const data = new FormData();
+	// 			data.append('image', file);
+	// 			xhr.send(data);
+	// 			xhr.addEventListener('load', () => {
+	// 				const response = JSON.parse(xhr.responseText);
+	// 				resolve(response);
+	// 			});
+	// 			xhr.addEventListener('error', () => {
+	// 				const error = JSON.parse(xhr.responseText);
+	// 				reject(error);
+	// 			});
+	// 		}
+	// 	);
+	// }
 
 	const handleNewArticle = () => {
 
@@ -83,12 +109,12 @@ export const AddArticle = () => {
 			}))
 			articles.push(dataArticle)
 			localStorage.setItem('articles', JSON.stringify(articles))
-			console.log('===>dataArticle', dataArticle);
 
 			/*добавление статьи в базу данных*/
+			bodyFormData.append('image',file)
 			axios.post('http://localhost:5000/api/articles', {
 					nameArticle: dataArticle.nameArticle,
-					pictureSrc: dataArticle.pictureSrc,
+					pictureSrc: bodyFormData,
 					description: dataArticle.description,
 					viewNum: dataArticle.viewNum,
 					date: dataArticle.date,
@@ -98,7 +124,7 @@ export const AddArticle = () => {
 				},
 				{
 					headers: {
-						"Authorization": JSON.parse(localStorage.getItem('token'))
+						"Authorization": JSON.parse(localStorage.getItem('token')),
 					}
 				}).then((res) => {
 				console.log('===>res', res);
@@ -106,6 +132,7 @@ export const AddArticle = () => {
 				console.log('===>error', error);
 			})
 			/*добавление статьи в базу данных*/
+
 
 			setEditorState(EditorState.createEmpty())
 
@@ -184,7 +211,7 @@ export const AddArticle = () => {
 							<Editor
 								toolbar={{
 									image: {
-										uploadCallback: uploadImageCallBack,
+										uploadCallback: "",
 										previewImage: true,
 										alt: {present: true, mandatory: false},
 										inputAccept: 'image/gif,image/jpeg,image/jpg,image/png,image/svg',
@@ -209,9 +236,10 @@ export const AddArticle = () => {
 						>
 							Publish an article
 						</div>
-						{/*<div className='button'>*/}
-						{/*	Publish an article*/}
-						{/*</div>*/}
+						<div className='button'>
+							<input type="file" onChange={uploadFile}/>
+								Add picture
+						</div>
 					</div>
 					{!valid.allValid ? <p className='errorMsg'>Заполните все поля</p> : ''}
 				</div>

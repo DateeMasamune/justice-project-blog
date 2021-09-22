@@ -27,49 +27,59 @@ export const Login = (prop) => {
 	})
 
 	const getUsersLocalStore = () => {
-		const localUsers = JSON.parse(localStorage.getItem('users'))
-		if (localUsers === null) {
-			return false
-		} else {
-			localUsers.forEach(curVal => {
-				if (loginForm.email.value === curVal.email.value) {
-					if (loginForm.password.value === curVal.password.value) {
-						localStorage.setItem('login', JSON.stringify(true))
-						history.push('/');
-
-						// window.location.reload()
-						setLoginForm((prevState) => ({
-							...prevState,
-							password: {
-								...prevState.password,
-								valid: true
-							}
-						}))
-						localStorage.setItem('id', JSON.stringify(curVal.firstName.id))
-						setError(false)
-
-						/*запрос пользователя на сервер*/
-						axios.post('http://localhost:5000/api/auth/login', {
-							email: loginForm.email.value,
-							password: loginForm.password.value
-						}).then((res)=>{
-							console.log('===>res', res);
-							localStorage.setItem('token', JSON.stringify(res.data.token));
-						}).catch((error)=>{
-							console.log('===>error', error);
-						})
-						/*запрос пользователя на сервер*/
-
-					} else {
-						console.log("пароли не совпали")
-						setError(true)
-					}
-				} else {
-					console.log('email не найден')
-					setError(true)
+		/*запрос пользователя на сервер*/
+		axios.post('http://localhost:5000/api/auth/login', {
+			email: loginForm.email.value,
+			password: loginForm.password.value
+		}).then((res)=>{
+			console.log('===>res', res);
+			localStorage.setItem('token', JSON.stringify(res.data.token));
+			localStorage.setItem('login', JSON.stringify(true))
+			history.push('/');
+			// window.location.reload()
+			setLoginForm((prevState) => ({
+				...prevState,
+				password: {
+					...prevState.password,
+					valid: true
 				}
-			})
-		}
+			}))
+			setError(false)
+		}).catch((error)=>{
+			console.log('===>error', error);
+			setError(true)
+		})
+		/*запрос пользователя на сервер*/
+		// const localUsers = JSON.parse(localStorage.getItem('users'))
+		// if (localUsers === null) {
+		// 	return false
+		// } else {
+		// 	localUsers.forEach(curVal => {
+		// 		if (loginForm.email.value === curVal.email.value) {
+		// 			if (loginForm.password.value === curVal.password.value) {
+		// 				localStorage.setItem('login', JSON.stringify(true))
+		// 				history.push('/');
+
+		// 				// window.location.reload()
+		// 				setLoginForm((prevState) => ({
+		// 					...prevState,
+		// 					password: {
+		// 						...prevState.password,
+		// 						valid: true
+		// 					}
+		// 				}))
+		// 				localStorage.setItem('id', JSON.stringify(curVal.firstName.id))
+		// 				setError(false)
+		// 			} else {
+		// 				console.log("пароли не совпали")
+		// 				setError(true)
+		// 			}
+		// 		} else {
+		// 			console.log('email не найден')
+		// 			setError(true)
+		// 		}
+		// 	})
+		// }
 	}
 
 	const getValueInput = (e) => {

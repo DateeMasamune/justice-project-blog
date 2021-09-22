@@ -11,7 +11,7 @@ export const UserArticle = ({dataArticle}) => {
 				</div>
 				<NavLink
 					className='nameArticle my'
-					to={`/article_page${dataArticle.id}`}
+					to={`/article_page${dataArticle._id}`}
 				>
 					{dataArticle.nameArticle}
 				</NavLink>

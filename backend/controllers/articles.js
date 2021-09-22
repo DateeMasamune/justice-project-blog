@@ -52,6 +52,7 @@ module.exports.remove = async (req,res) => { /*удаление статьи*/
 }
 
 module.exports.create = async (req,res) => { /*создание статьи*/
+	console.log(req.file)
 	const article = new Articles({
 		nameArticle: req.body.nameArticle,
 		userCreate: req.user.id,
