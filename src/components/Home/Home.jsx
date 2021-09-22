@@ -16,7 +16,6 @@ export const Home = () => {
 	const popularArticles = articles.sort((a, b) => b.viewNum - a.viewNum)[0]
 	const title = 'Popular articles'
 	const [nextArticle, setNextArticle] = useState(articles)
-	console.log('home',nextArticle)
 	return (
 		<div className='content'>
 			<div className='container'>
