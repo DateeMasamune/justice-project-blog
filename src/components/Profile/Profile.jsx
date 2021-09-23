@@ -6,8 +6,10 @@ import {dontUser} from "../../services/mock";
 import {ButtonProfile, SaveChange} from "./ButtonProfile/ButtonProfile";
 import './Profile.scss';
 import noPhoto from "../../assets/img/nophoto.png"
+import FormData from "form-data";
 
 export const Profile = () => {
+
 	// const userLog = JSON.parse(localStorage.getItem('users')) || [{
 	// 	email: {
 	// 		displayName: "",
@@ -69,7 +71,7 @@ export const Profile = () => {
 		// localStorage.setItem('users', JSON.stringify(changeUser))
 		// console.log(changeUser)
 		/*запрос на изменение данных*/
-		console.log('PATHC',getUser)
+
 			axios.patch(
 				`http://localhost:5000/api/profile/update/${getUser._id}`,
 				{
@@ -111,7 +113,55 @@ export const Profile = () => {
 			})
 	},[])
 	/*получить пользователя*/
-	console.log('getUser',getUser)
+
+	/*change photo*/
+	const formDataAvatar = new FormData();
+	const [file, setFile] = useState(null)
+
+	const sendToServer = () => {
+		formDataAvatar.append('image',file)
+		axios.patch(
+			`http://localhost:5000/api/profile/update_avatar/${getUser._id}`,
+			formDataAvatar,
+			{
+				headers: {
+					"Authorization": JSON.parse(localStorage.getItem('token'))
+				}
+			})
+			.then((res)=>{
+				console.log(res)
+			})
+			.catch((error)=>{
+				console.log(error)
+			})
+	}
+
+	const getFileAvatar = (e) => {
+			const file = e.target.files[0]
+			setFile(e.target.files[0])
+			console.log('===>file', file);
+	}
+	/*change photo*/
+
+	/*delete avatar*/
+	const deleteAvatar = () => {
+		axios.patch(
+			`http://localhost:5000/api/profile/delete_avatar/${getUser._id}`,
+			formDataAvatar,
+			{
+				headers: {
+					"Authorization": JSON.parse(localStorage.getItem('token'))
+				}
+			})
+			.then((res)=>{
+				console.log(res)
+			})
+			.catch((error)=>{
+				console.log(error)
+			})
+	}
+	/*delete avatar*/
+
 	return (
 		<div className="container">
 			<div className="content profile">
@@ -125,7 +175,7 @@ export const Profile = () => {
 								{
 									// userLog ?
 										<div className='iconUser'>
-											<img src={getUser.imageSrc ? getUser.imageSrc : noPhoto} alt={getUser.namePicture ? getUser.namePicture : 'picture' }/>
+											<img src={getUser.avatar ? getUser.avatar : noPhoto} alt={getUser.namePicture ? getUser.namePicture : 'picture' }/>
 										</div>
 										// :
 										// <div className='iconUser'>
@@ -135,8 +185,27 @@ export const Profile = () => {
 										// </div>
 								}
 								<div className='textBlockUser'>
-									<ButtonProfile text="Change photo"/>
-									<ButtonProfile text="Delete photo"/>
+									{/*<ButtonProfile*/}
+									{/*	text="Change*/}
+									{/*	photo" id='1'*/}
+									{/*	getUserId={getUser._id}*/}
+									{/*/>*/}
+									<div
+										className="button"
+										onClick={sendToServer}
+									>
+										<input
+											type='file'
+											onChange={getFileAvatar}
+										/>
+										Change
+									</div>
+									<div
+										className="button"
+										onClick={deleteAvatar}
+									>
+										Delete photo
+									</div>
 								</div>
 							</div>
 					}

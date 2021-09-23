@@ -1,12 +1,6 @@
-import React from "react";
-
-export const ButtonProfile = ({text}) => {
-	return (
-		<div className="button">
-			{text}
-		</div>
-	)
-}
+import React, {useState} from "react";
+import axios from "axios";
+import FormData from "form-data";
 
 export const SaveChange = ({text, changeData}) => {
 	return (

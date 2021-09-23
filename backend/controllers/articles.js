@@ -75,8 +75,9 @@ module.exports.create = async (req,res) => { /*создание статьи*/
 }
 
 module.exports.update = async (req,res) => {
+	console.log('===>req.body', req.body);
 	const updated = {
-		nameArticle: req.body.name
+		viewNum: req.body.viewNum + 1
 	}
 	if (req.file) {
 		updated.imageSrc = req.file.path

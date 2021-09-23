@@ -84,34 +84,35 @@ export const SignIn = () => {
 				registerForm.firstName.valid &&
 				registerForm.lastName.valid &&
 				registerForm.password.valid) {
-			if (localStorage.getItem('users') === null) {
-				const users = [registerForm]
-				localStorage.setItem('users', JSON.stringify(users))
-				setSuccessMsg('Create User')
-			} else {
-				const getUsers = JSON.parse(localStorage.getItem('users'))
-				let flag;
-				getUsers.map(item => {
-					if (registerForm.email.value === item.email.value) {
-						flag = false
-						return false
-					}
-				})
-				if (flag === false) {
-					return false
-				} else {
-					getUsers.push(registerForm)
-					localStorage.setItem('users', JSON.stringify(getUsers))
-					console.log(getUsers)
+			// if (localStorage.getItem('users') === null) {
+			// 	const users = [registerForm]
+			// 	localStorage.setItem('users', JSON.stringify(users))
+			// 	setSuccessMsg('Create User')
+			// } else {
+			// 	const getUsers = JSON.parse(localStorage.getItem('users'))
+			// 	let flag;
+			// 	getUsers.map(item => {
+			// 		if (registerForm.email.value === item.email.value) {
+			// 			flag = false
+			// 			return false
+			// 		}
+			// 	})
+			// 	if (flag === false) {
+			// 		return false
+			// 	} else {
+			// 		getUsers.push(registerForm)
+			// 		localStorage.setItem('users', JSON.stringify(getUsers))
+			// 		console.log(getUsers)
 					setSuccessMsg('Create User')
-					console.log('===>registerForm', registerForm);
-
+					console.log('===>registerForm', registerForm);	
+					console.log('===>2222222', 2222222);
 					/*запись в базу данных*/
 					axios.post('http://localhost:5000/api/auth/register',{
 						email: registerForm.email.value,
 						password: registerForm.password.value,
 						firstName: registerForm.firstName.value,
-						lastName: registerForm.lastName.value
+						lastName: registerForm.lastName.value,
+						avatar: ''
 					}).then((res)=>{
 						console.log('===>res', res);
 					}).catch((error)=>{
@@ -121,8 +122,8 @@ export const SignIn = () => {
 
 				}
 			}
-		}
-	}
+	// 	}
+	// }
 
 
 	return (

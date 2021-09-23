@@ -1,19 +1,24 @@
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 
 import {NavLink} from "react-router-dom";
 
 import plug from '../../../assets/img/plug/photodraw.ru-87434.jpg';
 
 export const ArticleList = (props) => {
+	console.log('===>props', props);
 	const {data} = props;
 	const [article, setArticle] = useState(data)
+
+	useEffect(() => {
+		setArticle(data)
+	}, [props])
 
 	return (
 		<div className='articles'>
 			{
-				article.pictureSrc ?
-					<img src={article.pictureSrc} alt={article.namePicture}/>
-					:
+				// article.pictureSrc ?
+				// 	<img src={plug} alt={article.namePicture}/>
+				// 	:
 					<div className='flexFix'>
 						<img className='plugImg' src={plug} alt={plug}/>
 					</div>

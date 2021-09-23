@@ -37,6 +37,23 @@ export const ArticlePage = () => {
 			.catch((error) => {
 				console.log('===>error', error);
 			})
+		axios.patch(
+			`http://localhost:5000/api/articles/${id}`,
+			{
+				viewNum: pageArticle.viewNum
+			},
+			{
+				headers: {
+					"Authorization": JSON.parse(localStorage.getItem('token'))
+				}
+			}
+		)
+			.then((res)=>{
+				console.log('===>res', res);
+			})
+			.catch((error)=>{
+				console.log('===>error', error);
+			})
 	},[])
 	
 	const currentArticle = articles.filter(item => item.id === +id)

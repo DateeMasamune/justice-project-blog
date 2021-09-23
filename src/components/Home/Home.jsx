@@ -10,15 +10,22 @@ import './Home.scss';
 
 
 export const Home = () => {
-	const [articles, setArticles] = useState(JSON.parse(localStorage.getItem('articles')) || articlesData);
+	// const [articles, setArticles] = useState(JSON.parse(localStorage.getItem('articles')) || articlesData);
 
-	const [start, setStart] = useState(0)
-	const [end,setEnd] = useState(3)
-	const test = articles.slice(start,end)
-	const popularArticles = articles.sort((a, b) => b.viewNum - a.viewNum)[0]
+
+
 	const title = 'Popular articles'
 	const [mongoArticles,setMongoArticles] = useState([])
+	const popularArticles = mongoArticles.sort((a, b) => b.viewNum - a.viewNum)[0]
+	const [start,setStart] = useState(0)
+	const [end, setEnd] = useState(3)
+	const [pagData, setPagData] = useState([])
 
+	useEffect(()=>{
+		setPagData(mongoArticles.slice(start,end))
+	},[mongoArticles,end,start])
+
+	console.log('===>pagData', pagData);
 	/*запрос на получение всех статей из БД*/
 	useEffect(()=>{
 		axios.post(
@@ -37,7 +44,22 @@ export const Home = () => {
 			})
 	},[])
 	/*запрос на получение всех статей из БД*/
-	
+
+	const handleNextPag = () => {
+		if (end >= mongoArticles.length) {
+			return
+		}
+		setStart(start + 3)
+		setEnd(end + 3)
+	}
+
+	const handlePrevPag = () => {
+		if (start) {
+			setStart(start - 3)
+			setEnd(end - 3)
+		}
+	}
+
 	return (
 		<div className='content'>
 			<div className='container'>
@@ -51,16 +73,21 @@ export const Home = () => {
 							<div className='popularArticles'>
 								<h1>{title}</h1>
 								{
-									mongoArticles.map(item => (
-										<ArticleList data={item}/>
-									))
+									pagData.map(item => {
+										return(
+											<ArticleList data={item}/>
+										)
+									})
 								}
 							</div>
 							<div className='paginationArticle'>
-								<PaginationButton name={'Prev'}/>
+								<PaginationButton
+									name={'Prev'}
+									onClick={handlePrevPag}
+								/>
 								<PaginationButton
 								 name={'Next'}
-								 articles={articles}
+								 onClick={handleNextPag}
 								 />
 							</div>
 						</div>
