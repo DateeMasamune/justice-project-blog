@@ -22,7 +22,7 @@ app.use(passport.initialize())
 require('./middleware/passport')(passport)
 
 app.use(morgan('dev'))
-app.use('../src/assets/img',express.static('img'))
+app.use(express.static(`${__dirname}/src/assets/img`))
 app.use(bodyParser.urlencoded({extended: true}))
 app.use(bodyParser.json())
 app.use(cors())

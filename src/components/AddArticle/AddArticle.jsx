@@ -109,19 +109,21 @@ export const AddArticle = () => {
 			}))
 			articles.push(dataArticle)
 			localStorage.setItem('articles', JSON.stringify(articles))
-
+			const json = {
+				nameArticle: dataArticle.nameArticle,
+				pictureSrc: '',
+				description: dataArticle.description,
+				viewNum: dataArticle.viewNum,
+				date: dataArticle.date,
+				viewSrc: dataArticle.viewSrc,
+				hasTag: dataArticle.hasTag,
+				iconSrc: dataArticle.iconSrc
+			}
 			/*добавление статьи в базу данных*/
+
 			bodyFormData.append('image',file)
-			axios.post('http://localhost:5000/api/articles', {
-					nameArticle: dataArticle.nameArticle,
-					pictureSrc: bodyFormData,
-					description: dataArticle.description,
-					viewNum: dataArticle.viewNum,
-					date: dataArticle.date,
-					viewSrc: dataArticle.viewSrc,
-					hasTag: dataArticle.hasTag,
-					iconSrc: dataArticle.iconSrc
-				},
+			bodyFormData.append('document',JSON.stringify(json))
+			axios.post('http://localhost:5000/api/articles',bodyFormData ,
 				{
 					headers: {
 						"Authorization": JSON.parse(localStorage.getItem('token')),

@@ -53,16 +53,18 @@ module.exports.remove = async (req,res) => { /*удаление статьи*/
 
 module.exports.create = async (req,res) => { /*создание статьи*/
 	console.log(req.file)
+	console.log('===>req.body', JSON.parse(req.body.document));
+	const JSONparseReq = JSON.parse(req.body.document)
 	const article = new Articles({
-		nameArticle: req.body.nameArticle,
+		nameArticle: JSONparseReq.nameArticle,
 		userCreate: req.user.id,
 		pictureSrc: req.file ? req.file.path : '',
-		description: req.body.description,
-		viewNum: req.body.viewNum,
-		date: req.body.date,
-		viewSrc: req.body.viewSrc,
-		hasTag: req.body.hasTag,
-		iconSrc: req.body.iconSrc
+		description: JSONparseReq.description,
+		viewNum: JSONparseReq.viewNum,
+		date: JSONparseReq.date,
+		viewSrc: JSONparseReq.viewSrc,
+		hasTag: JSONparseReq.hasTag,
+		iconSrc: JSONparseReq.iconSrc
 	})
 	try {
 		await article.save()
