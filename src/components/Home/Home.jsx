@@ -20,6 +20,22 @@ export const Home = () => {
 	const [pagData, setPagData] = useState([])
 	const history = useHistory()
 
+
+	const handleNextPag = () => {
+		if (end >= mongoArticles.length) {
+			return
+		}
+		setStart(start + 3)
+		setEnd(end + 3)
+	}
+
+	const handlePrevPag = () => {
+		if (start) {
+			setStart(start - 3)
+			setEnd(end - 3)
+		}
+	}
+
 	useEffect(()=>{
 		if (!JSON.parse(localStorage.getItem('login'))) {
 			history.push('/signin')
@@ -49,21 +65,6 @@ export const Home = () => {
 			})
 	},[])
 	/*запрос на получение всех статей из БД*/
-
-	const handleNextPag = () => {
-		if (end >= mongoArticles.length) {
-			return
-		}
-		setStart(start + 3)
-		setEnd(end + 3)
-	}
-
-	const handlePrevPag = () => {
-		if (start) {
-			setStart(start - 3)
-			setEnd(end - 3)
-		}
-	}
 
 	return (
 		<div className='content'>

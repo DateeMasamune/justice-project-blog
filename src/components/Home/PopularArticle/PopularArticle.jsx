@@ -1,21 +1,52 @@
-import React from "react";
+import React, {useEffect, useState} from "react";
 
 import {NavLink} from "react-router-dom";
 
 import plug from '../../../assets/img/plug/photodraw.ru-87434.jpg';
+import axios from "axios";
 
 export const PopularArticle = ({data}) => {
 
 	const image = data.pictureSrc.split('/')
+	const [user, setUser] = useState([])
+	const [imageSrc, setImage] = useState('')
+
+	useEffect(() => {
+		axios.post(
+			`http://localhost:5000/api/articles/get_user/${data.userCreate}`,
+			{},
+			{
+				headers: {
+					"Authorization": JSON.parse(localStorage.getItem('token'))
+				}
+			}
+		)
+			.then((res) => {
+				console.log('===>res', res);
+				setUser(res.data)
+			})
+			.catch((error) => {
+				console.log('===>error', error);
+			})
+	}, [])
+
+	useEffect(() => {
+		if (user.avatar !== undefined) {
+			const image = user.avatar.split('/')
+			setImage(image)
+			console.log('===>image', image);
+		}
+	}, [user])
 
 	return (
 		<div className='articles'>
 			{
 				data.pictureSrc
-				?
-				<img className='popularImage' src={`http://localhost:5000/${image[image.length-1]}`} alt={data.namePicture}/>
-				:
-				<img className='popularImage' src={plug} alt={data.namePicture}/>
+					?
+					<img className='popularImage' src={`http://localhost:5000/${image[image.length - 1]}`}
+							 alt={data.namePicture}/>
+					:
+					<img className='popularImage' src={plug} alt={data.namePicture}/>
 			}
 			<div className='infoArticle'>
 				<div className='hashTag'>
@@ -32,9 +63,9 @@ export const PopularArticle = ({data}) => {
 				/>
 				<div className='userInfo main'>
 					<div className='iconUser'>
-						<img src={data.iconSrc} alt={data.namePicture}/>
+						<img src={`http://localhost:5000/${imageSrc[imageSrc.length - 1]}`} alt={data.namePicture}/>
 						<span>
-							{data.nameUser}
+							{user.firstName}
 						</span>
 					</div>
 					<div className='dataArticle'>

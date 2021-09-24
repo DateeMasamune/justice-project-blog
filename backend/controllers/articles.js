@@ -30,6 +30,15 @@ module.exports.getUser = async (req,res) => {
 	}
 }
 
+module.exports.getUserId = async (req,res) => {
+	try {
+		const user = await User.findById(req.params.id)
+		res.status(200).json(user)
+	} catch (e) {
+		errorHandler(res,e)
+	}
+}
+
 module.exports.getAll = async (req,res) => { /*получить все статьи из базы данных*/
 	try {
 		const articles = await Articles.find()
