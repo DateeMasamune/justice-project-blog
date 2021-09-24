@@ -11,7 +11,6 @@ export const UserAvatar = ({userData}) => {
 		} else {
 			const imageSrc = userData.avatar.split('/')
 			setImage(imageSrc)
-			console.log('===>image111111', imageSrc);
 		}
 	},[userData])
 

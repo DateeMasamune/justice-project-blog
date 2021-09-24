@@ -4,7 +4,9 @@ import {NavLink} from "react-router-dom";
 import plug from '../../../assets/img/plug/photodraw.ru-87434.jpg';
 
 export const UserArticle = ({dataArticle}) => {
+
 	const image = dataArticle.pictureSrc.split('/')
+
 	return (
 		<div className='articles my'>
 			{dataArticle.pictureSrc
@@ -36,7 +38,6 @@ export const UserArticle = ({dataArticle}) => {
 						</span>
 					</div>
 					<div className='dataArticle my'>
-						{/*<img src={dataArticle.date} alt={dataArticle.namePicture}/>*/}
 						{dataArticle.date}
 					</div>
 					<div className='viewArticle my'>

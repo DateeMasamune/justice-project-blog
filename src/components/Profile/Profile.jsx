@@ -1,58 +1,17 @@
 import React, {useEffect, useState} from "react";
 import axios from "axios";
 
-import {user} from "../../services/mock";
-import {dontUser} from "../../services/mock";
-import {ButtonProfile, SaveChange} from "./ButtonProfile/ButtonProfile";
+import {SaveChange} from "./ButtonProfile/ButtonProfile";
 import './Profile.scss';
 import noPhoto from "../../assets/img/nophoto.png"
 import FormData from "form-data";
 
 export const Profile = () => {
 
-	// const userLog = JSON.parse(localStorage.getItem('users')) || [{
-	// 	email: {
-	// 		displayName: "",
-	// 		id: '',
-	// 		name: "",
-	// 		type: "",
-	// 		valid: '',
-	// 		validMessage: "",
-	// 		value: "",
-	// 	},
-	// 	firstName: {
-	// 		displayName: "",
-	// 		id: '',
-	// 		name: "",
-	// 		type: "",
-	// 		valid: '',
-	// 		validMessage: "",
-	// 		value: "",
-	// 	},
-	// 	lastName: {
-	// 		displayName: "",
-	// 		id: '',
-	// 		name: "",
-	// 		type: "",
-	// 		valid: '',
-	// 		validMessage: "",
-	// 		value: "",
-	// 	},
-	// 	password: {
-	// 		displayName: "",
-	// 		id: '',
-	// 		name: "",
-	// 		type: "",
-	// 		valid: '',
-	// 		validMessage: "",
-	// 		value: "",
-	// 	},
-	// }]
-	// const id = JSON.parse(localStorage.getItem('id')) || ''
-	// const iUser = userLog.filter(item => item.firstName.id === id)
-	// const [profileInfo, setProfileInfo] = useState(...iUser)
 	const [getUser, setGetUser] = useState([])
 	const [image,setImage] = useState('')
+	const formDataAvatar = new FormData();
+	const [file, setFile] = useState(null)
 	const handleChange = (e) => {
 		const {name, value} = e.target
 		setGetUser((prevState) => ({
@@ -62,17 +21,8 @@ export const Profile = () => {
 	}
 	const emptyObj = getUser.description === undefined
 	const changeData = () => {
-		// const changeUser = userLog.map(obj => {
-		// 	if (obj.firstName.id === id) {
-		// 		return profileInfo
-		// 	} else {
-		// 		return obj;
-		// 	}
-		// });
-		// localStorage.setItem('users', JSON.stringify(changeUser))
-		// console.log(changeUser)
-		/*запрос на изменение данных*/
 
+		/*запрос на изменение данных*/
 			axios.patch(
 				`http://localhost:5000/api/profile/update/${getUser._id}`,
 				{
@@ -116,9 +66,6 @@ export const Profile = () => {
 	/*получить пользователя*/
 
 	/*change photo*/
-	const formDataAvatar = new FormData();
-	const [file, setFile] = useState(null)
-
 	const sendToServer = () => {
 		formDataAvatar.append('image',file)
 		axios.patch(
@@ -186,23 +133,11 @@ export const Profile = () => {
 							<div className='user'>
 								<div className='rame'></div>
 								{
-									// userLog ?
 										<div className='iconUser'>
 											<img src={getUser.avatar ? `http://localhost:5000/${image[image.length-1]}` : noPhoto} alt={getUser.namePicture ? getUser.namePicture : 'picture' }/>
 										</div>
-										// :
-										// <div className='iconUser'>
-										// 	<div className='dontUser'>
-										// 		<img src={dontUser[0].imageSrc} alt=""/>
-										// 	</div>
-										// </div>
 								}
 								<div className='textBlockUser'>
-									{/*<ButtonProfile*/}
-									{/*	text="Change*/}
-									{/*	photo" id='1'*/}
-									{/*	getUserId={getUser._id}*/}
-									{/*/>*/}
 									<div
 										className="button"
 										onClick={sendToServer}

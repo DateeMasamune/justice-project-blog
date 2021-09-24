@@ -5,14 +5,10 @@ import {PopularArticle} from "./PopularArticle/PopularArticle";
 import {ArticleList} from "./ArticleList/ArticleList";
 import {PaginationButton} from "./PaginationButton/PaginationButton";
 
-import {articlesData} from "../../services/mock";
 import './Home.scss';
 
 
 export const Home = () => {
-	// const [articles, setArticles] = useState(JSON.parse(localStorage.getItem('articles')) || articlesData);
-
-
 
 	const title = 'Popular articles'
 	const [mongoArticles,setMongoArticles] = useState([])
@@ -25,7 +21,6 @@ export const Home = () => {
 		setPagData(mongoArticles.slice(start,end))
 	},[mongoArticles,end,start])
 
-	console.log('===>pagData', pagData);
 	/*запрос на получение всех статей из БД*/
 	useEffect(()=>{
 		axios.post(
@@ -68,14 +63,18 @@ export const Home = () => {
 						?
 						<div>
 							<div className='popularArticles main'>
-								<PopularArticle data={popularArticles}/>
+								<PopularArticle
+									data={popularArticles}
+								/>
 							</div>
 							<div className='popularArticles'>
 								<h1>{title}</h1>
 								{
 									pagData.map(item => {
 										return(
-											<ArticleList data={item}/>
+											<ArticleList
+												data={item}
+											/>
 										)
 									})
 								}

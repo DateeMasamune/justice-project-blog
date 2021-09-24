@@ -5,7 +5,9 @@ import {NavLink} from "react-router-dom";
 import plug from '../../../assets/img/plug/photodraw.ru-87434.jpg';
 
 export const PopularArticle = ({data}) => {
+
 	const image = data.pictureSrc.split('/')
+
 	return (
 		<div className='articles'>
 			{
@@ -28,8 +30,6 @@ export const PopularArticle = ({data}) => {
 					className='discriptionArticle'
 					dangerouslySetInnerHTML={{__html: `${data.description}`}}
 				/>
-					{/*{data.description}*/}
-				{/*</div>*/}
 				<div className='userInfo main'>
 					<div className='iconUser'>
 						<img src={data.iconSrc} alt={data.namePicture}/>
@@ -38,7 +38,6 @@ export const PopularArticle = ({data}) => {
 						</span>
 					</div>
 					<div className='dataArticle'>
-						{/*<img src={data.date} alt={data.namePicture}/>*/}
 						{data.date}
 					</div>
 					<div className='viewArticle'>

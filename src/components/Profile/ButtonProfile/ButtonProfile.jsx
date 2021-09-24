@@ -1,6 +1,5 @@
-import React, {useState} from "react";
-import axios from "axios";
-import FormData from "form-data";
+import React from "react";
+
 
 export const SaveChange = ({text, changeData}) => {
 	return (

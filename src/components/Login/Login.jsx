@@ -4,10 +4,9 @@ import axios from "axios";
 import './Login.scss';
 import {useHistory} from "react-router-dom";
 
+export const Login = () => {
 
-export const Login = (prop) => {
 	const history = useHistory();
-
 	const [error, setError] = useState(false)
 	const [loginForm, setLoginForm] = useState({
 		email: {
@@ -50,36 +49,6 @@ export const Login = (prop) => {
 			setError(true)
 		})
 		/*запрос пользователя на сервер*/
-		// const localUsers = JSON.parse(localStorage.getItem('users'))
-		// if (localUsers === null) {
-		// 	return false
-		// } else {
-		// 	localUsers.forEach(curVal => {
-		// 		if (loginForm.email.value === curVal.email.value) {
-		// 			if (loginForm.password.value === curVal.password.value) {
-		// 				localStorage.setItem('login', JSON.stringify(true))
-		// 				history.push('/');
-
-		// 				// window.location.reload()
-		// 				setLoginForm((prevState) => ({
-		// 					...prevState,
-		// 					password: {
-		// 						...prevState.password,
-		// 						valid: true
-		// 					}
-		// 				}))
-		// 				localStorage.setItem('id', JSON.stringify(curVal.firstName.id))
-		// 				setError(false)
-		// 			} else {
-		// 				console.log("пароли не совпали")
-		// 				setError(true)
-		// 			}
-		// 		} else {
-		// 			console.log('email не найден')
-		// 			setError(true)
-		// 		}
-		// 	})
-		// }
 	}
 
 	const getValueInput = (e) => {

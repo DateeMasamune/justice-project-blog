@@ -12,36 +12,11 @@ import "./AddArticle.scss";
 import 'draft-js/dist/Draft.css';
 import './ButtonAddArticle/ButtonAddArticle';
 
-
 export const AddArticle = () => {
-	// const id = JSON.parse(localStorage.getItem('id'))
-	// const users = JSON.parse(localStorage.getItem('users'))
-	// const nameUser = users.filter(item => id === item.firstName.id)
+
 	const bodyFormData = new FormData();
 	const [file, setFile] = useState(null)
 	const [user, setUser] = useState([])
-	const uploadFile = (e) => {
-		console.log(e.target.files[0])
-		setFile(e.target.files[0])
-	}
-	useEffect(()=>{
-		axios.post(
-			'http://localhost:5000/api/articles/get_user',
-			{},
-			{
-				headers: {
-					"Authorization": JSON.parse(localStorage.getItem('token'))
-				}
-			}
-		)
-			.then((res)=>{
-				// console.log('===>res', res);
-				setUser(res.data)
-			})
-			.catch((error)=>{
-				console.log('===>error', error);
-			})
-	},[])
 	const [editorState, setEditorState] = useState(
 		EditorState.createEmpty()
 	);
@@ -68,26 +43,28 @@ export const AddArticle = () => {
 		allValid: false,
 	})
 
-	// const uploadImageCallBack = (file) => {
-	// 	return new Promise(
-	// 		(resolve, reject) => {
-	// 			const xhr = new XMLHttpRequest();
-	// 			xhr.open('POST', 'https://api.imgur.com/3/image');
-	// 			xhr.setRequestHeader('Authorization', 'Client-ID XXXXX');
-	// 			const data = new FormData();
-	// 			data.append('image', file);
-	// 			xhr.send(data);
-	// 			xhr.addEventListener('load', () => {
-	// 				const response = JSON.parse(xhr.responseText);
-	// 				resolve(response);
-	// 			});
-	// 			xhr.addEventListener('error', () => {
-	// 				const error = JSON.parse(xhr.responseText);
-	// 				reject(error);
-	// 			});
-	// 		}
-	// 	);
-	// }
+	const uploadFile = (e) => {
+		setFile(e.target.files[0])
+	}
+
+	useEffect(()=>{
+		axios.post(
+			'http://localhost:5000/api/articles/get_user',
+			{},
+			{
+				headers: {
+					"Authorization": JSON.parse(localStorage.getItem('token'))
+				}
+			}
+		)
+			.then((res)=>{
+				console.log('===>res', res);
+				setUser(res.data)
+			})
+			.catch((error)=>{
+				console.log('===>error', error);
+			})
+	},[])
 
 	const handleNewArticle = () => {
 
@@ -98,8 +75,6 @@ export const AddArticle = () => {
 			valid.validContentHtml = false
 		}
 
-		const articles = JSON.parse(localStorage.getItem('articles'))
-
 		if (valid.validTitle &&
 			valid.validCategory &&
 			valid.validContentHtml) {
@@ -107,8 +82,7 @@ export const AddArticle = () => {
 				...prevState,
 				allValid: true,
 			}))
-			articles.push(dataArticle)
-			localStorage.setItem('articles', JSON.stringify(articles))
+
 			const json = {
 				nameArticle: dataArticle.nameArticle,
 				pictureSrc: '',
@@ -119,8 +93,8 @@ export const AddArticle = () => {
 				hasTag: dataArticle.hasTag,
 				iconSrc: dataArticle.iconSrc
 			}
-			/*добавление статьи в базу данных*/
 
+			/*добавление статьи в базу данных*/
 			bodyFormData.append('image',file)
 			bodyFormData.append('document',JSON.stringify(json))
 			axios.post('http://localhost:5000/api/articles',bodyFormData ,
@@ -134,10 +108,7 @@ export const AddArticle = () => {
 				console.log('===>error', error);
 			})
 			/*добавление статьи в базу данных*/
-
-
 			setEditorState(EditorState.createEmpty())
-
 		} else {
 			setValid((prevState) => ({
 				...prevState,

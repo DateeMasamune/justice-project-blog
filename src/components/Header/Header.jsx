@@ -6,6 +6,7 @@ import './Header.scss';
 import Logo from '../../assets/img/Logo.png'
 
 const Header = (props) => {
+
 	const {user} = props
 	const history = useHistory()
 	const navElemWithoutAuth = [
@@ -48,7 +49,6 @@ const Header = (props) => {
 		history.push('/login');
 		window.location.reload()
 	}
-
 
 	return (
 		<header>

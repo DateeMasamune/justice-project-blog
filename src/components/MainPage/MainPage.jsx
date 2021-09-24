@@ -6,18 +6,12 @@ import Footer from "../Footer/Footer";
 import './MainPage.scss';
 import {BrowserRouter, Redirect, Route, Switch} from "react-router-dom";
 import {routes} from "../../routes/routes";
-import {articlesData} from "../../services/mock";
 
 const MainPage = (prop) => {
+
 	const {user} = prop
-	const [articles, setArticles] = useState(JSON.parse(localStorage.getItem('articles')) || [])
-	const [userData, SetUser] = useState(JSON.parse(localStorage.getItem('user')) || [])
-	const [login, setLogin] = useState(false)
+
 	useEffect(() => {
-		if (articles.length === 0) {
-			localStorage.setItem('articles', JSON.stringify(articlesData));
-			setArticles(articlesData)
-		}
 		if (JSON.parse(localStorage.getItem('login')) === null) {
 			localStorage.setItem('login', JSON.stringify(false))
 		}

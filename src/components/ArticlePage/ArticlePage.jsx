@@ -7,22 +7,10 @@ import './ArticlePage.scss';
 import plug from '../../assets/img/plug/photodraw.ru-87434.jpg';
 
 export const ArticlePage = () => {
+
 	const {id} = useParams()
 	const [pageArticle, setPageArticle] = useState([])
 	const [imageSrc, setImageSrc] = useState('')
-	const articles = JSON.parse(localStorage.getItem('articles')) || [{
-		date: "",
-		description: "",
-		hasTag: "",
-		iconSrc: "",
-		id: "",
-		nameArticle: "",
-		namePicture: "",
-		nameUser: "",
-		pictureSrc: "",
-		viewNum: "",
-		viewSrc: "",
-	}]
 	
 	useEffect(()=>{
 		axios.get(
@@ -37,12 +25,6 @@ export const ArticlePage = () => {
 				setPageArticle(res.data)
 			})
 			.catch((error) => {
-				console.log('===>error', error);
-			})
-			.then((res)=>{
-				console.log('===>res', res);
-			})
-			.catch((error)=>{
 				console.log('===>error', error);
 			})
 	},[])
@@ -69,8 +51,7 @@ export const ArticlePage = () => {
 			setImageSrc(image)
 		}
 	},[pageArticle])
-	
-	const currentArticle = articles.filter(item => item.id === +id)
+
 	return (
 		<div className='container'>
 			<div className='content page'>
@@ -97,10 +78,7 @@ export const ArticlePage = () => {
 								<div
 									className="textPage"
 									dangerouslySetInnerHTML={{__html: `${pageArticle.description}`}}
-								>
-									{/*{currentArticle[0].description}*/}
-								</div>
-
+								/>
 							</div>
 							<div className="flexUser">
 								<div className='userInfo page'>
@@ -111,7 +89,6 @@ export const ArticlePage = () => {
 									</span>
 									</div>
 									<div className='dataArticle page'>
-										{/*<img src={currentArticle[0].date} alt={currentArticle[0].namePicture}/>*/}
 										{pageArticle.date}
 									</div>
 									<div className='viewArticle page'>

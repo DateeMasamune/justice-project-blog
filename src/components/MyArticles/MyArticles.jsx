@@ -6,58 +6,14 @@ import {UserArticle} from "./UserArticle/UserArticle";
 import {PaginationButton} from "../Home/PaginationButton/PaginationButton";
 
 import './MyArticles.scss';
-import {articlesData} from "../../services/mock";
-import {user} from "../../services/mock";
 
 export const MyArticles = () => {
-	// const userLog = JSON.parse(localStorage.getItem('users')) || [{
-	// 	email: {
-	// 		displayName: "",
-	// 		id: '',
-	// 		name: "",
-	// 		type: "",
-	// 		valid: '',
-	// 		validMessage: "",
-	// 		value: "",
-	// 	},
-	// 	firstName: {
-	// 		displayName: "",
-	// 		id: '',
-	// 		name: "",
-	// 		type: "",
-	// 		valid: '',
-	// 		validMessage: "",
-	// 		value: "",
-	// 	},
-	// 	lastName: {
-	// 		displayName: "",
-	// 		id: '',
-	// 		name: "",
-	// 		type: "",
-	// 		valid: '',
-	// 		validMessage: "",
-	// 		value: "",
-	// 	},
-	// 	password: {
-	// 		displayName: "",
-	// 		id: '',
-	// 		name: "",
-	// 		type: "",
-	// 		valid: '',
-	// 		validMessage: "",
-	// 		value: "",
-	// 	},
-	// }]
-	// const id = JSON.parse(localStorage.getItem('id')) || ''
-	// const iUser = userLog.filter(item => item.firstName.id === id)
-	// const [profileInfo, setProfileInfo] = useState(...iUser)
-	// const [articles, setArticles] = useState(JSON.parse(localStorage.getItem('articles')) || articlesData);
-	// const myArticles = articles.filter((item) =>  +item.userCreate === id)
+
 	const [getUser, setGetUser] = useState([])
 	const [myArticleMongo, setMyArticleMongo] = useState([])
 
 	/*получить пользователя*/
-	useEffect(()=>{
+	useEffect(() => {
 		axios.post(
 			'http://localhost:5000/api/articles/get_user',
 			{},
@@ -67,11 +23,11 @@ export const MyArticles = () => {
 				}
 			}
 		)
-			.then((res)=>{
+			.then((res) => {
 				console.log('===>res', res);
 				setGetUser([res.data])
 			})
-			.catch((error)=>{
+			.catch((error) => {
 				console.log('===>error', error);
 			})
 		/*получить мои статьи*/
@@ -83,15 +39,15 @@ export const MyArticles = () => {
 				}
 			}
 		)
-			.then((res)=>{
+			.then((res) => {
 				console.log('===>res', res);
 				setMyArticleMongo(res.data)
 			})
-			.catch((error)=>{
+			.catch((error) => {
 				console.log('===>error', error);
 			})
 		/*получить мои статьи*/
-	},[])
+	}, [])
 	/*получить пользователя*/
 
 
@@ -118,11 +74,10 @@ export const MyArticles = () => {
 							</div>
 							:
 							<div className='paginationArticle'>
-								<PaginationButton name={'Prev'} />
-								<PaginationButton name={'Next'} />
+								<PaginationButton name={'Prev'}/>
+								<PaginationButton name={'Next'}/>
 							</div>
 					}
-
 				</div>
 			</div>
 		</div>

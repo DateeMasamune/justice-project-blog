@@ -5,14 +5,16 @@ import {NavLink} from "react-router-dom";
 import plug from '../../../assets/img/plug/photodraw.ru-87434.jpg';
 
 export const ArticleList = (props) => {
-	console.log('===>props', props);
+
 	const {data} = props;
 	const [article, setArticle] = useState(data)
 
 	useEffect(() => {
 		setArticle(data)
 	}, [props])
+
 	const image = article.pictureSrc.split('/')
+
 	return (
 		<div className='articles'>
 			{
@@ -44,7 +46,6 @@ export const ArticleList = (props) => {
 					className='discriptionArticle'
 					dangerouslySetInnerHTML={{__html: `${article.description}`}}
 				>
-					{/*{article.description}*/}
 				</div>
 				<div className='userInfo'>
 					<div className='iconUser'>
@@ -54,7 +55,6 @@ export const ArticleList = (props) => {
 						</span>
 					</div>
 					<div className='dataArticle'>
-						{/*<img src={article.date} alt={article.namePicture}/>*/}
 						{article.date}
 					</div>
 					<div className='viewArticle'>
