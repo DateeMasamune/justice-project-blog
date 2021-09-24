@@ -87,6 +87,7 @@ export const Profile = () => {
 			})
 			.then((res)=>{
 				console.log(res)
+				setGetUser(res.data)
 			})
 			.catch((error)=>{
 				console.log(error)
@@ -96,7 +97,6 @@ export const Profile = () => {
 	const getFileAvatar = (e) => {
 			const file = e.target.files[0]
 			setFile(e.target.files[0])
-			console.log('===>file', file);
 	}
 	/*change photo*/
 

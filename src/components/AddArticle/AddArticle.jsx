@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from "react";
+import React, {useEffect, useRef, useState} from "react";
 import {EditorState, convertToRaw} from 'draft-js';
 import {Editor} from "react-draft-wysiwyg";
 import draftToHtml from 'draftjs-to-html';
@@ -20,6 +20,7 @@ export const AddArticle = () => {
 	const [file, setFile] = useState(null)
 	const [user, setUser] = useState([])
 	const history = useHistory()
+	const fileInput = useRef(null)
 	const [editorState, setEditorState] = useState(
 		EditorState.createEmpty()
 	);
@@ -50,14 +51,18 @@ export const AddArticle = () => {
 		setFile(e.target.files[0])
 	}
 
-	useEffect(()=>{
+	const imitationInput = () => {
+		fileInput.current.click()
+	}
+
+	useEffect(() => {
 		if (!JSON.parse(localStorage.getItem('login'))) {
 			history.push('/signin')
 			document.location.reload();
 		}
-	},[])
+	}, [])
 
-	useEffect(()=>{
+	useEffect(() => {
 		axios.post(
 			'http://localhost:5000/api/articles/get_user',
 			{},
@@ -67,14 +72,14 @@ export const AddArticle = () => {
 				}
 			}
 		)
-			.then((res)=>{
+			.then((res) => {
 				console.log('===>res', res);
 				setUser(res.data)
 			})
-			.catch((error)=>{
+			.catch((error) => {
 				console.log('===>error', error);
 			})
-	},[])
+	}, [])
 
 	const handleNewArticle = () => {
 
@@ -105,9 +110,9 @@ export const AddArticle = () => {
 			}
 
 			/*добавление статьи в базу данных*/
-			bodyFormData.append('image',file)
-			bodyFormData.append('document',JSON.stringify(json))
-			axios.post('http://localhost:5000/api/articles',bodyFormData ,
+			bodyFormData.append('image', file)
+			bodyFormData.append('document', JSON.stringify(json))
+			axios.post('http://localhost:5000/api/articles', bodyFormData,
 				{
 					headers: {
 						"Authorization": JSON.parse(localStorage.getItem('token')),
@@ -219,9 +224,16 @@ export const AddArticle = () => {
 						>
 							Publish an article
 						</div>
-						<div className='button'>
-							<input type="file" onChange={uploadFile}/>
-								Add picture
+						<div
+							className='button'
+							onClick={imitationInput}
+						>
+							<input
+								type="file"
+								style={{display: "none"}}
+								onChange={uploadFile}
+								ref={fileInput}/>
+							Add picture
 						</div>
 					</div>
 					{!valid.allValid ? <p className='errorMsg'>Заполните все поля</p> : ''}
