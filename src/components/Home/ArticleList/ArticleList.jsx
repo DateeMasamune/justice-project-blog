@@ -12,13 +12,14 @@ export const ArticleList = (props) => {
 	useEffect(() => {
 		setArticle(data)
 	}, [props])
-
+	const image = article.pictureSrc.split('/')
 	return (
 		<div className='articles'>
 			{
-				// article.pictureSrc ?
-				// 	<img src={plug} alt={article.namePicture}/>
-				// 	:
+				article.pictureSrc ?
+
+					<img className='pictureUser' src={`http://localhost:5000/${image[image.length-1]}`} alt={article.namePicture}/>
+					:
 					<div className='flexFix'>
 						<img className='plugImg' src={plug} alt={plug}/>
 					</div>

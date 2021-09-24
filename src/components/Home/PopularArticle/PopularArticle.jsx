@@ -2,22 +2,34 @@ import React from "react";
 
 import {NavLink} from "react-router-dom";
 
+import plug from '../../../assets/img/plug/photodraw.ru-87434.jpg';
+
 export const PopularArticle = ({data}) => {
+	const image = data.pictureSrc.split('/')
 	return (
 		<div className='articles'>
-			<img src={data.pictureSrc} alt={data.namePicture}/>
+			{
+				data.pictureSrc
+				?
+				<img className='popularImage' src={`http://localhost:5000/${image[image.length-1]}`} alt={data.namePicture}/>
+				:
+				<img className='popularImage' src={plug} alt={data.namePicture}/>
+			}
 			<div className='infoArticle'>
 				<div className='hashTag'>
 					{data.hasTag}
 				</div>
-				<NavLink className='linkArticle' to={`/article_page${data.id}`}>
+				<NavLink className='linkArticle' to={`/article_page${data._id}`}>
 					<div className='nameArticle'>
 						{data.nameArticle}
 					</div>
 				</NavLink>
-				<div className='discriptionArticle'>
-					{data.description}
-				</div>
+				<div
+					className='discriptionArticle'
+					dangerouslySetInnerHTML={{__html: `${data.description}`}}
+				/>
+					{/*{data.description}*/}
+				{/*</div>*/}
 				<div className='userInfo main'>
 					<div className='iconUser'>
 						<img src={data.iconSrc} alt={data.namePicture}/>

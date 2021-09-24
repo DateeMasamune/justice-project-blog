@@ -52,6 +52,7 @@ export const Profile = () => {
 	// const iUser = userLog.filter(item => item.firstName.id === id)
 	// const [profileInfo, setProfileInfo] = useState(...iUser)
 	const [getUser, setGetUser] = useState([])
+	const [image,setImage] = useState('')
 	const handleChange = (e) => {
 		const {name, value} = e.target
 		setGetUser((prevState) => ({
@@ -162,6 +163,18 @@ export const Profile = () => {
 	}
 	/*delete avatar*/
 
+	useEffect(()=>{
+		const setAvatar = () => {
+			if (getUser.avatar) {
+				const image = getUser.avatar.split('/')
+				setImage(image)
+			} else {
+				return
+			}
+		}
+		setAvatar()
+	},[getUser])
+
 	return (
 		<div className="container">
 			<div className="content profile">
@@ -175,7 +188,7 @@ export const Profile = () => {
 								{
 									// userLog ?
 										<div className='iconUser'>
-											<img src={getUser.avatar ? getUser.avatar : noPhoto} alt={getUser.namePicture ? getUser.namePicture : 'picture' }/>
+											<img src={getUser.avatar ? `http://localhost:5000/${image[image.length-1]}` : noPhoto} alt={getUser.namePicture ? getUser.namePicture : 'picture' }/>
 										</div>
 										// :
 										// <div className='iconUser'>

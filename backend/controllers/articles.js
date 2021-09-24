@@ -75,7 +75,7 @@ module.exports.create = async (req,res) => { /*создание статьи*/
 }
 
 module.exports.update = async (req,res) => {
-	console.log('===>req.body', req.body);
+
 	const updated = {
 		viewNum: req.body.viewNum + 1
 	}
@@ -95,9 +95,9 @@ module.exports.update = async (req,res) => {
 }
 
 module.exports.addCount = async (req, res) => { /*обновление данных в базе*/
+	console.log('===>req.body', req.body);
 	const updated = {
-		nameArticle: req.body.nameArticle,
-		viewNum: req.body.viewNum
+		viewNum: req.body.viewNum + 1
 	}
 	try {
 		const category = await Articles.findOneAndUpdate(

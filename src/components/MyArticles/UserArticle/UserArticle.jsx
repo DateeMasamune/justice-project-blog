@@ -1,10 +1,19 @@
 import React from "react";
 import {NavLink} from "react-router-dom";
 
+import plug from '../../../assets/img/plug/photodraw.ru-87434.jpg';
+
 export const UserArticle = ({dataArticle}) => {
+	const image = dataArticle.pictureSrc.split('/')
 	return (
 		<div className='articles my'>
-			<img src={dataArticle.pictureSrc} alt={dataArticle.namePicture}/>
+			{dataArticle.pictureSrc
+				?
+				<img src={`http://localhost:5000/${image[image.length-1]}`} alt={dataArticle.namePicture}/>
+				:
+				<img src={plug} alt={dataArticle.namePicture}/>
+			}
+
 			<div className='infoArticle my'>
 				<div className='hashTag my'>
 					{dataArticle.hasTag}

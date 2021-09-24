@@ -18,6 +18,12 @@
   .viewArticle {
     display: flex;
   }
+  .articles{
+    .popularImage{
+      width: 580px;
+      height: auto;
+    }
+  }
 }
 
 .popularArticles {
@@ -148,6 +154,10 @@
         height: auto;
         width: 366px;
       }
+    }
+    .pictureUser {
+      width: 366px;
+      height: auto;
     }
   }
 }

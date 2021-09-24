@@ -36,7 +36,7 @@ export const Login = (prop) => {
 			localStorage.setItem('token', JSON.stringify(res.data.token));
 			localStorage.setItem('login', JSON.stringify(true))
 			history.push('/');
-			// window.location.reload()
+			window.location.reload()
 			setLoginForm((prevState) => ({
 				...prevState,
 				password: {
@@ -120,7 +120,7 @@ export const Login = (prop) => {
 					className='createAccount'
 					onClick={getUsersLocalStore}
 				>
-					Create Account
+					Login
 				</div>
 				<span>
 					Don’t have a Times account? <a href='#'>Create one</a>

@@ -21,8 +21,8 @@ mongoose.connect(keys.mongoURI)
 app.use(passport.initialize())
 require('./middleware/passport')(passport)
 app.use(morgan('dev'))
-app.use(express.static('src/assets/img'))
-console.log('===>222', path.join(__dirname, '/uploads'));
+app.use(express.static(path.join(__dirname, 'uploads')))
+console.log('===>pro', path.join(__dirname, 'uploads'));
 app.use(bodyParser.urlencoded({extended: true}))
 app.use(bodyParser.json())
 app.use(cors())
