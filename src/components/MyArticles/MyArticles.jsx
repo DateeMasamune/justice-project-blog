@@ -1,5 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import axios from "axios";
+import {useHistory} from "react-router-dom";
 
 import {UserAvatar} from "./UserAvatar/UserAvatar";
 import {UserArticle} from "./UserArticle/UserArticle";
@@ -11,6 +12,14 @@ export const MyArticles = () => {
 
 	const [getUser, setGetUser] = useState([])
 	const [myArticleMongo, setMyArticleMongo] = useState([])
+	const history = useHistory()
+
+	useEffect(()=>{
+		if (!JSON.parse(localStorage.getItem('login'))) {
+			history.push('/signin')
+			document.location.reload();
+		}
+	},[])
 
 	/*получить пользователя*/
 	useEffect(() => {

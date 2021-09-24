@@ -1,11 +1,13 @@
 import React, {useEffect, useState} from 'react';
 import axios from "axios";
+import {useHistory} from "react-router-dom";
 
 import {PopularArticle} from "./PopularArticle/PopularArticle";
 import {ArticleList} from "./ArticleList/ArticleList";
 import {PaginationButton} from "./PaginationButton/PaginationButton";
 
 import './Home.scss';
+
 
 
 export const Home = () => {
@@ -16,6 +18,14 @@ export const Home = () => {
 	const [start,setStart] = useState(0)
 	const [end, setEnd] = useState(3)
 	const [pagData, setPagData] = useState([])
+	const history = useHistory()
+
+	useEffect(()=>{
+		if (!JSON.parse(localStorage.getItem('login'))) {
+			history.push('/signin')
+			document.location.reload();
+		}
+	},[])
 
 	useEffect(()=>{
 		setPagData(mongoArticles.slice(start,end))

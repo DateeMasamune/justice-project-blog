@@ -1,5 +1,6 @@
 import React, {useEffect, useState} from "react";
 import axios from "axios";
+import {useHistory} from "react-router-dom";
 
 import {SaveChange} from "./ButtonProfile/ButtonProfile";
 import './Profile.scss';
@@ -9,6 +10,7 @@ import FormData from "form-data";
 export const Profile = () => {
 
 	const [getUser, setGetUser] = useState([])
+	const history = useHistory()
 	const [image,setImage] = useState('')
 	const formDataAvatar = new FormData();
 	const [file, setFile] = useState(null)
@@ -64,6 +66,13 @@ export const Profile = () => {
 			})
 	},[])
 	/*получить пользователя*/
+
+	useEffect(()=>{
+		if (!JSON.parse(localStorage.getItem('login'))) {
+			history.push('/signin')
+			document.location.reload();
+		}
+	},[])
 
 	/*change photo*/
 	const sendToServer = () => {

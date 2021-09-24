@@ -4,6 +4,7 @@ import {Editor} from "react-draft-wysiwyg";
 import draftToHtml from 'draftjs-to-html';
 import axios from "axios";
 import FormData from 'form-data'
+import {useHistory} from "react-router-dom";
 
 import image15 from '../../assets/img/mainPage/Vector.png';
 import image11 from '../../assets/img/mainPage/image 14-5.png';
@@ -12,11 +13,13 @@ import "./AddArticle.scss";
 import 'draft-js/dist/Draft.css';
 import './ButtonAddArticle/ButtonAddArticle';
 
+
 export const AddArticle = () => {
 
 	const bodyFormData = new FormData();
 	const [file, setFile] = useState(null)
 	const [user, setUser] = useState([])
+	const history = useHistory()
 	const [editorState, setEditorState] = useState(
 		EditorState.createEmpty()
 	);
@@ -46,6 +49,13 @@ export const AddArticle = () => {
 	const uploadFile = (e) => {
 		setFile(e.target.files[0])
 	}
+
+	useEffect(()=>{
+		if (!JSON.parse(localStorage.getItem('login'))) {
+			history.push('/signin')
+			document.location.reload();
+		}
+	},[])
 
 	useEffect(()=>{
 		axios.post(

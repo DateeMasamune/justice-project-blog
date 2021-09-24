@@ -1,10 +1,12 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import axios from "axios";
+import {useHistory} from "react-router-dom";
 
 import './SignIn.scss';
 
-export const SignIn = () => {
 
+export const SignIn = () => {
+	const history = useHistory()
 	const [successMsg, setSuccessMsg] = useState('')
 	const [showErrors, setShowErrors] = useState(false)
 	const [registerForm, setRegisterForm] = useState({
@@ -37,6 +39,12 @@ export const SignIn = () => {
 			type: 'password',
 		},
 	})
+
+	useEffect(()=>{
+		if (JSON.parse(localStorage.getItem('login'))) {
+			history.push('/')
+		}
+	},[])
 
 	const isValid = (value, name) => {
 		switch (name) {

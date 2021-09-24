@@ -45,7 +45,7 @@ const Header = (props) => {
 
 	const logOut = () => {
 		localStorage.setItem('login', false)
-		localStorage.setItem('id', '')
+		localStorage.setItem('token', '')
 		history.push('/login');
 		window.location.reload()
 	}

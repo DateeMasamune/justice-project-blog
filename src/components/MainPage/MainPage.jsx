@@ -8,14 +8,16 @@ import {BrowserRouter, Redirect, Route, Switch} from "react-router-dom";
 import {routes} from "../../routes/routes";
 
 const MainPage = (prop) => {
-
 	const {user} = prop
+	const [login, setLogin] = useState('')
 
 	useEffect(() => {
 		if (JSON.parse(localStorage.getItem('login')) === null) {
 			localStorage.setItem('login', JSON.stringify(false))
+			setLogin(false)
 		}
 		if (JSON.parse(localStorage.getItem('login')) === true) {
+			setLogin(true)
 			return false
 		}
 	}, [])
@@ -33,7 +35,7 @@ const MainPage = (prop) => {
 				))}
 			</Switch>
 			<Footer user={user}/>
-			{/*{!userTest && <Redirect to={'/login'} />}*/}
+			{/*{!login && <Redirect to={'/login'} />}*/}
 		</BrowserRouter>
 	)
 }

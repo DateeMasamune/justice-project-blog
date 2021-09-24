@@ -95,7 +95,6 @@ module.exports.update = async (req,res) => {
 }
 
 module.exports.addCount = async (req, res) => { /*обновление данных в базе*/
-	console.log('===>req.body', req.body);
 	const updated = {
 		viewNum: req.body.viewNum + 1
 	}

@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import axios from "axios";
 
 import './Login.scss';
@@ -24,6 +24,12 @@ export const Login = () => {
 			valid: false
 		}
 	})
+
+	useEffect(()=>{
+		if (JSON.parse(localStorage.getItem('login'))) {
+			history.push('/')
+		}
+	},[])
 
 	const getUsersLocalStore = () => {
 		/*запрос пользователя на сервер*/

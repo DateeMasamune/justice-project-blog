@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from "react";
 import axios from "axios";
 
-import {NavLink, useParams} from "react-router-dom";
+import {NavLink, useHistory, useParams} from "react-router-dom";
 
 import './ArticlePage.scss';
 import plug from '../../assets/img/plug/photodraw.ru-87434.jpg';
@@ -11,6 +11,14 @@ export const ArticlePage = () => {
 	const {id} = useParams()
 	const [pageArticle, setPageArticle] = useState([])
 	const [imageSrc, setImageSrc] = useState('')
+	const history = useHistory()
+
+	useEffect(()=>{
+		if (!JSON.parse(localStorage.getItem('login'))) {
+			history.push('/signin')
+			document.location.reload();
+		}
+	},[])
 	
 	useEffect(()=>{
 		axios.get(
