@@ -1,10 +1,14 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import axios from "axios";
+import {useHistory} from "react-router-dom";
 
 import './SignIn.scss';
 
+
 export const SignIn = () => {
+	const history = useHistory()
 	const [successMsg, setSuccessMsg] = useState('')
+	const [showErrors, setShowErrors] = useState(false)
 	const [registerForm, setRegisterForm] = useState({
 		firstName: {
 			value: '',
@@ -36,6 +40,11 @@ export const SignIn = () => {
 		},
 	})
 
+	useEffect(()=>{
+		if (JSON.parse(localStorage.getItem('login'))) {
+			history.push('/')
+		}
+	},[])
 
 	const isValid = (value, name) => {
 		switch (name) {
@@ -53,21 +62,19 @@ export const SignIn = () => {
 		}
 	}
 
-	const [showErrors, setShowErrors] = useState(false)
-
 	const onChange = (e) => {
 		showErrors && setShowErrors(false)
 		const {value, name} = e.target;
-			setRegisterForm((prevState) => ({
-				...prevState,
-				[name]: {
-					...prevState[name],
-					validMessage: '',
-					value: value,
-					valid: isValid(value, name),
-					id: Date.now(),
-					description: '',
-				}
+		setRegisterForm((prevState) => ({
+			...prevState,
+			[name]: {
+				...prevState[name],
+				validMessage: '',
+				value: value,
+				valid: isValid(value, name),
+				id: Date.now(),
+				description: '',
+			}
 		}))
 	}
 
@@ -81,47 +88,28 @@ export const SignIn = () => {
 			}
 		}
 		if (registerForm.email.valid &&
-				registerForm.firstName.valid &&
-				registerForm.lastName.valid &&
-				registerForm.password.valid) {
-			if (localStorage.getItem('users') === null) {
-				const users = [registerForm]
-				localStorage.setItem('users', JSON.stringify(users))
-				setSuccessMsg('Create User')
-			} else {
-				const getUsers = JSON.parse(localStorage.getItem('users'))
-				let flag;
-				getUsers.map(item => {
-					if (registerForm.email.value === item.email.value) {
-						flag = false
-						return false
-					}
-				})
-				if (flag === false) {
-					return false
-				} else {
-					getUsers.push(registerForm)
-					localStorage.setItem('users', JSON.stringify(getUsers))
-					setSuccessMsg('Create User')
 
-					/*запись в базу данных*/
-					axios.post('http://localhost:5000/api/auth/register',{
-						email: registerForm.email.value,
-						password: registerForm.password.value,
-						firstName: registerForm.firstName.value,
-						lastName: registerForm.lastName.value
-					}).then((res)=>{
-						console.log('===>res', res);
-					}).catch((error)=>{
-						console.log('===>error', error);
-					})
-					/*запись в базу данных*/
+			registerForm.firstName.valid &&
+			registerForm.lastName.valid &&
+			registerForm.password.valid) {
+			setSuccessMsg('Create User')
 
-				}
-			}
+
+			/*запись в базу данных*/
+			axios.post('http://localhost:5000/api/auth/register', {
+				email: registerForm.email.value,
+				password: registerForm.password.value,
+				firstName: registerForm.firstName.value,
+				lastName: registerForm.lastName.value,
+				avatar: ''
+			}).then((res) => {
+				console.log('===>res', res);
+			}).catch((error) => {
+				console.log('===>error', error);
+			})
+			/*запись в базу данных*/
 		}
 	}
-
 
 	return (
 		<div className='content login'>
@@ -129,9 +117,7 @@ export const SignIn = () => {
 				<div className='title'>
 					Create your free account
 				</div>
-
 				{Object.keys(registerForm).map((field) => {
-					
 					return (
 						<div className='inputLogin'>
 							<div className='name'>
@@ -145,8 +131,8 @@ export const SignIn = () => {
 								onChange={onChange}
 							/>
 							{showErrors && !registerForm[field].valid && (
-								<p className='errorSign' >Enter correct data</p>)} {
-							}
+								<p className='errorSign'>Enter correct data</p>)} {
+						}
 						</div>
 					)
 				})}

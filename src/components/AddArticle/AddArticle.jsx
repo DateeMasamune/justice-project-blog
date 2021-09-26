@@ -1,9 +1,10 @@
-import React, {useEffect, useState} from "react";
+import React, {useEffect, useRef, useState} from "react";
 import {EditorState, convertToRaw} from 'draft-js';
 import {Editor} from "react-draft-wysiwyg";
 import draftToHtml from 'draftjs-to-html';
 import axios from "axios";
 import FormData from 'form-data'
+import {useHistory} from "react-router-dom";
 
 import image15 from '../../assets/img/mainPage/Vector.png';
 import image11 from '../../assets/img/mainPage/image 14-5.png';
@@ -14,34 +15,12 @@ import './ButtonAddArticle/ButtonAddArticle';
 
 
 export const AddArticle = () => {
-	// const id = JSON.parse(localStorage.getItem('id'))
-	// const users = JSON.parse(localStorage.getItem('users'))
-	// const nameUser = users.filter(item => id === item.firstName.id)
+
 	const bodyFormData = new FormData();
 	const [file, setFile] = useState(null)
 	const [user, setUser] = useState([])
-	const uploadFile = (e) => {
-		console.log(e.target.files[0])
-		setFile(e.target.files[0])
-	}
-	useEffect(()=>{
-		axios.post(
-			'http://localhost:5000/api/articles/get_user',
-			{},
-			{
-				headers: {
-					"Authorization": JSON.parse(localStorage.getItem('token'))
-				}
-			}
-		)
-			.then((res)=>{
-				// console.log('===>res', res);
-				setUser(res.data)
-			})
-			.catch((error)=>{
-				console.log('===>error', error);
-			})
-	},[])
+	const history = useHistory()
+	const fileInput = useRef(null)
 	const [editorState, setEditorState] = useState(
 		EditorState.createEmpty()
 	);
@@ -68,26 +47,39 @@ export const AddArticle = () => {
 		allValid: false,
 	})
 
-	// const uploadImageCallBack = (file) => {
-	// 	return new Promise(
-	// 		(resolve, reject) => {
-	// 			const xhr = new XMLHttpRequest();
-	// 			xhr.open('POST', 'https://api.imgur.com/3/image');
-	// 			xhr.setRequestHeader('Authorization', 'Client-ID XXXXX');
-	// 			const data = new FormData();
-	// 			data.append('image', file);
-	// 			xhr.send(data);
-	// 			xhr.addEventListener('load', () => {
-	// 				const response = JSON.parse(xhr.responseText);
-	// 				resolve(response);
-	// 			});
-	// 			xhr.addEventListener('error', () => {
-	// 				const error = JSON.parse(xhr.responseText);
-	// 				reject(error);
-	// 			});
-	// 		}
-	// 	);
-	// }
+	const uploadFile = (e) => {
+		setFile(e.target.files[0])
+	}
+
+	const imitationInput = () => {
+		fileInput.current.click()
+	}
+
+	useEffect(() => {
+		if (!JSON.parse(localStorage.getItem('login'))) {
+			history.push('/signin')
+			document.location.reload();
+		}
+	}, [])
+
+	useEffect(() => {
+		axios.post(
+			'http://localhost:5000/api/articles/get_user',
+			{},
+			{
+				headers: {
+					"Authorization": JSON.parse(localStorage.getItem('token'))
+				}
+			}
+		)
+			.then((res) => {
+				console.log('===>res', res);
+				setUser(res.data)
+			})
+			.catch((error) => {
+				console.log('===>error', error);
+			})
+	}, [])
 
 	const handleNewArticle = () => {
 
@@ -98,8 +90,6 @@ export const AddArticle = () => {
 			valid.validContentHtml = false
 		}
 
-		const articles = JSON.parse(localStorage.getItem('articles'))
-
 		if (valid.validTitle &&
 			valid.validCategory &&
 			valid.validContentHtml) {
@@ -107,21 +97,22 @@ export const AddArticle = () => {
 				...prevState,
 				allValid: true,
 			}))
-			articles.push(dataArticle)
-			localStorage.setItem('articles', JSON.stringify(articles))
+
+			const json = {
+				nameArticle: dataArticle.nameArticle,
+				pictureSrc: '',
+				description: dataArticle.description,
+				viewNum: dataArticle.viewNum,
+				date: dataArticle.date,
+				viewSrc: dataArticle.viewSrc,
+				hasTag: dataArticle.hasTag,
+				iconSrc: dataArticle.iconSrc
+			}
 
 			/*добавление статьи в базу данных*/
-			bodyFormData.append('image',file)
-			axios.post('http://localhost:5000/api/articles', {
-					nameArticle: dataArticle.nameArticle,
-					pictureSrc: bodyFormData,
-					description: dataArticle.description,
-					viewNum: dataArticle.viewNum,
-					date: dataArticle.date,
-					viewSrc: dataArticle.viewSrc,
-					hasTag: dataArticle.hasTag,
-					iconSrc: dataArticle.iconSrc
-				},
+			bodyFormData.append('image', file)
+			bodyFormData.append('document', JSON.stringify(json))
+			axios.post('http://localhost:5000/api/articles', bodyFormData,
 				{
 					headers: {
 						"Authorization": JSON.parse(localStorage.getItem('token')),
@@ -132,10 +123,7 @@ export const AddArticle = () => {
 				console.log('===>error', error);
 			})
 			/*добавление статьи в базу данных*/
-
-
 			setEditorState(EditorState.createEmpty())
-
 		} else {
 			setValid((prevState) => ({
 				...prevState,
@@ -236,9 +224,16 @@ export const AddArticle = () => {
 						>
 							Publish an article
 						</div>
-						<div className='button'>
-							<input type="file" onChange={uploadFile}/>
-								Add picture
+						<div
+							className='button'
+							onClick={imitationInput}
+						>
+							<input
+								type="file"
+								style={{display: "none"}}
+								onChange={uploadFile}
+								ref={fileInput}/>
+							Add picture
 						</div>
 					</div>
 					{!valid.allValid ? <p className='errorMsg'>Заполните все поля</p> : ''}

@@ -1,23 +1,51 @@
 import React, {useEffect, useState} from 'react';
 import axios from "axios";
+import {useHistory} from "react-router-dom";
 
 import {PopularArticle} from "./PopularArticle/PopularArticle";
 import {ArticleList} from "./ArticleList/ArticleList";
 import {PaginationButton} from "./PaginationButton/PaginationButton";
 
-import {articlesData} from "../../services/mock";
 import './Home.scss';
 
 
-export const Home = () => {
-	const [articles, setArticles] = useState(JSON.parse(localStorage.getItem('articles')) || articlesData);
 
-	const [start, setStart] = useState(0)
-	const [end,setEnd] = useState(3)
-	const test = articles.slice(start,end)
-	const popularArticles = articles.sort((a, b) => b.viewNum - a.viewNum)[0]
+export const Home = () => {
+
 	const title = 'Popular articles'
 	const [mongoArticles,setMongoArticles] = useState([])
+	const popularArticles = mongoArticles.sort((a, b) => b.viewNum - a.viewNum)[0]
+	const [start,setStart] = useState(0)
+	const [end, setEnd] = useState(3)
+	const [pagData, setPagData] = useState([])
+	const history = useHistory()
+
+
+	const handleNextPag = () => {
+		if (end >= mongoArticles.length) {
+			return
+		}
+		setStart(start + 3)
+		setEnd(end + 3)
+	}
+
+	const handlePrevPag = () => {
+		if (start) {
+			setStart(start - 3)
+			setEnd(end - 3)
+		}
+	}
+
+	useEffect(()=>{
+		if (!JSON.parse(localStorage.getItem('login'))) {
+			history.push('/signin')
+			document.location.reload();
+		}
+	},[])
+
+	useEffect(()=>{
+		setPagData(mongoArticles.slice(start,end))
+	},[mongoArticles,end,start])
 
 	/*запрос на получение всех статей из БД*/
 	useEffect(()=>{
@@ -37,7 +65,7 @@ export const Home = () => {
 			})
 	},[])
 	/*запрос на получение всех статей из БД*/
-	
+
 	return (
 		<div className='content'>
 			<div className='container'>
@@ -46,21 +74,30 @@ export const Home = () => {
 						?
 						<div>
 							<div className='popularArticles main'>
-								<PopularArticle data={popularArticles}/>
+								<PopularArticle
+									data={popularArticles}
+								/>
 							</div>
 							<div className='popularArticles'>
 								<h1>{title}</h1>
 								{
-									mongoArticles.map(item => (
-										<ArticleList data={item}/>
-									))
+									pagData.map(item => {
+										return(
+											<ArticleList
+												data={item}
+											/>
+										)
+									})
 								}
 							</div>
 							<div className='paginationArticle'>
-								<PaginationButton name={'Prev'}/>
+								<PaginationButton
+									name={'Prev'}
+									onClick={handlePrevPag}
+								/>
 								<PaginationButton
 								 name={'Next'}
-								 articles={articles}
+								 onClick={handleNextPag}
 								 />
 							</div>
 						</div>

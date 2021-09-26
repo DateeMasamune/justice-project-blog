@@ -1,10 +1,50 @@
-import React from "react";
+import React, {useEffect, useState} from "react";
 import {NavLink} from "react-router-dom";
 
+import plug from '../../../assets/img/plug/photodraw.ru-87434.jpg';
+import axios from "axios";
+
 export const UserArticle = ({dataArticle}) => {
+
+	const image = dataArticle.pictureSrc.split('/')
+	const [user, setUser] = useState([])
+	const [imageSrc, setImage] = useState('')
+
+	useEffect(() => {
+		axios.post(
+			`http://localhost:5000/api/articles/get_user/${dataArticle.userCreate}`,
+			{},
+			{
+				headers: {
+					"Authorization": JSON.parse(localStorage.getItem('token'))
+				}
+			}
+		)
+			.then((res) => {
+				console.log('===>resUserArticleList', res);
+				setUser(res.data)
+			})
+			.catch((error) => {
+				console.log('===>error', error);
+			})
+	}, [])
+
+	useEffect(() => {
+		if (user.avatar !== undefined) {
+			const image = user.avatar.split('/')
+			setImage(image)
+		}
+	}, [user])
+
 	return (
 		<div className='articles my'>
-			<img src={dataArticle.pictureSrc} alt={dataArticle.namePicture}/>
+			{dataArticle.pictureSrc
+				?
+				<img src={`http://localhost:5000/${image[image.length - 1]}`} alt={dataArticle.namePicture}/>
+				:
+				<img src={plug} alt={dataArticle.namePicture}/>
+			}
+
 			<div className='infoArticle my'>
 				<div className='hashTag my'>
 					{dataArticle.hasTag}
@@ -21,13 +61,12 @@ export const UserArticle = ({dataArticle}) => {
 				/>
 				<div className='userInfo my'>
 					<div className='iconUser my'>
-						<img src={dataArticle.iconSrc} alt={dataArticle.namePicture}/>
+						<img src={`http://localhost:5000/${imageSrc[imageSrc.length - 1]}`} alt={dataArticle.namePicture}/>
 						<span>
-							{dataArticle.nameUser}
+							{user.firstName}
 						</span>
 					</div>
 					<div className='dataArticle my'>
-						{/*<img src={dataArticle.date} alt={dataArticle.namePicture}/>*/}
 						{dataArticle.date}
 					</div>
 					<div className='viewArticle my'>

@@ -46,6 +46,7 @@
       img{
         height: 150px;
         width: auto;
+        border-radius: 100%;
       }
     }
   }
@@ -134,6 +135,8 @@
         .iconUser img {
           border-radius: 100%;
           margin-right: 10px;
+          width: 40px;
+          height: auto;
         }
 
         .iconUser.my {

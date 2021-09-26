@@ -1,26 +1,24 @@
 import React, {useEffect, useState} from "react";
 import axios from "axios";
 
-import {NavLink, useParams} from "react-router-dom";
+import {NavLink, useHistory, useParams} from "react-router-dom";
 
 import './ArticlePage.scss';
+import plug from '../../assets/img/plug/photodraw.ru-87434.jpg';
 
 export const ArticlePage = () => {
+
 	const {id} = useParams()
 	const [pageArticle, setPageArticle] = useState([])
-	const articles = JSON.parse(localStorage.getItem('articles')) || [{
-		date: "",
-		description: "",
-		hasTag: "",
-		iconSrc: "",
-		id: "",
-		nameArticle: "",
-		namePicture: "",
-		nameUser: "",
-		pictureSrc: "",
-		viewNum: "",
-		viewSrc: "",
-	}]
+	const [imageSrc, setImageSrc] = useState('')
+	const history = useHistory()
+
+	useEffect(()=>{
+		if (!JSON.parse(localStorage.getItem('login'))) {
+			history.push('/signin')
+			document.location.reload();
+		}
+	},[])
 	
 	useEffect(()=>{
 		axios.get(
@@ -38,8 +36,30 @@ export const ArticlePage = () => {
 				console.log('===>error', error);
 			})
 	},[])
+
+	useEffect(()=>{
+		axios.patch(
+			`http://localhost:5000/api/articles/add/${id}`,
+			{
+				viewNum: pageArticle.viewNum
+			},
+			{
+				headers: {
+					"Authorization": JSON.parse(localStorage.getItem('token'))
+				}
+			}
+		)
+	},[pageArticle])
 	
-	const currentArticle = articles.filter(item => item.id === +id)
+	useEffect(()=>{
+		if (pageArticle.pictureSrc === undefined) {
+			return
+		} else {
+			const image = pageArticle.pictureSrc.split('/')
+			setImageSrc(image)
+		}
+	},[pageArticle])
+
 	return (
 		<div className='container'>
 			<div className='content page'>
@@ -54,16 +74,19 @@ export const ArticlePage = () => {
 						<div className='nameArticle page'>
 							{pageArticle.nameArticle}
 						</div>
-						<img className='pic' src={pageArticle.pictureSrc} alt={pageArticle.namePicture}/>
+						{
+							pageArticle.pictureSrc
+								?
+								<img className='pic' src={`http://localhost:5000/${imageSrc[imageSrc.length-1]}`} alt={pageArticle.namePicture}/>
+								:
+								<img className='pic' src={plug} alt={pageArticle.namePicture}/>
+						}
 						<div className='infoArticle page'>
 							<div className='discriptionArticle page'>
 								<div
 									className="textPage"
 									dangerouslySetInnerHTML={{__html: `${pageArticle.description}`}}
-								>
-									{/*{currentArticle[0].description}*/}
-								</div>
-
+								/>
 							</div>
 							<div className="flexUser">
 								<div className='userInfo page'>
@@ -74,7 +97,6 @@ export const ArticlePage = () => {
 									</span>
 									</div>
 									<div className='dataArticle page'>
-										{/*<img src={currentArticle[0].date} alt={currentArticle[0].namePicture}/>*/}
 										{pageArticle.date}
 									</div>
 									<div className='viewArticle page'>

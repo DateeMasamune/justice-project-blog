@@ -20,9 +20,9 @@ mongoose.connect(keys.mongoURI)
 
 app.use(passport.initialize())
 require('./middleware/passport')(passport)
-
 app.use(morgan('dev'))
-app.use('../src/assets/img',express.static('img'))
+app.use(express.static(path.join(__dirname, 'uploads')))
+console.log('===>pro', path.join(__dirname, 'uploads'));
 app.use(bodyParser.urlencoded({extended: true}))
 app.use(bodyParser.json())
 app.use(cors())
@@ -33,5 +33,4 @@ app.use('/api/articles',articlesRoutes)
 app.use('/api/order',orderRoutes)
 app.use('/api/position',positionRoutes)
 app.use('/api/profile', profileRoutes)
-
 module.exports = app

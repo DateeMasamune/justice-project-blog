@@ -30,6 +30,15 @@ module.exports.getUser = async (req,res) => {
 	}
 }
 
+module.exports.getUserId = async (req,res) => {
+	try {
+		const user = await User.findById(req.params.id)
+		res.status(200).json(user)
+	} catch (e) {
+		errorHandler(res,e)
+	}
+}
+
 module.exports.getAll = async (req,res) => { /*получить все статьи из базы данных*/
 	try {
 		const articles = await Articles.find()
@@ -53,16 +62,18 @@ module.exports.remove = async (req,res) => { /*удаление статьи*/
 
 module.exports.create = async (req,res) => { /*создание статьи*/
 	console.log(req.file)
+	console.log('===>req.body', JSON.parse(req.body.document));
+	const JSONparseReq = JSON.parse(req.body.document)
 	const article = new Articles({
-		nameArticle: req.body.nameArticle,
+		nameArticle: JSONparseReq.nameArticle,
 		userCreate: req.user.id,
 		pictureSrc: req.file ? req.file.path : '',
-		description: req.body.description,
-		viewNum: req.body.viewNum,
-		date: req.body.date,
-		viewSrc: req.body.viewSrc,
-		hasTag: req.body.hasTag,
-		iconSrc: req.body.iconSrc
+		description: JSONparseReq.description,
+		viewNum: JSONparseReq.viewNum,
+		date: JSONparseReq.date,
+		viewSrc: JSONparseReq.viewSrc,
+		hasTag: JSONparseReq.hasTag,
+		iconSrc: JSONparseReq.iconSrc
 	})
 	try {
 		await article.save()
@@ -73,8 +84,9 @@ module.exports.create = async (req,res) => { /*создание статьи*/
 }
 
 module.exports.update = async (req,res) => {
+
 	const updated = {
-		nameArticle: req.body.name
+		viewNum: req.body.viewNum + 1
 	}
 	if (req.file) {
 		updated.imageSrc = req.file.path
@@ -93,8 +105,7 @@ module.exports.update = async (req,res) => {
 
 module.exports.addCount = async (req, res) => { /*обновление данных в базе*/
 	const updated = {
-		nameArticle: req.body.nameArticle,
-		viewNum: req.body.viewNum
+		viewNum: req.body.viewNum + 1
 	}
 	try {
 		const category = await Articles.findOneAndUpdate(
