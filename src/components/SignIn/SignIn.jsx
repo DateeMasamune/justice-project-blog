@@ -102,9 +102,7 @@ export const SignIn = () => {
 				} else {
 					getUsers.push(registerForm)
 					localStorage.setItem('users', JSON.stringify(getUsers))
-					console.log(getUsers)
 					setSuccessMsg('Create User')
-					console.log('===>registerForm', registerForm);
 
 					/*запись в базу данных*/
 					axios.post('http://localhost:5000/api/auth/register',{

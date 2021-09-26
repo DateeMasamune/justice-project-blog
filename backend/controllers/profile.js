@@ -2,7 +2,6 @@ const User = require('../models/User')
 const errorHandler = require('../utils/errorHandler')
 
 module.exports.update = async (req,res) => {
-	console.log('===>req.param.id', req.params.id);
 	const updated = {
 		firstName: req.body.firstName,
 		lastName: req.body.lastName,
