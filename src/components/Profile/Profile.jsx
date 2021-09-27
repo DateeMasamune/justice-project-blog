@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from "react";
+import React, {useEffect, useRef, useState} from "react";
 import axios from "axios";
 import {useHistory} from "react-router-dom";
 
@@ -14,6 +14,7 @@ export const Profile = () => {
 	const [image,setImage] = useState('')
 	const formDataAvatar = new FormData();
 	const [file, setFile] = useState(null)
+	const addPhotoInput = useRef(null)
 	const handleChange = (e) => {
 		const {name, value} = e.target
 		setGetUser((prevState) => ({
@@ -22,6 +23,9 @@ export const Profile = () => {
 		}))
 	}
 	const emptyObj = getUser.description === undefined
+	const addPhoto = () => {
+		addPhotoInput.current.click()
+	}
 	const changeData = () => {
 
 		/*запрос на изменение данных*/
@@ -112,6 +116,7 @@ export const Profile = () => {
 			})
 			.then((res)=>{
 				console.log(res)
+				setGetUser(res.data)
 			})
 			.catch((error)=>{
 				console.log(error)
@@ -147,14 +152,22 @@ export const Profile = () => {
 										</div>
 								}
 								<div className='textBlockUser'>
+									<input
+										type='file'
+										onChange={getFileAvatar}
+										style={{display: "none"}}
+										ref={addPhotoInput}
+									/>
+									<div
+										className="button"
+										onClick={addPhoto}
+									>
+										Add photo
+									</div>
 									<div
 										className="button"
 										onClick={sendToServer}
 									>
-										<input
-											type='file'
-											onChange={getFileAvatar}
-										/>
 										Change
 									</div>
 									<div

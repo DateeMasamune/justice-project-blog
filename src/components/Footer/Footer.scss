@@ -38,6 +38,22 @@ footer {
   }
 }
 
+@media all and (max-width: 768px) {
+  .container{
+    .blockOne{
+      flex-direction: column;
+      div{
+        .buttonBlock{
+
+        }
+      }
+      .footerLogo{
+        margin-top: 20px;
+      }
+    }
+  }
+}
+
 @media all and (max-width: 375px) {
   .container{
     .blockOne{

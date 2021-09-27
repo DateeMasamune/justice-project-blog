@@ -8,8 +8,6 @@ import {PaginationButton} from "./PaginationButton/PaginationButton";
 
 import './Home.scss';
 
-
-
 export const Home = () => {
 
 	const title = 'Popular articles'
