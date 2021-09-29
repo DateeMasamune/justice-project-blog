@@ -123,7 +123,6 @@ export const Profile = () => {
 		const setAvatar = () => {
 			if (getUser.avatar) {
 				const image = getUser.avatar.split('/')
-				console.log(image)
 				setImage(image)
 			} else {
 				return
