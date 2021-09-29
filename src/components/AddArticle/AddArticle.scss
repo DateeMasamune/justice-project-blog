@@ -51,3 +51,19 @@
     }
   }
 }
+
+@media all and (max-width: 768px) {
+  .container {
+    .content {
+      .addArticle {
+        .buttons {
+          display: flex;
+          flex-direction: column;
+          .button {
+            margin-bottom: 10px;
+          }
+        }
+      }
+    }
+  }
+}

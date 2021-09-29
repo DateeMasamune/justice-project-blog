@@ -2,7 +2,7 @@ import React, {useEffect, useState} from 'react';
 import axios from "axios";
 
 import './Login.scss';
-import {useHistory} from "react-router-dom";
+import {NavLink, useHistory} from "react-router-dom";
 
 export const Login = () => {
 
@@ -98,7 +98,7 @@ export const Login = () => {
 					Login
 				</div>
 				<span>
-					Don’t have a Times account? <a href='#'>Create one</a>
+					Don’t have a Times account? <NavLink to='/signin'>Create one</NavLink>
 				</span>
 			</form>
 		</div>

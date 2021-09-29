@@ -12,15 +12,17 @@ export const ArticlePage = () => {
 	const [pageArticle, setPageArticle] = useState([])
 	const [imageSrc, setImageSrc] = useState('')
 	const history = useHistory()
+	const [user,setUser] = useState({})
+	const [avatar,setAvatar] = useState('')
 
-	useEffect(()=>{
+	useEffect(() => {
 		if (!JSON.parse(localStorage.getItem('login'))) {
 			history.push('/signin')
 			document.location.reload();
 		}
-	},[])
-	
-	useEffect(()=>{
+	}, [])
+
+	useEffect(() => {
 		axios.get(
 			`http://localhost:5000/api/articles/${id}`,
 			{
@@ -35,9 +37,9 @@ export const ArticlePage = () => {
 			.catch((error) => {
 				console.log('===>error', error);
 			})
-	},[])
+	}, [])
 
-	useEffect(()=>{
+	useEffect(() => {
 		axios.patch(
 			`http://localhost:5000/api/articles/add/${id}`,
 			{
@@ -49,16 +51,45 @@ export const ArticlePage = () => {
 				}
 			}
 		)
-	},[pageArticle])
-	
-	useEffect(()=>{
+	}, [pageArticle])
+
+	useEffect(() => {
+		axios.post(
+			`http://localhost:5000/api/articles/get_user/${pageArticle.userCreate
+			}`,
+			{},
+			{
+				headers: {
+					"Authorization": JSON.parse(localStorage.getItem('token'))
+				}
+			}
+		)
+			.then((res)=>{
+				console.log('===>resUser', res);
+				setUser(res.data)
+			})
+			.catch((error)=>{
+				console.log('===>error', error);
+			})
+	}, [pageArticle])
+
+	useEffect(() => {
 		if (pageArticle.pictureSrc === undefined) {
 			return
 		} else {
 			const image = pageArticle.pictureSrc.split('/')
 			setImageSrc(image)
 		}
-	},[pageArticle])
+	}, [pageArticle])
+
+	useEffect(() => {
+		if (user.avatar === undefined) {
+			return
+		} else {
+			const avatar = user.avatar.split('/')
+			setAvatar(avatar)
+		}
+	}, [user])
 
 	return (
 		<div className='container'>
@@ -77,7 +108,8 @@ export const ArticlePage = () => {
 						{
 							pageArticle.pictureSrc
 								?
-								<img className='pic' src={`http://localhost:5000/${imageSrc[imageSrc.length-1]}`} alt={pageArticle.namePicture}/>
+								<img className='pic' src={`http://localhost:5000/${imageSrc[imageSrc.length - 1]}`}
+										 alt={pageArticle.namePicture}/>
 								:
 								<img className='pic' src={plug} alt={pageArticle.namePicture}/>
 						}
@@ -91,7 +123,7 @@ export const ArticlePage = () => {
 							<div className="flexUser">
 								<div className='userInfo page'>
 									<div className='iconUser page'>
-										<img className="iconImg" src={pageArticle.iconSrc} alt={pageArticle.namePicture}/>
+										<img className="iconImg" src={`http://localhost:5000/${avatar[avatar.length - 1]}`} alt={avatar.namePicture}/>
 										<span>
 										{pageArticle.nameUser}
 									</span>
